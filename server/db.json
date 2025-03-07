@@ -330,5 +330,47 @@
       "cover": "Bìa mềm",
       "status": "Còn hàng"
     }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "bookId": 1,
+      "username": "Nguyễn Văn A",
+      "rating": 5,
+      "date": "10/05/2023",
+      "content": "Sách rất hay và ý nghĩa. Đã giúp tôi hiểu thêm về cách giao tiếp với mọi người xung quanh."
+    },
+    {
+      "id": 2,
+      "bookId": 1,
+      "username": "Trần Thị B",
+      "rating": 4,
+      "date": "02/04/2023",
+      "content": "Nội dung sách súc tích, dễ hiểu. Tuy nhiên phần dịch thuật có một số chỗ chưa được tự nhiên."
+    },
+    {
+      "id": 3,
+      "bookId": 1,
+      "username": "Lê Văn C",
+      "rating": 5,
+      "date": "15/03/2023",
+      "content": "Một cuốn sách nên đọc nếu bạn muốn cải thiện kỹ năng giao tiếp và tạo ảnh hưởng tích cực đến người khác."
+    },
+    {
+      "id": 4,
+      "bookId": 2,
+      "username": "Phạm Thị D",
+      "rating": 5,
+      "date": "20/04/2023",
+      "content": "Câu chuyện thật sâu sắc và truyền cảm hứng. Tôi đã đọc đi đọc lại nhiều lần."
+    },
+    {
+      "id": 5,
+      "bookId": 2,
+      "username": "Hoàng Văn E",
+      "rating": 5,
+      "date": "05/03/2023",
+      "content": "Cuốn sách này đã thay đổi cách nhìn của tôi về cuộc sống và ước mơ."
+    }
   ]
 }
