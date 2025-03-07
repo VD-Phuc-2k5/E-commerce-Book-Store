@@ -393,5 +393,66 @@
       "minOrder": 0,
       "message": "Miễn phí vận chuyển"
     }
-  ]
+  ],
+  "locations": {
+    "HCM": {
+      "name": "TP. Hồ Chí Minh",
+      "districts": {
+        "Q1": {
+          "name": "Quận 1",
+          "wards": [
+            "Phường Bến Nghé",
+            "Phường Bến Thành",
+            "Phường Cầu Kho",
+            "Phường Cầu Ông Lãnh"
+          ]
+        },
+        "Q2": {
+          "name": "Quận 2",
+          "wards": [
+            "Phường An Khánh",
+            "Phường An Lợi Đông",
+            "Phường An Phú",
+            "Phường Bình An"
+          ]
+        },
+        "Q3": {
+          "name": "Quận 3",
+          "wards": ["Phường 1", "Phường 2", "Phường 3", "Phường 4", "Phường 5"]
+        }
+      }
+    },
+    "HN": {
+      "name": "Hà Nội",
+      "districts": {
+        "HBT": {
+          "name": "Quận Hai Bà Trưng",
+          "wards": [
+            "Phường Bạch Mai",
+            "Phường Bạch Đằng",
+            "Phường Bùi Thị Xuân",
+            "Phường Cầu Dền"
+          ]
+        },
+        "HK": {
+          "name": "Quận Hoàn Kiếm",
+          "wards": [
+            "Phường Chương Dương",
+            "Phường Cửa Đông",
+            "Phường Cửa Nam",
+            "Phường Đồng Xuân"
+          ]
+        },
+        "TX": {
+          "name": "Quận Thanh Xuân",
+          "wards": [
+            "Phường Hạ Đình",
+            "Phường Khương Đình",
+            "Phường Khương Mai",
+            "Phường Khương Trung"
+          ]
+        }
+      }
+    }
+  }
 }
