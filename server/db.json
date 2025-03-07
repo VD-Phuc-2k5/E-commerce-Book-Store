@@ -1,13 +1,44 @@
 {
-  "posts": [
-    { "id": "1", "title": "a title", "views": 100 },
-    { "id": "2", "title": "another title", "views": 200 }
-  ],
-  "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  "categories": [
+    {
+      "id": 1,
+      "name": "Văn học",
+      "image": "https://picsum.photos/id/24/300/300"
+    },
+    {
+      "id": 2,
+      "name": "Kinh tế",
+      "image": "https://picsum.photos/id/180/300/300"
+    },
+    {
+      "id": 3,
+      "name": "Tâm lý - Kỹ năng sống",
+      "image": "https://picsum.photos/id/21/300/300"
+    },
+    {
+      "id": 4,
+      "name": "Nuôi dạy con",
+      "image": "https://picsum.photos/id/22/300/300"
+    },
+    {
+      "id": 5,
+      "name": "Sách thiếu nhi",
+      "image": "https://picsum.photos/id/23/300/300"
+    },
+    {
+      "id": 6,
+      "name": "Tiểu sử - Hồi ký",
+      "image": "https://picsum.photos/id/29/300/300"
+    },
+    {
+      "id": 7,
+      "name": "Giáo khoa - Tham khảo",
+      "image": "https://picsum.photos/id/24/300/300"
+    },
+    {
+      "id": 8,
+      "name": "Sách ngoại ngữ",
+      "image": "https://picsum.photos/id/25/300/300"
+    }
+  ]
 }
