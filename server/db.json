@@ -372,5 +372,26 @@
       "date": "05/03/2023",
       "content": "Cuốn sách này đã thay đổi cách nhìn của tôi về cuộc sống và ước mơ."
     }
+  ],
+  "coupons": [
+    {
+      "code": "WELCOME10",
+      "discount": 0.1,
+      "minOrder": 200000,
+      "message": "Giảm 10% cho đơn hàng từ 200.000₫"
+    },
+    {
+      "code": "BOOK20",
+      "discount": 0.2,
+      "minOrder": 300000,
+      "message": "Giảm 20% cho đơn hàng từ 300.000₫"
+    },
+    {
+      "code": "FREESHIP",
+      "discount": 30000,
+      "isShipping": true,
+      "minOrder": 0,
+      "message": "Miễn phí vận chuyển"
+    }
   ]
 }
