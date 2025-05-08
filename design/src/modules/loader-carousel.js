@@ -49,17 +49,19 @@ function setupCarousel(slider, duration, gap) {
   }
 
   // Auto carousel
-  const interval = setInterval(slideNext, duration);
+  let interval = setInterval(slideNext, duration);
 
   // Button listeners
   document.getElementById("nextBtn").addEventListener("click", () => {
     clearInterval(interval);
     slideNext();
+    interval = setInterval(slideNext, duration);
   });
 
   document.getElementById("prevBtn").addEventListener("click", () => {
     clearInterval(interval);
     slidePrev();
+    interval = setInterval(slideNext, duration);
   });
 }
 
