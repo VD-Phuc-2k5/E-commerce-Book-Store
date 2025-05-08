@@ -197,3 +197,44 @@
 .header__nav__list li:hover > :not(a) {
   display: block;
 }
+
+.header__nav__elementor > button {
+  position: relative;
+}
+
+.header__nav__elementor__dropdown {
+  position: absolute;
+  top: 100%;
+  left: -140%;
+  display: none;
+  width: min(100vw, 300px);
+  min-height: 250px;
+  background: var(--white-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 1px solid var(--gray-white-color);
+  padding: 10px;
+  align-items: center;
+  animation: fade 0.3s ease-in-out;
+  transform-origin: top right;
+  transform: translateX(-50%);
+}
+
+.header__nav__elementor__dropdown:after {
+  --w: 20px;
+  content: "";
+  position: absolute;
+  inset: calc(var(--w) * -0.5) 0 0 84%;
+  width: calc(var(--w) * 1.7);
+  height: var(--w);
+  clip-path: polygon(0%100%, 50%0, 100%100%);
+  background-color: #fff;
+}
+
+.header__nav__elementor__dropdown img {
+  width: 100%;
+}
+
+.header__nav__elementor > button:hover > .header__nav__elementor__dropdown {
+  display: flex;
+}
