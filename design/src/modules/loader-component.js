@@ -4,6 +4,16 @@ export class ComponentLoader extends HTMLElement {
     const cssPaths = this.getAttribute("css")?.split(",") || [];
 
     try {
+      // ✅ Load CSS
+      cssPaths.forEach((path) => {
+        if (!document.querySelector(`link[href="${path}"]`)) {
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = path;
+          document.head.appendChild(link);
+        }
+      });
+
       const res = await fetch(htmlPath);
       const htmlText = await res.text();
 
@@ -59,16 +69,6 @@ export class ComponentLoader extends HTMLElement {
           detail: { htmlPath },
         })
       );
-
-      // ✅ Load CSS
-      cssPaths.forEach((path) => {
-        if (!document.querySelector(`link[href="${path}"]`)) {
-          const link = document.createElement("link");
-          link.rel = "stylesheet";
-          link.href = path;
-          document.head.appendChild(link);
-        }
-      });
     } catch (err) {
       this.innerHTML = `<p style="color: red;">Error loading ${htmlPath}</p>`;
       console.error(`Error loading component: ${htmlPath}`, err);
