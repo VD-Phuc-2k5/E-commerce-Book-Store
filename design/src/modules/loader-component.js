@@ -9,29 +9,20 @@ export class ComponentLoader extends HTMLElement {
 
       const parser = new DOMParser();
       const doc = parser.parseFromString(htmlText, "text/html");
-      const wrapper = document.createElement("div");
-      wrapper.innerHTML = doc.body.innerHTML;
+      const codeHtml = parser.parseFromString(doc.body.innerHTML, "text/html");
 
       // ✅ Base path of the component, e.g. ../pages/shared/Header/
       const componentDir = htmlPath.substring(0, htmlPath.lastIndexOf("/") + 1);
-
       // ✅ Path from component to index.html
       const currentDir = window.location.pathname.substring(
         0,
         window.location.pathname.lastIndexOf("/") + 1
       );
-
       // Convert to absolute URL so we can get relative path later
       const componentURL = new URL(componentDir, window.location.origin);
       const currentURL = new URL(currentDir, window.location.origin);
-
-      const relativeToIndex = componentURL.pathname.replace(
-        currentURL.pathname,
-        ""
-      );
-
       // ✅ Fix image paths
-      wrapper.querySelectorAll("img").forEach((img) => {
+      codeHtml.querySelectorAll("img").forEach((img) => {
         const originalSrc = img.getAttribute("src");
 
         if (
@@ -61,7 +52,13 @@ export class ComponentLoader extends HTMLElement {
         }
       });
 
-      this.replaceWith(wrapper);
+      this.replaceWith(codeHtml.body.firstChild);
+
+      window.dispatchEvent(
+        new CustomEvent("component-loaded", {
+          detail: { htmlPath },
+        })
+      );
 
       // ✅ Load CSS
       cssPaths.forEach((path) => {
