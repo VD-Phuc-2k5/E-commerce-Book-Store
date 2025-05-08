@@ -1,0 +1,58 @@
+export const carrouselInDropdown = [
+  {
+    id: 1,
+    imageUrl: "./assets/img/carousel-nav-image1.jpg",
+    title: "Blind Wilow, Sleeping Woman",
+    author: "Haruki Murakami",
+    cost: "315,000",
+  },
+  {
+    id: 2,
+    imageUrl: "./assets/img/carousel-nav-image2.jpg",
+    title: "Blind Wilow, Sleeping Woman",
+    author: "Haruki Murakami",
+    cost: "315,000",
+  },
+  {
+    id: 3,
+    imageUrl: "./assets/img/carousel-nav-image3.jpg",
+    title: "Blind Wilow, Sleeping Woman",
+    author: "Haruki Murakami",
+    cost: "315,000",
+  },
+  {
+    id: 4,
+    imageUrl: "./assets/img/carousel-nav-image4.jpg",
+    title: "Blind Wilow, Sleeping Woman",
+    author: "Haruki Murakami",
+    cost: "315,000",
+  },
+  {
+    id: 5,
+    imageUrl: "./assets/img/carousel-nav-image5.jpg",
+    title: "Blind Wilow, Sleeping Woman",
+    author: "Haruki Murakami",
+    cost: "315,000",
+  },
+  {
+    id: 6,
+    imageUrl: "./assets/img/carousel-nav-image6.jpg",
+    title: "Blind Wilow, Sleeping Woman",
+    author: "Haruki Murakami",
+    cost: "315,000",
+  },
+  {
+    id: 7,
+    imageUrl: "./assets/img/carousel-nav-image7.jpg",
+    title: "Blind Wilow, Sleeping Woman",
+    author: "Haruki Murakami",
+    cost: "315,000",
+  },
+  {
+    id: 8,
+    imageUrl: "./assets/img/carousel-nav-image8.jpg",
+    title: "Blind Wilow, Sleeping Woman",
+    author: "Haruki Murakami",
+    cost: "315,000",
+  },
+];
