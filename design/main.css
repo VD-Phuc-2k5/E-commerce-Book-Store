@@ -317,15 +317,19 @@ input {
 
 /* visibale - invisible - dropdown*/
 .header__nav__list li > :not(a) {
+  visibility: hidden;
   animation: fadeIn 0.3s ease-in-out forwards;
   transform-origin: top center;
+  transition: 0.5s ease;
 }
 
 .header__nav__list li:hover > :not(a) {
+  visibility: visible;
   display: block;
 }
 
 .header__nav__list li:not(:hover) > :not(a) {
+  visibility: hidden;
   animation: fadeOut 0.5s ease-in-out forwards;
 }
 
