@@ -16,13 +16,181 @@
     <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
-    <component-loader
-      html="./shared/Header/Header.html"
-      css="./shared/Header/css/style.css"></component-loader>
-    <component-loader
+    <!-- header -->
+    <header class="header">
+      <nav class="header__nav">
+        <div class="header__nav__logo">
+          <a href="/" tabindex="-1" class="header__nav__logo">
+            <img src="../../assets/img/logo.webp" alt="logo.webp" />
+          </a>
+        </div>
+
+        <ul class="header__nav__list">
+          <li>
+            <a href="/about">About Us</a>
+          </li>
+          <li><a href="/location">Our Locations</a></li>
+          <li style="position: relative">
+            <a href="/all-books">
+              All Books
+              <i class="fas fa-angle-down"></i>
+            </a>
+
+            <div class="header__nav_list--dropdown">
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="header__nav_list--dropdown__sidebar">
+                    <div>
+                      <div class="header__nav_list--dropdown__sidebar__title">
+                        <h3>Categories</h3>
+                      </div>
+                      <ul class="header__nav_list--dropdown__sidebar__list">
+                        <li><a href="/fiction">Fiction</a></li>
+                        <li>
+                          <a href="/non-fiction">Non-Fiction</a>
+                        </li>
+                        <li><a href="/science">Science</a></li>
+                        <li><a href="/history">History</a></li>
+                        <li><a href="/biography">Biography</a></li>
+                      </ul>
+                    </div>
+
+                    <a
+                      href="/all-books"
+                      class="header__nav_list--dropdown__sidebar__link">
+                      <span>Browse All Books</span>
+                      <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div class="col-lg-9 header__nav_list--dropdown__content">
+                  <nav class="row">
+                    <div class="col-lg-4">
+                      <h3>New Arrivals</h3>
+                    </div>
+                    <div class="col-lg-7 offset-lg-1">
+                      <div class="header__nav_list--dropdown__search">
+                        <i class="fas fa-search"></i>
+                        <input
+                          type="text"
+                          placeholder="Search for all books & authors" />
+                      </div>
+                    </div>
+                  </nav>
+                  <div
+                    class="header__nav_list--dropdown__carousel__wrapper container">
+                    <div class="header__nav_list--dropdown__carousel">
+                      <div
+                        class="header__nav_list--dropdown__carousel__slider"
+                        id="slider"></div>
+                    </div>
+                    <div class="header__nav_list--dropdown__carousel__controls">
+                      <button id="prevBtn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                      </button>
+                      <button id="nextBtn">
+                        <i class="fa-solid fa-arrow-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li><a href="/account">My Account</a></li>
+        </ul>
+
+        <div class="header__nav__elementor">
+          <button type="button">
+            <a href="/cart" class="header__nav__elementor--item notify">
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+
+            <div class="container header__nav__elementor__dropdown">
+              <div class="row">
+                <div class="col-md-6 offset-md-3">
+                  <div>
+                    <img
+                      src="../../assets/icon/empty-box-icon.png"
+                      alt="empty-box-icon.png"
+                      class="card-img-top" />
+
+                    <div class="card-body">
+                      <div
+                        class="card-title"
+                        style="
+                          font-weight: 500;
+                          text-wrap: nowrap;
+                          padding: 10px 0;
+                        ">
+                        Chưa có sản phẩm
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </button>
+
+          <button type="button">
+            <a href="/like" class="header__nav__elementor--item notify">
+              <i class="far fa-heart"></i>
+            </a>
+
+            <div class="container header__nav__elementor__dropdown">
+              <div class="row">
+                <div class="col-md-6 offset-md-3">
+                  <div>
+                    <img
+                      src="../../assets/icon/empty-box-icon.png"
+                      alt="empty-box-icon.png"
+                      class="card-img-top" />
+
+                    <div class="card-body">
+                      <div
+                        class="card-title"
+                        style="
+                          font-weight: 500;
+                          text-wrap: nowrap;
+                          padding: 10px 0;
+                        ">
+                        Chưa có sản phẩm
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </button>
+
+          <button type="button">
+            <i class="fa-solid fa-bars header__nav__elementor--item"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- page -->
+    <div id="app"></div>
+
+    <!-- footer -->
+
+    <!-- component register -->
+    <component-register
       html="./pages/Home/Home.html"
-      css="./pages/Home/css/style.css">
-    </component-loader>
+      css="./pages/Home/css/style.css,./pages/Home/css/responsive.css"
+      js="./pages/Home/Home.js"
+      path="/">
+    </component-register>
+
+    <component-register
+      html="./pages/About/About.html"
+      css="./pages/About/css/style.css,./pages/About/css/responsive.css"
+      js="./pages/About/About.js"
+      path="/about">
+    </component-register>
+
     <script src="./src/app.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
