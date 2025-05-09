@@ -33,6 +33,7 @@ input {
   --controls-width: 30px;
 }
 
+/* properties */
 @property --search-color {
   syntax: "<color>";
   inherits: false;
@@ -43,6 +44,17 @@ input {
   syntax: "<number>";
   inherits: false;
   initial-value: 3;
+}
+
+@property --header-height {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 94px;
+}
+/* App */
+#app {
+  position: relative;
+  inset: var(--header-height) 0 0 0;
 }
 
 /* products */
@@ -98,7 +110,7 @@ input {
 .header {
   position: fixed;
   inset: 0;
-  height: 94px;
+  height: var(--header-height);
   padding: 0 50px;
 }
 
