@@ -642,6 +642,10 @@ footer {
 }
 
 @media (min-width: 1024px) {
+  .header__nav__elementor--bars {
+    display: none;
+  }
+  
   .header__nav__list {
     display: flex;
   }

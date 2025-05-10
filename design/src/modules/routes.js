@@ -10,6 +10,7 @@ class Routes {
   }
 
   navigate(path) {
+    if (window.location.pathname === path) return;
     history.pushState(null, null, path);
     this.render();
   }
@@ -46,12 +47,30 @@ class Routes {
 
     // Thêm script mới nếu có
     if (scriptTag) {
-      const newScript = scriptTag.cloneNode(true);
+      const newScript = document.createElement("script");
+      newScript.type = "module";
+
+      if (scriptTag.src) {
+        const cacheBuster = `?_=${Date.now()}`;
+        newScript.src = scriptTag.src + cacheBuster;
+      } else {
+        newScript.textContent = scriptTag.textContent;
+      }
+
       document.body.appendChild(newScript);
       this.currentScript = newScript;
     }
 
     app.appendChild(elDOM.cloneNode(true));
+
+    // prevent default event of tag a
+    const aEl = document.querySelectorAll("a");
+    aEl.forEach((aDom) => {
+      aDom.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.navigate(e.currentTarget.getAttribute("href"));
+      });
+    });
   }
 }
 

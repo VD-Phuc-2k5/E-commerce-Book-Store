@@ -8,15 +8,6 @@ function App() {
   // define component register
   customElements.define("component-register", ComponentRegister);
 
-  // prevent default event of tag a
-  const aEl = document.querySelectorAll("a");
-  aEl.forEach((aDom) => {
-    aDom.addEventListener("click", (e) => {
-      e.preventDefault();
-      routes.navigate(e.currentTarget.getAttribute("href"));
-    });
-  });
-
   window.addEventListener("popstate", routes.render);
   window.addEventListener("component-registed", (e) => {
     const { path, ...routeObj } = e.detail;
