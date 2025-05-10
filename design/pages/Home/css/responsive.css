@@ -1,0 +1,15 @@
+@media (min-width: 374px) {
+  .home__banner__overlay__title {
+    padding: 30px;
+  }
+
+  .home__banner__overlay__title h1 {
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .home__banner__overlay__title {
+    padding: 40px;
+  }
+}

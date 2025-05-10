@@ -12,8 +12,7 @@ home_products.forEach(({ title, products }) => {
   products.forEach(({ imageUrl, title, author, cost }, idx) => {
     const productItem = createProduct(imageUrl, title, author, cost, idx, [
       "col-lg-3",
-      "col-md-6",
-      "col-xs-12",
+      "col-6",
     ]);
     productList.appendChild(productItem);
   });
