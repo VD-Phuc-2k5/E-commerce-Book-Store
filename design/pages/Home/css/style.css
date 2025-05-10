@@ -37,7 +37,7 @@
 }
 
 .home__banner__overlay__title h1 {
-  font-size: clamp(3vw, 500%, 4vw);
+  font-size: clamp(3vw, 500%, 5vw);
   margin-bottom: 25px;
 }
 
