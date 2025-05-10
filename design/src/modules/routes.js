@@ -1,3 +1,5 @@
+import { showLoading, hideLoading } from "./loadingPage.js";
+
 class Routes {
   constructor() {
     this.routes = {};
@@ -10,6 +12,7 @@ class Routes {
   }
 
   navigate(path) {
+    showLoading();
     if (window.location.pathname === path) return;
     history.pushState(null, null, path);
     this.render();
@@ -62,6 +65,8 @@ class Routes {
     }
 
     app.appendChild(elDOM.cloneNode(true));
+
+    hideLoading();
 
     // prevent default event of tag a
     const aEl = document.querySelectorAll("a");
