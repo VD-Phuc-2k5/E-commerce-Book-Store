@@ -3,7 +3,7 @@ import ComponentRegister from "./modules/component-register.js";
 import Routes from "./modules/routes.js";
 
 function App() {
-  carouselLoader(20, 7000);
+  carouselLoader(10, 7000);
   const routes = new Routes();
   // define component register
   customElements.define("component-register", ComponentRegister);

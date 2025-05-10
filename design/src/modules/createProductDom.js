@@ -1,13 +1,27 @@
-function createProduct(imageUrl, title, author, cost, idx) {
+function createProduct(
+  imageUrl,
+  title,
+  author,
+  cost,
+  idx,
+  breakPointClasses = []
+) {
+  const productItemWrap = document.createElement("div");
+  if (breakPointClasses) {
+    breakPointClasses.forEach((breakPointClass) => {
+      productItemWrap.classList.add(breakPointClass);
+    });
+  } else {
+    productItemWrap.classList.add("col-md-12");
+  }
+
   const productItem = document.createElement("div");
   productItem.classList.add("product-item", "card");
 
   // innerHTML
   productItem.innerHTML = `
         <div class="product-item__image">
-            <img src=${imageUrl} class="card-img-top" alt="carousel-image${
-    idx + 1
-  }.jpg" />
+            <img src=${imageUrl} alt="carousel-image${idx + 1}.jpg" />
         </div>
 
         <div class="product-item__title">
@@ -29,7 +43,9 @@ function createProduct(imageUrl, title, author, cost, idx) {
             </button>
         </div>
     `;
-  return productItem;
+
+  productItemWrap.appendChild(productItem);
+  return productItemWrap;
 }
 
 export default createProduct;

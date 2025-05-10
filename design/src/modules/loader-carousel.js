@@ -1,4 +1,5 @@
 import { carrouselInDropdown } from "../data/data.js";
+import createProduct from "./createProductDom.js";
 
 function setupCarousel(slider, duration, gap) {
   let isSliding = false;
@@ -75,36 +76,7 @@ function carouselLoader(gap, duration) {
 
     carrouselInDropdown.forEach(({ imageUrl, title, author, cost }, idx) => {
       // Create individual product item
-      const productItem = document.createElement("div");
-      productItem.classList.add("product-item", "card");
-
-      // innerHTML
-      productItem.innerHTML = `
-        <div class="product-item__image">
-            <img src=${imageUrl} class="card-img-top" alt="carousel-image${
-        idx + 1
-      }.jpg" />
-        </div>
-
-        <div class="product-item__title">
-            <h3>${title}</h3>
-        </div>
-
-        <div class="product-item__author">
-            <h4>By ${author}</h4>
-        </div>
-
-        <div class="product-item__price card-title">
-            <h4>${cost} đ</h4>
-        </div>
-
-        <div class="product-item__button">
-            <button type="button">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Add To Cart</span>
-            </button>
-        </div>
-      `;
+      const productItem = createProduct(imageUrl, title, author, cost, idx);
       // Append to current group
       slider.appendChild(productItem);
     });
