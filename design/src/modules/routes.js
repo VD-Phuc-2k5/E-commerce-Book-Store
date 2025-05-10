@@ -49,6 +49,7 @@ class Routes {
     }
 
     // Thêm script mới nếu có
+    console.log("render");
     if (scriptTag) {
       const newScript = document.createElement("script");
       newScript.type = "module";

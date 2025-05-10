@@ -12,7 +12,7 @@ function App() {
   window.addEventListener("component-registed", (e) => {
     const { path, ...routeObj } = e.detail;
     routes.addRoutes(path, routeObj);
-    routes.render();
+    if (path == "/") routes.render();
   });
 }
 
