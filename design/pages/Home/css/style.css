@@ -39,7 +39,7 @@
 }
 
 .home__banner__overlay__title h3 {
-  font-size: clamp(1vw, 300%, 3vw);
+  font-size: clamp(1vw, 300%, 2.8vw);
 }
 
 .home__banner__overlay__title h1,
@@ -57,7 +57,7 @@
   border-bottom: 2.5px solid var(--white-color);
   padding: 2px 0;
   font-weight: 600;
-  font-size: clamp(1vw, 100%, 2vw);
+  font-size: clamp(1vw, 100%, 3vw);
 }
 
 .home__product_list__title {
