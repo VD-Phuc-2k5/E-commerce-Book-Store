@@ -256,9 +256,11 @@ body {
 .header__nav__elementor--item.notify:after {
   content: "0";
   position: absolute;
-  inset: 6px 0 0 32px;
+  inset: 15px 0 0 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 18px;
-  line-height: 17px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: var(--green-color);
@@ -462,45 +464,13 @@ body {
   animation: fadeOut 0.7s ease-in-out forwards;
 }
 
-.header__nav__elementor > button {
-  position: relative;
-}
-
-.header__nav__elementor__dropdown {
-  position: absolute;
-  top: 100%;
-  left: -140%;
-  display: none;
-  width: min(100vw, 300px);
-  min-height: 250px;
-  background: var(--white-color);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-  border: 1px solid var(--gray-white-color);
-  padding: 10px;
-  align-items: center;
-  animation: fadeAndScale 0.3s ease-in-out;
-  transform-origin: top right;
-  transform: translateX(-50%);
-}
-
-.header__nav__elementor__dropdown:after {
-  --w: 20px;
-  content: "";
-  position: absolute;
-  inset: calc(var(--w) * -0.5) 0 0 84%;
-  width: calc(var(--w) * 1.7);
-  height: var(--w);
-  clip-path: polygon(0%100%, 50%0, 100%100%);
-  background-color: #fff;
-}
-
-.header__nav__elementor__dropdown img {
-  width: 100%;
-}
-
-.header__nav__elementor > button:hover > .header__nav__elementor__dropdown {
+.header__nav__elementor {
   display: flex;
+  align-items: center;
+}
+
+.header__nav__elementor > div {
+  position: relative;
 }
 
 .header__nav__elementor--bars {
@@ -711,6 +681,206 @@ footer {
   animation: loading2_713 3.5s ease both infinite;
 }
 
+/* sidebar for cart, wishlist and navbar on tablet */
+#cart.active .header__nav__elementor--item__overlay {
+  display: block;
+}
+
+.header__nav__elementor--item__overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.header__nav__elementor--item__overlay__sidebar {
+  --sw: 500px;
+  position: absolute;
+  inset: 0 0 0 calc(100% - min(var(--sw), 100vw));
+  width: min(var(--sw), 100vw);
+  height: 100%;
+  overflow-y: auto;
+  background: #fff;
+  animation: flyIn 0.5s ease-in-out;
+}
+
+.elementor--item__overlay__sidebar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.elementor--item__overlay__sidebar__header i {
+  cursor: pointer;
+}
+
+.elementor--item__overlay__sidebar__header span {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.elementor--item__overlay__sidebar__body {
+  padding: 10px;
+}
+
+.elementor--item__overlay__sidebar__body .sidebar__body__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 10px;
+}
+
+.elementor--item__overlay__sidebar__body .sidebar__body__empty i{
+  font-size: 3em;
+  color: var(--gray-color);
+}
+
+.elementor--item__overlay__sidebar__body .sidebar__body__empty h4 {
+  margin: 10px;
+}
+
+.elementor--item__overlay__sidebar__body .sidebar__body__empty p {
+  color: var(--gray-color);
+  text-align: center;
+}
+
+.elementor--item__overlay__sidebar__body .sidebar__body__empty button {
+  padding: 10px;
+  border-radius: 5px;
+  background: var(--green-color);
+  color: #fff;
+  cursor: pointer;
+  transition: scale .3s ease-in-out;
+  font-weight: bold;
+}
+
+.elementor--item__overlay__sidebar__body .sidebar__body__empty button:hover {
+  scale: 1.05;
+}
+
+.sidebar__body__list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #eaeaea;
+  cursor: pointer;
+}
+
+.sidebar__body__list__item__image {
+  width: 130px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.sidebar__body__list__item__body {
+  flex: 1;
+}
+
+.sidebar__body__list__item__body__title {
+  font-size: 1.2em;
+  line-height: 1.2em;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.sidebar__body__list__item__body__author {
+  font-weight: 400;
+  color: var(--gray-color);
+}
+
+.sidebar__body__list__item__body__cost {
+  font-size: 1.1em;
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+.sidebar__body__list__item__body__count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.sidebar__body__list__item__body__count span {
+  color: #333;
+}
+
+.sidebar__body__list__item__body__count button {
+  width: 28px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 3px solid;
+  color: #333;
+}
+
+.sidebar__body__list__item__trash {
+  margin: 15px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.sidebar__body__list__item__trash:hover {
+  color: var(--green-color)
+}
+
+.elementor--item__overlay__sidebar__total_cost {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 30px 15px 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.elementor--item__overlay__sidebar__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.elementor--item__overlay__sidebar__footer > div {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.elementor--item__overlay__sidebar__footer > div button {
+  width: 200px;
+  background: var(--green-color);
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+}
+
+.elementor--item__overlay__sidebar__footer > div button:hover {
+  scale: 1.05
+}
+
+.elementor--item__overlay__sidebar__footer > div button:last-child {
+  background: var(--gray-color);
+}
+
+.elementor--item__overlay__sidebar__footer > button {
+  padding: 15px;
+}
+
+.elementor--item__overlay__sidebar__footer > button > span:last-child {
+  color: var(--green-color);
+  font-weight: 400;
+  font-style: italic;
+}
+
 @keyframes text_713 {
   0% {
     letter-spacing: 1px;
@@ -887,6 +1057,28 @@ footer {
   }
 }
 
+@keyframes fadeAndScaleIn {
+  from {
+    transform: translate(-40px, 0);
+    opacity: 0.5;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes flyIn {
+  from {
+    transform: translateX(100%);
+    opacity: .5;
+  }
+  to {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
 /* responsive */
 @media (min-width: 374px) {
   .header {
@@ -953,16 +1145,5 @@ footer {
   }
   .product__cart-btn {
     width: auto;
-  }
-}
-
-@keyframes fadeAndScaleIn {
-  from {
-    transform: translate(-40px, 0);
-    opacity: 0.5;
-  }
-  to {
-    transform: translate(0, 0);
-    opacity: 1;
   }
 }
