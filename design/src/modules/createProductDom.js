@@ -1,3 +1,5 @@
+import setFireworks from "./setFireworks.js";
+
 function createProduct(
   imageUrl,
   title,
@@ -20,30 +22,43 @@ function createProduct(
 
   // innerHTML
   productItem.innerHTML = `
-        <div class="product-item__image">
-            <img src=${imageUrl} alt="carousel-image${idx + 1}.jpg" />
-        </div>
+    <div class="product__image">
+      <img
+        src="${imageUrl}"
+        class="card-img-top"
+        alt="product-${idx}.jpg" />
+      <div class="product__image__overlay"></div>
+    </div>
+    <div class="card-body product__body">
+      <div>
+        <h5 class="card-title product__title" style="font-weight: 600; text-align: left">
+          ${title} <br />
+          <span>By ${author}</span>
+        </h5>
 
-        <div class="product-item__title">
-            <h3>${title}</h3>
-        </div>
+        <button
+          class="procduct__wishlist-btn wishlist"
+          id="wishlistBtn">
+          <i class="fa-solid fa-heart"></i>
+        </button>
+      </div>
 
-        <div class="product-item__author">
-            <h4>By ${author}</h4>
-        </div>
+      <p class="card-text product__desc">
+        Some quick example text to build on the card title and make up
+        the bulk of the card’s content.
+      </p>
 
-        <div class="product-item__price card-title">
-            <h4>${cost} đ</h4>
+      <div>
+        <div class="product__cost" style="font-weight: 600">
+          ${cost} đ
         </div>
-
-        <div class="product-item__button">
-            <button type="button">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Add To Cart</span>
-            </button>
-        </div>
-    `;
-
+        <button class="product__cart-btn">
+          <i class="fa-solid fa-cart-shopping"></i>
+          Add To Cart
+        </button>
+      </div>
+    </div>  
+  `;
   productItemWrap.appendChild(productItem);
   return productItemWrap;
 }

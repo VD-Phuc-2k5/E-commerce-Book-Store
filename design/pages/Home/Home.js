@@ -1,5 +1,6 @@
 import { home_products } from "../../src/data/data.js";
 import createProduct from "../../src/modules/createProductDom.js";
+import setFireworks from "../../src/modules/setFireworks.js";
 
 function Home() {
   const productList = document.querySelector(".home__product_list");
@@ -15,11 +16,14 @@ function Home() {
     products.forEach(({ imageUrl, title, author, cost }, idx) => {
       const productItem = createProduct(imageUrl, title, author, cost, idx, [
         "col-lg-3",
-        "col-6",
+        "col-md-6",
+        "col-12",
       ]);
       productList.appendChild(productItem);
     });
   });
+
+  setFireworks("wishlist");
 }
 
 Home();
