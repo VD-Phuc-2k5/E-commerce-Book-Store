@@ -14,6 +14,8 @@ function App() {
     routes.addRoutes(path, routeObj);
     if (path == "/") routes.render();
   });
+
+  history.scrollRestoration = "manual";
 }
 
 App();

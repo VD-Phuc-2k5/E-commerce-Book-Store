@@ -8,14 +8,14 @@ function Home() {
   // load product in home
   home_products.forEach(({ title, products }) => {
     if (title) {
-      const h2 = document.createElement("h2");
-      h2.classList.add("home__product_list__title");
-      h2.innerText = title;
-      productList.appendChild(h2);
+      const h1 = document.createElement("h1");
+      h1.classList.add("home__product_list__title");
+      h1.innerText = title;
+      productList.appendChild(h1);
     }
     products.forEach(({ imageUrl, title, author, cost }, idx) => {
       const productItem = createProduct(imageUrl, title, author, cost, idx, [
-        "col-lg-3",
+        "col-lg-4",
         "col-md-6",
         "col-12",
       ]);
