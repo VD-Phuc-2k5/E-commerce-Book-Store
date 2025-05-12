@@ -2,16 +2,9 @@
   padding-bottom: 120px;
 }
 
-#home .product-item {
-  animation: fadeAndScaleIn;
-  animation-timeline: view();
-  animation-range: entry 10% cover 20%;
-}
-
 .home__banner {
   position: relative;
   padding: 0;
-  animation: fadeIn 1s linear;
 }
 
 .home__banner img {
@@ -19,7 +12,7 @@
   height: 85vh;
   object-fit: cover;
   padding: 0;
-  animation: fadeIn 0.5s ease-in-out;
+  animation: imageFadeIn 0.6s ease-in-out;
 }
 
 .home__banner__overlay {
@@ -28,7 +21,8 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
-  animation: fadeIn 0.5s 0.5s ease-in-out;
+  opacity: 0;
+  animation: fadeIn 0.5s 0.6s ease-in-out forwards;
 }
 
 .home__banner__overlay__title {
@@ -77,13 +71,13 @@
   margin-top: 20px;
 }
 
-@keyframes fadeAndScaleIn {
+@keyframes imageFadeIn {
   from {
-    transform: translate(-40px, 0);
-    opacity: 0.5;
+    height: 75vh;
+    opacity: 0;
   }
   to {
-    transform: translate(0, 0);
+    height: 85vh;
     opacity: 1;
   }
 }

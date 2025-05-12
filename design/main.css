@@ -43,13 +43,11 @@ input {
 
 body {
   overflow-x: hidden;
-  line-height: 1.6;
   color: var(--text-color);
   background-color: var(--bg-color);
-  min-height: 100vh;
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
-  scroll-behavior: smooth;
 }
 
 /* color */
@@ -94,11 +92,14 @@ body {
 }
 
 /* products */
-.product {
+.product-item {
   margin-top: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: 0.5s ease-in-out;
+  animation: fadeAndScaleIn;
+  animation-timeline: view();
+  animation-range: entry 10% cover 20%;
 }
 
 .product__image {
@@ -952,5 +953,16 @@ footer {
   }
   .product__cart-btn {
     width: auto;
+  }
+}
+
+@keyframes fadeAndScaleIn {
+  from {
+    transform: translate(-40px, 0);
+    opacity: 0.5;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
   }
 }
