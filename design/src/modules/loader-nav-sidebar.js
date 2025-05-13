@@ -1,7 +1,37 @@
+import priceFormat from "./priceFormat.js";
+
+function updateTotalPrice(cart, totalPrice) {
+  const totalPriceDom = cart.querySelector(".cart__total_price");
+  const totalPriceFadeIn = totalPriceDom.animate(
+    [{ opacity: 1 }, { opacity: 0 }],
+    {
+      duration: 350,
+    }
+  );
+  totalPriceFadeIn.onfinish = () => {
+    totalPriceDom.innerText = priceFormat(totalPrice);
+  };
+}
+
 function loaderNavSidebar(id, title) {
+  let totalPrice = 0;
   const wrapper = document.getElementById(`${id}`);
   const wrapperOverlay = document.createElement("div");
   wrapperOverlay.classList.add("header__nav__elementor--item__overlay");
+  if (title === "Cart") {
+    // Neu san pham duoc them vao gio hang thi cap nhat lai tong gia
+    window.addEventListener("cart:item-added", (e) => {
+      totalPrice += Number(e.detail.cost);
+      updateTotalPrice(wrapper, totalPrice);
+    });
+
+    // Neu san pham duoc xoa khoi gio hang thi cap nhat lai tong gia
+    window.addEventListener("cart:item-removed", (e) => {
+      totalPrice -= Number(e.detail.cost);
+      updateTotalPrice(wrapper, totalPrice);
+    });
+  }
+
   wrapperOverlay.innerHTML = `
         <div class='header__nav__elementor--item__overlay__sidebar'>
             <div class='elementor--item__overlay__sidebar__header'>
@@ -28,13 +58,17 @@ function loaderNavSidebar(id, title) {
 
             <div class='elementor--item__overlay__sidebar__total_cost'>
                 <span>Total:</span>
-                <span>315.000</span>
+                <span class="cart__total_price">${totalPrice}</span>
             </div>
 
             <div class='elementor--item__overlay__sidebar__footer'>
                 <div>
-                    <button>Checkout</button>
-                    <button>View ${title}</button>
+                    <a href="/checkout">
+                        <button>Checkout</button>
+                    </a>
+                    <a href="/${title.toLowerCase()}">
+                        <button>View ${title}</button>
+                    </a>
                 </div>
                 <button>
                     <span>or</span>

@@ -2,9 +2,14 @@
   padding-bottom: 120px;
 }
 
+#home .product-item {
+  opacity: 0;
+}
+
 .home__banner {
   position: relative;
   padding: 0;
+  margin-bottom: 20px;
 }
 
 .home__banner img {
@@ -30,16 +35,12 @@
   flex-direction: column;
   height: 100%;
   padding: 60px;
-  justify-content: flex-end;
+  justify-content: end;
 }
 
 .home__banner__overlay__title h1 {
   font-size: clamp(3vw, 500%, 6vw);
   margin-bottom: 25px;
-}
-
-.home__banner__overlay__title h3 {
-  font-size: clamp(1vw, 300%, 2.8vw);
 }
 
 .home__banner__overlay__title h1,

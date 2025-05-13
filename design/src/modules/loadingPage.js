@@ -1,10 +1,20 @@
 export function showLoading() {
-  document.getElementById("loading-animation").style.display = "flex";
+  const loadingBox = document.getElementById("loading-animation");
+  loadingBox.classList.add("active");
+  document.body.style = "overflow-y: hidden";
 }
 
 export function hideLoading(delay = 2000) {
   setTimeout(() => {
     const loading = document.getElementById("loading-animation");
-    loading.style = "animation: fadeOut 1s ease-in-out forwards";
+    const loadingFadeOut = loading.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: 1000,
+      easing: "ease-in-out",
+    });
+
+    loadingFadeOut.onfinish = () => {
+      loading.classList.remove("active");
+      document.body.style = "overflow-y: auto";
+    };
   }, delay);
 }

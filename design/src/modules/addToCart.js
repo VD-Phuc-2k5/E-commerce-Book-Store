@@ -1,3 +1,5 @@
+import priceFormat from "./priceFormat.js";
+
 function addToCart(imgUrl, title, author, cost) {
   const wrapper = document.querySelector("#cart");
   const notify = wrapper.querySelector(".header__nav__elementor--item.notify");
@@ -21,16 +23,9 @@ function addToCart(imgUrl, title, author, cost) {
     <div class='sidebar__body__list__item__body'>
         <div class='sidebar__body__list__item__body__title'>${title}</div>
         <div class='sidebar__body__list__item__body__author'>By ${author}</div>
-        <div class='sidebar__body__list__item__body__cost'>${cost}</div>
-        <div class='sidebar__body__list__item__body__count'>
-            <button>
-                <i class='fa-solid fa-plus'></i>
-            </button>
-            <span>0</span>
-            <button>
-                <i class='fa-solid fa-minus'></i>
-            </button>
-        </div>
+        <div class='sidebar__body__list__item__body__cost'>${priceFormat(
+          Number(cost)
+        )}</div>
     </div>
 
     <div class='sidebar__body__list__item__trash'>
@@ -57,25 +52,37 @@ function addToCart(imgUrl, title, author, cost) {
           { opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0 },
         ],
         {
-          duration: 400,
+          duration: 300,
           easing: "ease-in-out",
         }
       );
 
       listItemFadeOut.onfinish = () => {
         wrapperListItem.remove();
+        window.dispatchEvent(
+          new CustomEvent("cart:item-removed", {
+            detail: {
+              imgUrl,
+              title,
+              author,
+              cost,
+            },
+          })
+        );
+
         if (wrapperList.childNodes.length - 1 === 0) {
           const wrapperCostFadeOut = wrapperCost.animate(
             [{ opacity: 1 }, { opacity: 0 }],
             {
-              duration: 500,
+              duration: 400,
               easing: "ease-in-out",
             }
           );
+
           const footerListFadeOut = wrapperFooter.animate(
             [{ opacity: 1 }, { opacity: 0 }],
             {
-              duration: 500,
+              duration: 400,
               easing: "ease-in-out",
             }
           );
@@ -93,6 +100,16 @@ function addToCart(imgUrl, title, author, cost) {
   });
 
   wrapperList.appendChild(wrapperListItem);
+  window.dispatchEvent(
+    new CustomEvent("cart:item-added", {
+      detail: {
+        imgUrl,
+        title,
+        author,
+        cost,
+      },
+    })
+  );
   const count = wrapperList.childNodes.length - 1;
   notify.setAttribute("data-count", count);
   if (count) {

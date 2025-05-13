@@ -1,4 +1,5 @@
 import { showLoading, hideLoading } from "./loadingPage.js";
+import { removeSidebar } from "./setSidebarToggle.js";
 
 class Routes {
   constructor() {
@@ -12,13 +13,25 @@ class Routes {
   }
 
   navigate(path) {
-    showLoading();
+    window.scrollTo(0, 0);
+    const cart = document.getElementById("cart");
+    const wishList = document.getElementById("wishlist");
+
+    if (cart && cart.classList.contains("active")) {
+      removeSidebar(cart);
+    }
+
+    if (wishList && wishList.classList.contains("active")) {
+      removeSidebar(wishList);
+    }
+
     if (window.location.pathname === path) return;
     history.pushState(null, null, path);
     this.render();
   }
 
   render() {
+    showLoading();
     const path = window.location.pathname;
     const app = document.getElementById("app");
     app.innerHTML = "";
@@ -65,7 +78,6 @@ class Routes {
     }
 
     app.appendChild(elDOM.cloneNode(true));
-
     hideLoading();
 
     // prevent default event of tag a

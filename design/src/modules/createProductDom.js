@@ -1,4 +1,5 @@
 import addToCart from "./addToCart.js";
+import priceFormat from "./priceFormat.js";
 
 function createProduct(
   imageUrl,
@@ -50,7 +51,7 @@ function createProduct(
 
       <div>
         <div class="product__cost" style="font-weight: 600">
-          ${cost} đ
+          ${priceFormat(Number(cost))} đ
         </div>
         <button class="product__cart-btn">
           <i class="fa-solid fa-cart-shopping"></i>
