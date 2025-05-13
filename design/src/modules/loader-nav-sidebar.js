@@ -11,7 +11,9 @@ function loaderNavSidebar(id, title) {
 
             <div class='elementor--item__overlay__sidebar__body'>
                 <div class='sidebar__body__empty'>
-                    <i class='fa-solid fa-cart-shopping'></i>
+                    <i class='fa-solid ${
+                      title === "Cart" ? "fa-cart-shopping" : "fa-book"
+                    }'></i>
                     <h4>Your ${String(title).toLowerCase()} is empty</h4>
                     <p>Looks like you haven't added any books to your ${String(
                       title
