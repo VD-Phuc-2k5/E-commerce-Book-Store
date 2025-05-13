@@ -11,6 +11,7 @@ function setSidebarToggle(id) {
     ".continue-shopping-btn"
   );
   const closeBtn = button.querySelector(".fa-xmark");
+
   if (button && openBtn && overlay && closeBtn) {
     function removeSidebar() {
       const overlayFadeOut = overlay.animate([{ opacity: 1 }, { opacity: 0 }], {

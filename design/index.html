@@ -122,94 +122,23 @@
         </ul>
 
         <div class="header__nav__elementor">
-          <div id="cart">
-            <div class="header__nav__elementor--item notify">
+          <div id="cart" class="empty">
+            <div class="header__nav__elementor--item notify" data-count="0">
               <i class="fas fa-shopping-cart"></i>
-            </div>
-            <!-- sidebar -->
-            <div class="header__nav__elementor--item__overlay">
-              <div class="header__nav__elementor--item__overlay__sidebar">
-                <div class="elementor--item__overlay__sidebar__header">
-                  <span>Your Cart</span>
-                  <i class="fa-solid fa-xmark"></i>
-                </div>
-
-                <div class="elementor--item__overlay__sidebar__body">
-                  <div class="sidebar__body__empty">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <h4>Your cart is empty</h4>
-                    <p>
-                      Looks like you haven't added any books to your cart yet.
-                    </p>
-                    <button class="continue-shopping-btn">
-                      Continue Shopping
-                    </button>
-                  </div>
-
-                  <div class="sidebar__body__list">
-                    <!-- sidebar__list__item -->
-                    <div class="sidebar__body__list__item">
-                      <img
-                        src="./assets/img/carousel-nav-image2.jpg"
-                        alt="img.jpg"
-                        class="sidebar__body__list__item__image" />
-
-                      <div class="sidebar__body__list__item__body">
-                        <div class="sidebar__body__list__item__body__title">
-                          Blind Wilow, Sleeping Woman
-                        </div>
-                        <div class="sidebar__body__list__item__body__author">
-                          By Haruki Murakami
-                        </div>
-                        <div class="sidebar__body__list__item__body__cost">
-                          315,000
-                        </div>
-                        <div class="sidebar__body__list__item__body__count">
-                          <button>
-                            <i class="fa-solid fa-plus"></i>
-                          </button>
-                          <span>0</span>
-                          <button>
-                            <i class="fa-solid fa-minus"></i>
-                          </button>
-                        </div>
-                      </div>
-
-                      <div class="sidebar__body__list__item__trash">
-                        <i class="fa-solid fa-trash"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="elementor--item__overlay__sidebar__total_cost">
-                  <span>Total:</span>
-                  <span>315.000</span>
-                </div>
-
-                <div class="elementor--item__overlay__sidebar__footer">
-                  <div>
-                    <button>Checkout</button>
-                    <button>View cart</button>
-                  </div>
-                  <button>
-                    <span>or</span>
-                    <span class="continue-shopping-btn">Continue Shopping</span>
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
 
-          <div>
-            <div class="header__nav__elementor--item notify">
+          <div id="wishlist">
+            <div class="header__nav__elementor--item notify" data-count="0">
               <i class="far fa-heart"></i>
             </div>
           </div>
 
-          <div
-            class="header__nav__elementor--item header__nav__elementor--bars">
-            <i class="fa-solid fa-bars"></i>
+          <div id="bars">
+            <div
+              class="header__nav__elementor--item header__nav__elementor--bars">
+              <i class="fa-solid fa-bars"></i>
+            </div>
           </div>
         </div>
       </nav>

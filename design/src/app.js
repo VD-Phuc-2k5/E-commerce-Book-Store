@@ -1,11 +1,15 @@
 import carouselLoader from "./modules/loader-carousel.js";
 import ComponentRegister from "./modules/component-register.js";
 import setSidebarToggle from "./modules/setSidebarToggle.js";
+import loaderNavSidebar from "./modules/loader-nav-sidebar.js";
 import Routes from "./modules/routes.js";
 
 function App() {
   carouselLoader(10, 7000);
+  loaderNavSidebar("cart", "Cart");
+  loaderNavSidebar("wishlist", "Wishlist");
   setSidebarToggle("cart");
+  setSidebarToggle("wishlist");
   const routes = new Routes();
   // define component register
   customElements.define("component-register", ComponentRegister);

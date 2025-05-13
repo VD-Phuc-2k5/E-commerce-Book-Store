@@ -1,4 +1,4 @@
-import setFireworks from "./setFireworks.js";
+import addToCart from "./addToCart.js";
 
 function createProduct(
   imageUrl,
@@ -59,6 +59,13 @@ function createProduct(
       </div>
     </div>  
   `;
+
+  productItem
+    .querySelector(".product__cart-btn")
+    .addEventListener("click", () => {
+      addToCart(imageUrl, title, author, cost);
+    });
+
   productItemWrap.appendChild(productItem);
   return productItemWrap;
 }
