@@ -166,7 +166,7 @@ body {
   text-wrap: nowrap;
 }
 
-.procduct__wishlist-btn {
+.product__wishlist-btn {
   background: transparent;
   outline: none;
   cursor: pointer;
@@ -178,7 +178,7 @@ body {
   padding: 3px 8px;
 }
 
-.procduct__wishlist-btn.liked {
+.product__wishlist-btn.liked {
   color: var(--green-color);
   animation: likeChecked 0.5s ease-in-out;
 }
@@ -383,7 +383,7 @@ body {
   display: none;
 }
 
-.header__nav_list--dropdown__carousel__slider .procduct__wishlist-btn {
+.header__nav_list--dropdown__carousel__slider .product__wishlist-btn {
   display: none;
 }
 
@@ -698,7 +698,9 @@ footer {
   display: flex;
 }
 
-#cart:not(.empty) .sidebar__body__empty {
+#cart:not(.empty) .sidebar__body__empty,
+#wishlist:not(.empty) .sidebar__body__empty
+ {
   display: none;
 }
 

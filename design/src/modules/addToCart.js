@@ -70,7 +70,7 @@ function addToCart(imgUrl, title, author, cost) {
           })
         );
 
-        if (wrapperList.childNodes.length - 1 === 0) {
+        if (!(wrapperList.childNodes.length - 1)) {
           const wrapperCostFadeOut = wrapperCost.animate(
             [{ opacity: 1 }, { opacity: 0 }],
             {

@@ -1,4 +1,5 @@
 import addToCart from "./addToCart.js";
+import addToWishList from "./addToWishlist.js";
 import priceFormat from "./priceFormat.js";
 
 function createProduct(
@@ -38,8 +39,7 @@ function createProduct(
         </h5>
 
         <button
-          class="procduct__wishlist-btn wishlist"
-          id="wishlistBtn">
+          class="product__wishlist-btn wishlist">
           <i class="fa-solid fa-heart"></i>
         </button>
       </div>
@@ -61,11 +61,28 @@ function createProduct(
     </div>  
   `;
 
-  productItem
-    .querySelector(".product__cart-btn")
-    .addEventListener("click", () => {
+  let callbackFunc;
+  productItem.addEventListener("click", (e) => {
+    // Neu bam vao nut them san pham vao gio hang
+    if (
+      e.target.classList.contains("fa-cart-shopping") ||
+      e.target.classList.contains("product__cart-btn")
+    ) {
       addToCart(imageUrl, title, author, cost);
-    });
+    }
+    // Neu bam vao nut them sach yeu thich
+    if (
+      e.target.classList.contains("fa-heart") ||
+      e.target.classList.contains("product__wishlist-btn")
+    ) {
+      const wishlistBtn = productItem.querySelector(".product__wishlist-btn");
+      if (wishlistBtn.classList.contains("liked")) {
+        callbackFunc = addToWishList(imageUrl, title, author, cost);
+      } else {
+        callbackFunc();
+      }
+    }
+  });
 
   productItemWrap.appendChild(productItem);
   return productItemWrap;
