@@ -44,6 +44,7 @@ class Routes {
           <h1 class="not-found-page__title">404 Not Found</h1>
         </div>
       `;
+      hideLoading();
       return;
     }
 
