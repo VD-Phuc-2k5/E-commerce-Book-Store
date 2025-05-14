@@ -906,6 +906,23 @@ footer {
   padding: 15px;
 }
 
+/* not found page */
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.not-found-page__img {
+  width: 18vw;
+}
+
+.not-found-page__title {
+  font-size: 5vw;
+}
+
 .elementor--item__overlay__sidebar__footer > button span:last-child {
   color: var(--green-color);
   font-weight: 400;

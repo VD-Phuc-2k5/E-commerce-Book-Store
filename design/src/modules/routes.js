@@ -38,7 +38,12 @@ class Routes {
 
     const route = this.routes[path];
     if (!route) {
-      app.textContent = "404 Not Found";
+      app.innerHTML = `
+        <div class="not-found-page">
+          <img class="not-found-page__img" src="./assets/img/404-error.png" alt="error.png" />
+          <h1 class="not-found-page__title">404 Not Found</h1>
+        </div>
+      `;
       return;
     }
 
