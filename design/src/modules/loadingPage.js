@@ -4,7 +4,7 @@ export function showLoading() {
   document.body.style = "overflow-y: hidden";
 }
 
-export function hideLoading(delay = 2000) {
+export function hideLoading(delay = 1000) {
   setTimeout(() => {
     const loading = document.getElementById("loading-animation");
     const loadingFadeOut = loading.animate([{ opacity: 1 }, { opacity: 0 }], {
