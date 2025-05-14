@@ -6,6 +6,9 @@ function addToWishList(imgUrl, title, author, cost, wishlistBtn) {
     ".header__nav__elementor--item.notify"
   );
   const wishlist = wishListWrap.querySelector(".sidebar__body__list");
+  const wishlistFooter = wishListWrap.querySelector(
+    ".elementor--item__overlay__sidebar__footer"
+  );
   // tao wishlist item
   const wishlistItem = document.createElement("div");
   wishlistItem.classList.add("sidebar__body__list__item");
@@ -60,7 +63,17 @@ function addToWishList(imgUrl, title, author, cost, wishlistBtn) {
         wishlistItem.remove();
         wishlistBtn.classList.remove("liked");
         if (!(wishlist.childNodes.length - 1)) {
-          wishListWrap.classList.add("empty");
+          const footerListFadeOut = wishlistFooter.animate(
+            [{ opacity: 1 }, { opacity: 0 }],
+            {
+              duration: 400,
+              easing: "ease-in-out",
+            }
+          );
+
+          footerListFadeOut.onfinish = () => {
+            wishListWrap.classList.add("empty");
+          };
         }
         notify.setAttribute("data-count", wishlist.childNodes.length - 1);
       };
@@ -76,6 +89,8 @@ function addToWishList(imgUrl, title, author, cost, wishlistBtn) {
     notify.setAttribute("data-count", count);
     if (count) {
       wishListWrap.classList.remove("empty");
+    } else {
+      wishListWrap.classList.add("empty");
     }
   }
 

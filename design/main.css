@@ -694,7 +694,8 @@ footer {
 }
 
 #cart:not(.empty) .elementor--item__overlay__sidebar__total_cost, 
-#cart:not(.empty) .elementor--item__overlay__sidebar__footer {
+#cart:not(.empty) .elementor--item__overlay__sidebar__footer, 
+#wishlist:not(.empty) .elementor--item__overlay__sidebar__footer  {
   display: flex;
 }
 
