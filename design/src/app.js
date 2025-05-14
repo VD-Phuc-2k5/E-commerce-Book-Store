@@ -11,14 +11,30 @@ function App() {
   setSidebarToggle("cart");
   setSidebarToggle("wishlist");
   const routes = new Routes();
+  const routeRegisterQueue = [];
   // define component register
   customElements.define("component-register", ComponentRegister);
 
-  window.addEventListener("popstate", routes.render);
+  window.addEventListener("popstate", () => {
+    routes.render();
+  });
+
   window.addEventListener("component-registed", (e) => {
     const { path, ...routeObj } = e.detail;
     routes.addRoutes(path, routeObj);
-    if (path == "/") routes.render();
+    routeRegisterQueue.push(path);
+
+    if (window.location.pathname === path) routes.render();
+  });
+
+  // fallback render in case no route matches (404)
+  window.addEventListener("DOMContentLoaded", () => {
+    const matchedRoute = routeRegisterQueue.find(
+      (path) => path === window.location.pathname
+    );
+    if (!matchedRoute) {
+      routes.render();
+    }
   });
 
   history.scrollRestoration = "manual";
