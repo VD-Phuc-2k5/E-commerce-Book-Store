@@ -1,6 +1,6 @@
 import priceFormat from "./priceFormat.js";
 
-function addToWishList(imgUrl, title, author, cost) {
+function addToWishList(imgUrl, title, author, cost, wishlistBtn) {
   const wishListWrap = document.querySelector("#wishlist");
   const notify = wishListWrap.querySelector(
     ".header__nav__elementor--item.notify"
@@ -30,9 +30,11 @@ function addToWishList(imgUrl, title, author, cost) {
   `;
 
   // xoa san pham khoi dom khi bam vao trash btn
-  const trashBtn = wishlistItem.querySelector(".fa-trash");
   wishlistItem.addEventListener("click", (e) => {
-    if (e.target === trashBtn) {
+    if (
+      e.target.classList.contains("fa-trash") ||
+      e.target.classList.contains("sidebar__body__list__item__trash")
+    ) {
       const height = wishlistItem.offsetHeight + "px";
       const style = getComputedStyle(wishlistItem);
       const paddingTop = style.paddingTop;
@@ -56,6 +58,7 @@ function addToWishList(imgUrl, title, author, cost) {
 
       listItemFadeOut.onfinish = () => {
         wishlistItem.remove();
+        wishlistBtn.classList.remove("liked");
         if (!(wishlist.childNodes.length - 1)) {
           wishListWrap.classList.add("empty");
         }

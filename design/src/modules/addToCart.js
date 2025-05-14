@@ -33,9 +33,11 @@ function addToCart(imgUrl, title, author, cost) {
     </div>
   `;
 
-  const trashBtn = wrapperListItem.querySelector(".fa-trash");
   wrapperListItem.addEventListener("click", (e) => {
-    if (e.target === trashBtn) {
+    if (
+      e.target.classList.contains("fa-trash") ||
+      e.target.classList.contains("sidebar__body__list__item__trash")
+    ) {
       const height = wrapperListItem.offsetHeight + "px";
       const style = getComputedStyle(wrapperListItem);
       const paddingTop = style.paddingTop;

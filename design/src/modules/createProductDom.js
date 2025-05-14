@@ -77,7 +77,13 @@ function createProduct(
     ) {
       const wishlistBtn = productItem.querySelector(".product__wishlist-btn");
       if (wishlistBtn.classList.contains("liked")) {
-        callbackFunc = addToWishList(imageUrl, title, author, cost);
+        callbackFunc = addToWishList(
+          imageUrl,
+          title,
+          author,
+          cost,
+          wishlistBtn
+        );
       } else {
         callbackFunc();
       }
