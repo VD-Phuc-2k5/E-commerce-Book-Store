@@ -1,6 +1,7 @@
-@media (min-width: 374px) {
+@media (min-width: 300px) {
   .home__banner__overlay__title {
     padding: 30px;
+    align-items: center;
   }
 
   .home__banner__overlay__title h1 {
@@ -15,6 +16,7 @@
 @media (min-width: 768px) {
   .home__banner__overlay__title {
     padding: 40px;
+    align-items: start;
   }
 
   .home__banner__overlay__title h1 {
