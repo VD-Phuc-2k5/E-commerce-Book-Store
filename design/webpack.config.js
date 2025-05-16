@@ -3,8 +3,8 @@ const path = require("path");
 module.exports = {
   entry: "./src/app.js",
   output: {
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    path: path.join(__dirname, "dist"),
     publicPath: "/",
     clean: true,
   },
@@ -14,6 +14,7 @@ module.exports = {
     },
     historyApiFallback: true,
     port: 3000,
+    open: true,
   },
   mode: "development",
 };

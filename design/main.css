@@ -830,27 +830,6 @@ footer {
   font-weight: 500;
 }
 
-.sidebar__body__list__item__body__count {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 120px;
-  padding: 10px;
-  margin: 0 auto;
-}
-
-.sidebar__body__list__item__body__count span {
-  color: #333;
-}
-
-.sidebar__body__list__item__body__count button {
-  width: 28px;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  border: 3px solid;
-  color: #333;
-}
-
 .sidebar__body__list__item__trash {
   margin: 15px;
   font-size: 1.5em;
@@ -916,6 +895,7 @@ footer {
   justify-content: center;
   align-items: center;
   height: 90vh;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .not-found-page__img {
