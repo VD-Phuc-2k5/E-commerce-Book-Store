@@ -13,12 +13,16 @@ function Home() {
       h1.innerText = title;
       productList.appendChild(h1);
     }
-    products.forEach(({ imageUrl, title, author, cost }, idx) => {
-      const productItem = createProduct(imageUrl, title, author, cost, idx, [
-        "col-lg-4",
-        "col-md-6",
-        "col-12",
-      ]);
+    products.forEach(({ id, imageUrl, title, author, cost }, idx) => {
+      const productItem = createProduct(
+        id,
+        imageUrl,
+        title,
+        author,
+        cost,
+        idx,
+        ["col-lg-4", "col-md-6", "col-12"]
+      );
       productList.appendChild(productItem);
     });
   });

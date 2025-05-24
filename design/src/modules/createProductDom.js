@@ -1,8 +1,8 @@
-import addToCart from "./addToCart.js";
-import addToWishList from "./addToWishlist.js";
 import priceFormat from "./priceFormat.js";
+import { addAction, removeAction } from "./redux.js";
 
 function createProduct(
+  id,
   imageUrl,
   title,
   author,
@@ -21,7 +21,7 @@ function createProduct(
 
   const productItem = document.createElement("div");
   productItem.classList.add("product-item", "card");
-
+  productItem.id = `product-item${id}`;
   // innerHTML
   productItem.innerHTML = `
     <div class="product__image">
@@ -39,7 +39,13 @@ function createProduct(
         </h5>
 
         <button
-          class="product__wishlist-btn wishlist">
+          class="product__wishlist-btn wishlist ${
+            JSON.parse(localStorage.getItem("wishListItems") ?? "[]")
+              .map((item) => item.id)
+              .includes(id)
+              ? "liked"
+              : ""
+          }">
           <i class="fa-solid fa-heart"></i>
         </button>
       </div>
@@ -51,7 +57,7 @@ function createProduct(
 
       <div>
         <div class="product__cost" style="font-weight: 600">
-          ${priceFormat(Number(cost))} đ
+          ${priceFormat(Number(cost))}
         </div>
         <button class="product__cart-btn">
           <i class="fa-solid fa-cart-shopping"></i>
@@ -68,7 +74,8 @@ function createProduct(
       e.target.classList.contains("fa-cart-shopping") ||
       e.target.classList.contains("product__cart-btn")
     ) {
-      addToCart(imageUrl, title, author, cost);
+      const action = addAction({ imageUrl, title, author, cost });
+      window.cartStore.dispatch(action);
     }
     // Neu bam vao nut them sach yeu thich
     if (
@@ -76,17 +83,25 @@ function createProduct(
       e.target.classList.contains("product__wishlist-btn")
     ) {
       const wishlistBtn = productItem.querySelector(".product__wishlist-btn");
+      let action;
       if (wishlistBtn.classList.contains("liked")) {
-        callbackFunc = addToWishList(
+        action = addAction({
+          id,
           imageUrl,
           title,
           author,
           cost,
-          wishlistBtn
-        );
+        });
       } else {
-        callbackFunc();
+        action = removeAction({
+          id,
+          imageUrl,
+          title,
+          author,
+          cost,
+        });
       }
+      window.wishStore.dispatch(action);
     }
   });
 

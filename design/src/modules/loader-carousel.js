@@ -74,12 +74,21 @@ function carouselLoader(gap, duration) {
         width: calc(${carrouselInDropdown.length} / var(--nav-carousel-item) * 100%  + ${gap}px);
     `;
 
-    carrouselInDropdown.forEach(({ imageUrl, title, author, cost }, idx) => {
-      // Create individual product item
-      const productItem = createProduct(imageUrl, title, author, cost, idx);
-      // Append to current group
-      slider.appendChild(productItem);
-    });
+    carrouselInDropdown.forEach(
+      ({ id, imageUrl, title, author, cost }, idx) => {
+        // Create individual product item
+        const productItem = createProduct(
+          id,
+          imageUrl,
+          title,
+          author,
+          cost,
+          idx
+        );
+        // Append to current group
+        slider.appendChild(productItem);
+      }
+    );
     setupCarousel(slider, duration, gap);
   }
 }
