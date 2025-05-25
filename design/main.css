@@ -894,8 +894,10 @@ footer {
   background: var(--gray-color);
 }
 
-.elementor--item__overlay__sidebar__footer > a > button{
-  padding: 15px;
+.elementor--item__overlay__sidebar__footer > button > a {
+   background: transparent;
+   margin: 0;
+   padding: 0;
 }
 
 /* not found page */

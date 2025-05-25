@@ -42,7 +42,9 @@ function loaderNavSidebar(id, title) {
                 </div>
                 <button>
                     <span>or</span>
-                    <span class='continue-shopping-btn'>Continue Shopping</span>
+                    <a href="/">
+                        <span class='continue-shopping-btn'>Continue Shopping</span>
+                    </a>
                 </button>
             </div>
         </div>
