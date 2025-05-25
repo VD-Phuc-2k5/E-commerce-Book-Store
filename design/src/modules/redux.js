@@ -1,17 +1,22 @@
-export function createStore(reducer) {
-  let state = reducer(undefined, {});
-  const subscribers = [];
+export function createStore(reducer, initState) {
+  let state = initState;
+  const listeners = [];
+
+  const getState = () => state;
+
+  const dispatch = (action) => {
+    state = reducer(state, action);
+    listeners.forEach((listener) => listener());
+  };
+
+  const subscribe = (listener) => {
+    listeners.push(listener);
+  };
+
   return {
-    getState() {
-      return state;
-    },
-    dispatch(action) {
-      state = reducer(state, action);
-      subscribers.forEach((subscriber) => subscriber());
-    },
-    subscribe(subscriber) {
-      subscribers.push(subscriber);
-    },
+    getState,
+    dispatch,
+    subscribe,
   };
 }
 

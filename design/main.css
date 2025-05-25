@@ -774,6 +774,7 @@ footer {
   text-align: center;
 }
 
+.elementor--item__overlay__sidebar__body .sidebar__body__empty a, 
 .elementor--item__overlay__sidebar__body .sidebar__body__empty button {
   padding: 10px;
   border-radius: 5px;
@@ -784,6 +785,7 @@ footer {
   font-weight: bold;
 }
 
+.elementor--item__overlay__sidebar__body .sidebar__body__empty a:hover
 .elementor--item__overlay__sidebar__body .sidebar__body__empty button:hover {
   scale: 1.05;
 }
@@ -859,21 +861,29 @@ footer {
 .elementor--item__overlay__sidebar__footer > div {
   display: flex;
   margin-top: 10px;
+  flex: 1;
 }
 
 .elementor--item__overlay__sidebar__footer > div a  {
   padding: 0;
+  margin: 10px 0;
+  width: 200px;
+}
+
+.elementor--item__overlay__sidebar__footer > div a + a {
+  margin-left: 10px;
 }
 
 .elementor--item__overlay__sidebar__footer > div a button{
-  width: min(210px, calc(50vw - 40px));
-  background: var(--green-color);
+  width: 100%;
+  height: 100%;
   color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
-  margin: 10px;
   font-weight: bold;
   transition: 0.3s ease-in-out;
+  background: var(--green-color);
+  white-space: nowrap;
 }
 
 .elementor--item__overlay__sidebar__footer > div a button:hover {
@@ -1194,5 +1204,27 @@ footer {
   }
   .product__cart-btn {
     width: auto;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .wishlist__content__title {
+    font-size: 2.6rem;
+    margin: 0 15px 30px 15px;
+    padding: 20px 0 10px 0;
+    text-align: center;
+  }
+
+  .sidebar__body__list__item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar__body__list__item__image {
+    width: 100%;
+  }
+
+  .elementor--item__overlay__sidebar__footer > div a  {
+    width: 150px;
   }
 }

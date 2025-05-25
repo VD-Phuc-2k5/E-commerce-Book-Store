@@ -1,11 +1,8 @@
 import priceFormat from "./priceFormat.js";
 import { removeAction } from "./redux.js";
 
-// get initState
-const initState = JSON.parse(localStorage.getItem("cartItems") || "[]");
-
 // cart reducer
-function cartReducer(state = initState, action) {
+function cartReducer(state, action) {
   switch (action.type) {
     case "ADD":
       return [...state, action.data];

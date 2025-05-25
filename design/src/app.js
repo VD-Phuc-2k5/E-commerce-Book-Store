@@ -22,25 +22,35 @@ function App() {
   setSidebarToggle("wishlist");
   const routes = new Routes();
   const routeRegisterQueue = [];
-  const cartStore = (window.cartStore = createStore(cartReducer));
+  const initCartValues = JSON.parse(localStorage.getItem("cartItems") ?? "[]");
+  const initWishValues = JSON.parse(
+    localStorage.getItem("wishListItems") ?? "[]"
+  );
+
+  const cartStore = (window.cartStore = createStore(
+    cartReducer,
+    initCartValues
+  ));
   cartStore.subscribe(() => {
-    cartRender(cartStore.getState());
-    updateCartNotify(cartStore.getState()?.length ?? 0);
-    updateTotalCost(cartStore.getState());
-    storeData("cartItems", cartStore.getState());
+    const state = cartStore.getState();
+    cartRender(state);
+    updateCartNotify(state?.length ?? 0);
+    updateTotalCost(state);
+    storeData("cartItems", state);
   });
+  cartStore.dispatch({ type: "" });
 
-  const wishStore = (window.wishStore = createStore(wishListReducer));
+  const wishStore = (window.wishStore = createStore(
+    wishListReducer,
+    initWishValues
+  ));
   wishStore.subscribe(() => {
-    wishRender(wishStore.getState());
-    updateWishNotify(wishStore.getState()?.length ?? 0);
-    storeData("wishListItems", wishStore.getState());
+    const state = wishStore.getState();
+    wishRender(state);
+    updateWishNotify(state?.length ?? 0);
+    storeData("wishListItems", state);
   });
-  // render cart item
-  cartStore.dispatch({});
-
-  // render wish item
-  wishStore.dispatch({});
+  wishStore.dispatch({ type: "" });
 
   // define component register
   customElements.define("component-register", ComponentRegister);
