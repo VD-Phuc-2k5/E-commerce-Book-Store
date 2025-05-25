@@ -49,7 +49,7 @@ function addRemoveHanlde(data) {
           const action = removeAction(data[idx]);
           window.wishStore.dispatch(action);
           const product = document.querySelector(
-            `#product-item${data[idx]?.id}`
+            `.home__product_list #product-item${data[idx]?.id}`
           );
           const WishListBtn = product.querySelector(".product__wishlist-btn");
           WishListBtn.classList.remove("liked");

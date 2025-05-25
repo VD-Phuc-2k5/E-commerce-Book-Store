@@ -3,10 +3,12 @@ import { removeAction } from "../../src/modules/redux.js";
 
 function updateNotify(count) {
   const wishList = document.querySelector(".container > #wishlist");
-  if (count) {
-    wishList.classList.remove("empty");
-  } else {
-    wishList.classList.add("empty");
+  if (wishList) {
+    if (count) {
+      wishList.classList.remove("empty");
+    } else {
+      wishList.classList.add("empty");
+    }
   }
 }
 
