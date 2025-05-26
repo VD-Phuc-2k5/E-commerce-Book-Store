@@ -23,13 +23,18 @@
     font-weight: 700;
     line-height: 62px;
     margin: 0px 0px 16px;
+
+}
+
+.gradient-text {
     background: linear-gradient(90deg, rgb(38, 36, 67) 0px, rgb(42, 153, 213));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.blogging__banner_detail, .blogging__banner_subtitle {
+.blogging__banner_detail,
+.blogging__banner_subtitle {
     color: #161616;
     font-size: 30px;
     line-height: 42px;
