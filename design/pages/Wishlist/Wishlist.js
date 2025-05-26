@@ -84,7 +84,26 @@ function removeWishListItemHanlde(data) {
         );
 
         wishItemFadeOut.onfinish = () => {
-          const action = removeAction(data[idx]);
+          const currentIndex = idx;
+
+          if (currentIndex > 0) {
+            const prevItem = wishlistContainer.querySelectorAll(
+              ".sidebar__body__list__item"
+            )[currentIndex - 1];
+
+            if (prevItem) {
+              const prevOffsetTop = prevItem.offsetTop;
+
+              requestAnimationFrame(() => {
+                window.scrollTo({
+                  top: prevOffsetTop - 20,
+                  behavior: "smooth",
+                });
+              });
+            }
+          }
+
+          const action = removeAction(data[currentIndex]);
           window.wishStore.dispatch(action);
         };
       }
