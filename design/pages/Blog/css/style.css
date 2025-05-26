@@ -3,28 +3,87 @@
     margin-top: 20px;
 }
 
+.blogging__banner {
+    background-image: url('../../../assets/img/banner-blog-page.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 515px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.blogging__banner-heading {
+    color: #2a99d5;
+    font-family: Noto Sans, sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 62px;
+    margin: 0px 0px 16px;
+    background: linear-gradient(90deg, rgb(38, 36, 67) 0px, rgb(42, 153, 213));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.blogging__banner_detail, .blogging__banner_subtitle {
+    color: #161616;
+    font-size: 30px;
+    line-height: 42px;
+    margin: 0 0 16px;
+}
+
 .create-blog-btn {
-    background-color: #4CAF50;
-    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     padding: 12px 24px;
+    background: linear-gradient(90deg, rgb(38, 36, 67) 0px, rgb(42, 153, 213));
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .create-blog-btn:hover {
-    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(42, 153, 213, 0.3);
+}
+
+.create-blog-btn i {
+    font-size: 20px;
 }
 
 .container {
     display: flex;
-
+    margin-top: 30px;
+    margin-bottom: 50px;
+    min-height: calc(100vh - 515px - 50px);
 }
 
 #blog {
-    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
+.card {
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-top: 1px solid #eee;
 }
