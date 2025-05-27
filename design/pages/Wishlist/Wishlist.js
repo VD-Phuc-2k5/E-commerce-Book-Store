@@ -14,7 +14,6 @@ function updateNotify(count) {
 
 function removeWishListItemHanlde(data) {
   const wishlistContainer = document.querySelector("#wishListContainer");
-
   const wishListItems = wishlistContainer.querySelectorAll(
     ".sidebar__body__list__item"
   );
@@ -28,9 +27,8 @@ function removeWishListItemHanlde(data) {
         const isMobile = window.innerWidth < 576;
 
         wishListItem.style = `
-    font-size: 100%;
-    white-space: nowrap;
-`;
+            white-space: nowrap;
+        `;
 
         let animationKeyframes;
         let animationOptions = {
