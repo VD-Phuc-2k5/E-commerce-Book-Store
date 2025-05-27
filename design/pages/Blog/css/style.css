@@ -4,26 +4,30 @@
 }
 
 .blogging__banner {
-    background-image: url('../../../assets/img/banner-blog-page.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 515px;
-    width: 100%;
     position: relative;
-    display: flex;
-    align-items: center;
-    padding: 60px 0;
+    height: 515px;
+    background: url('../../../assets/img/banner-blog-page.png') center center / cover no-repeat;
+}
+
+@property --banner-width {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 600px;
+}
+
+.banner-content {
+    position: absolute;
+    inset: 50% 0 0 calc(65% - var(--banner-width));
+    transform: translateY(-50%);
+    max-width: var(--banner-width)
 }
 
 .blogging__banner-heading {
     color: #2a99d5;
-    font-family: Noto Sans, sans-serif;
-    font-size: 56px;
+    font-size: 3em;
     font-weight: 700;
-    line-height: 62px;
-    margin: 0px 0px 16px;
-
+    line-height: 1.5em;
+    text-align: justify;
 }
 
 .gradient-text {
@@ -36,9 +40,9 @@
 .blogging__banner_detail,
 .blogging__banner_subtitle {
     color: #161616;
-    font-size: 30px;
-    line-height: 42px;
-    margin: 0 0 16px;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    margin: 15px 0;
 }
 
 .create-blog-btn {

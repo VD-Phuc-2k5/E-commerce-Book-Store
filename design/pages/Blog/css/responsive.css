@@ -1,23 +1,30 @@
-@media(min-width: 1024px) {
-    .home__banner {
-        background-image: url("../../../assets/img/banner-blog-page.png");
-        min-height: 515px;
-        height: 55vh;
-    }
-}
-
-@media (min-width: 768px) {
-    .home__banner {
+/* tablet */
+@media(max-width: 1024px) {
+    .blogging__banner {
         background-image: url("../../../assets/img/banner-blog-page-ipad.png");
-        height: 490px;
+    }
+
+    .blogging__banner-heading {
+        font-size: 2.5em;
+    }
+
+    .banner-content {
+        --banner-width: 500px;
     }
 }
 
-.home__banner {
-    .home__banner {
-        background-repeat: no-repeat;
-        background-size: cover;
+/* Mobile */
+@media (max-width: 768px) {
+    .blogging__banner {
         background-image: url("../../../assets/img/banner-blog-page-mobile.png");
-        height: 312px;
+    }
+
+    .blogging__banner-heading {
+        font-size: 1.2em;
+    }
+
+    .banner-content {
+        --banner-width: 100vw;
+        inset: 50% 0 0 0;
     }
 }
