@@ -4,10 +4,6 @@
         background-image: url("../../../assets/img/banner-blog-page-ipad.png");
     }
 
-    .blogging__banner-heading {
-        font-size: 2.5em;
-    }
-
     .banner-content {
         --banner-width: 500px;
     }
@@ -19,12 +15,18 @@
         background-image: url("../../../assets/img/banner-blog-page-mobile.png");
     }
 
-    .blogging__banner-heading {
-        font-size: 1.2em;
+    .banner-content {
+        --banner-width: calc(100vw - 100px);
+        inset: 50% 0 0 50px;
     }
 
-    .banner-content {
-        --banner-width: 100vw;
-        inset: 50% 0 0 0;
+    .blogging__banner-heading {
+        font-size: 6vw;
+    }
+
+    .blogging__banner_detail,
+    .blogging__banner_subtitle {
+        font-size: 3vw;
+        line-height: 1.5em;
     }
 }

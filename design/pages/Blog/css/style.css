@@ -5,14 +5,14 @@
 
 .blogging__banner {
     position: relative;
-    height: 515px;
+    height: 80vh;
     background: url('../../../assets/img/banner-blog-page.png') center center / cover no-repeat;
 }
 
 @property --banner-width {
     syntax: "<length>";
     inherits: false;
-    initial-value: 600px;
+    initial-value: 700px;
 }
 
 .banner-content {
@@ -24,10 +24,9 @@
 
 .blogging__banner-heading {
     color: #2a99d5;
-    font-size: 3em;
+    font-size: 3vw;
     font-weight: 700;
     line-height: 1.5em;
-    text-align: justify;
 }
 
 .gradient-text {
@@ -40,8 +39,8 @@
 .blogging__banner_detail,
 .blogging__banner_subtitle {
     color: #161616;
-    font-size: 1.5em;
-    line-height: 1.5em;
+    font-size: 2vw;
+    line-height: 3vw;
     margin: 15px 0;
 }
 
