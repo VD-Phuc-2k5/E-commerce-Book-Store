@@ -918,7 +918,8 @@ footer {
   justify-content: center;
   align-items: center;
   height: 90vh;
-  animation: fadeIn 0.5s ease-in-out;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
 }
 
 .not-found-page__img {
