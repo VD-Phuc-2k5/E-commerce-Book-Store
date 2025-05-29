@@ -88,7 +88,7 @@
                 <table>
                   <tr>
                     <td>SubTotal</td>
-                    <td>0</td>
+                    <td id="subTotal">0</td>
                   </tr>
                   <tr>
                     <td>Shipping</td>
@@ -97,6 +97,7 @@
                         <input
                           type="radio"
                           name="shipMethod"
+                          data-shippingCost="35000"
                           checked
                           id="shipMethod1" />
                         <label for="shipMethod1"
@@ -107,6 +108,7 @@
                       <div>
                         <input
                           type="radio"
+                          data-shippingCost="0"
                           name="shipMethod"
                           id="shipMethod2" />
                         <label for="shipMethod2">
@@ -119,7 +121,7 @@
                   </tr>
                   <tr>
                     <td>Total</td>
-                    <td>0</td>
+                    <td id="total">0</td>
                   </tr>
                 </table>
                 <div class="button-to-checkout">

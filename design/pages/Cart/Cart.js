@@ -1,259 +1,180 @@
 import priceFormat from "../../src/modules/priceFormat.js";
 import { removeAction } from "../../src/modules/redux.js";
 
-function removeCartItemHandler(cartItems) {
-  const cartListItems = document.querySelector(
-    ".cart-content__container__table tbody"
-  ).children;
-  if (cartListItems) {
-    Array.from(cartListItems).forEach((cartListItem, idx) => {
-      cartListItem.addEventListener("click", (e) => {
-        if (e.target.classList.contains("fa-trash")) {
-          const height = cartListItem.offsetHeight + "px";
-          const style = getComputedStyle(cartListItem);
-          const paddingTop = style.paddingTop;
-          const paddingBottom = style.paddingBottom;
+// Cache DOM elements to avoid redundant queries
+const subTotal = document.querySelector("#subTotal");
+const total = document.querySelector("#total");
+const cartListWrapper = document.querySelector(
+  ".cart-content__container__table tbody"
+);
+const cartContainer = document.getElementById("cart-page-container");
+const shipMethods = Array.from(
+  document.querySelectorAll('input[name="shipMethod"]')
+);
 
-          const cartItemFadeOut = cartListItem.animate(
-            [
-              {
-                opacity: 1,
-                height: height,
-                paddingTop: paddingTop,
-                paddingBottom: paddingBottom,
-              },
-              { opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0 },
-            ],
-            {
-              duration: 500,
-              easing: "ease-in-out",
-            }
-          );
+// Helper function to calculate shipping cost
+function getShippingCost() {
+  const selectedMethod = shipMethods.find((shipMethod) => shipMethod.checked);
+  return selectedMethod
+    ? Number(selectedMethod.getAttribute("data-shippingCost"))
+    : 0;
+}
 
-          cartItemFadeOut.onfinish = () => {
-            const action = removeAction(cartItems[idx]);
-            window.cartStore.dispatch(action);
-            const currentIndex = idx;
-            const prevItem = document.querySelector(
-              ".cart-content__container__table tbody"
-            ).children[currentIndex - 1];
-            console.log(prevItem);
-            const prevOffsetTop = prevItem?.offsetTop;
-            requestAnimationFrame(() => {
-              window.scrollTo({
-                top: prevItem ? prevOffsetTop : 0,
-                behavior: "smooth",
-              });
-            });
-          };
-        }
-      });
-    });
+// Update summary (subtotal and total)
+function updateSummary(cartItems) {
+  const totalCost = cartItems.reduce(
+    (total, { cost, quantity }) => total + Number(cost) * quantity,
+    0
+  );
+  const shippingCost = getShippingCost();
+
+  if (subTotal && total) {
+    subTotal.innerHTML = priceFormat(totalCost);
+    total.innerHTML = priceFormat(totalCost + shippingCost);
   }
 }
 
-function renderCartItems(cartItems) {
-  const cartListWrapper = document.querySelector(
-    ".cart-content__container__table tbody"
-  );
+// Update total cost in the table for each item
+function updateItemTotal(cartItems) {
+  Array.from(cartListWrapper.children).forEach((row, idx) => {
+    const totalCell = row.querySelector('[data-label="Total"]');
+    const { cost, quantity } = cartItems[idx];
+    if (totalCell) {
+      totalCell.innerHTML = priceFormat(Number(cost) * quantity);
+    }
+  });
+}
 
+// Handle quantity updates
+function handleQuantityChange(cartItems) {
+  cartListWrapper.addEventListener("change", (e) => {
+    if (e.target.matches("input[type='number']")) {
+      const idx = Array.from(cartListWrapper.children).indexOf(
+        e.target.closest("tr")
+      );
+      const quantity = Number(e.target.value);
+
+      if (quantity >= 1) {
+        cartItems[idx].quantity = quantity;
+        updateItemTotal(cartItems);
+        updateSummary(cartItems);
+      } else {
+        e.target.value = 1;
+      }
+    }
+  });
+}
+
+// Handle shipping method changes
+function handleShippingChange(cartItems) {
+  shipMethods.forEach((shipMethod) => {
+    shipMethod.addEventListener("change", () => {
+      updateSummary(cartItems); // Recalculate totals when shipping method changes
+    });
+  });
+}
+
+// Handle item removal with animation
+function handleRemoveItem(cartItems) {
+  cartListWrapper.addEventListener("click", (e) => {
+    if (e.target.classList.contains("fa-trash")) {
+      const cartListItem = e.target.closest("tr");
+      const idx = Array.from(cartListWrapper.children).indexOf(cartListItem);
+
+      if (idx !== -1) {
+        const height = `${cartListItem.offsetHeight}px`;
+        const style = getComputedStyle(cartListItem);
+
+        // Animate the removal of the item
+        const cartItemFadeOut = cartListItem.animate(
+          [
+            {
+              opacity: 1,
+              height: height,
+              paddingTop: style.paddingTop,
+              paddingBottom: style.paddingBottom,
+            },
+            { opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0 },
+          ],
+          { duration: 500, easing: "ease-in-out" }
+        );
+
+        cartItemFadeOut.onfinish = () => {
+          // Remove the item from the cartItems array
+          const removedItem = cartItems.splice(idx, 1);
+
+          // Dispatch the updated cartItems array to the store
+          const action = removeAction(removedItem[0]);
+          window.cartStore.dispatch(action);
+
+          // Remove the item from the DOM
+          cartListItem.remove();
+
+          // Scroll to the previous item smoothly
+          const prevItem = cartListWrapper.children[idx - 1];
+          const prevOffsetTop = prevItem?.offsetTop || 0;
+          window.scrollTo({ top: prevOffsetTop, behavior: "smooth" });
+        };
+      }
+    }
+  });
+}
+
+// Render cart items dynamically
+function renderCartItems(cartItems) {
   if (cartListWrapper) {
     cartListWrapper.innerHTML = cartItems
       .map(
-        ({ imageUrl, title, cost }, idx) => `
-      <tr>
-        <td data-label="Thumbnail">
-          <img
-            src="${imageUrl}"
-            alt="thumbnail${idx}.jpg"
-        </td>
-        <td data-label="Product Title">${title}</td>
-        <td data-label="Price">${priceFormat(Number(cost))}</td>
-        <td data-label="Quantity">
-          <input type="number" value="1" min="1" required />
-        </td>
-        <td data-label="Total">${priceFormat(Number(cost))}</td>
-        <td data-label="Action">
-          <i class="fa-solid fa-trash"></i>
-        </td>
-      </tr>
-    `
+        ({ imageUrl, title, cost, quantity }, idx) => `
+          <tr>
+            <td data-label="Thumbnail">
+              <img src="${imageUrl}" alt="thumbnail${idx}.jpg" />
+            </td>
+            <td data-label="Product Title">
+              <a href="#">${title}</a>
+            </td>
+            <td data-label="Price">${priceFormat(Number(cost))}</td>
+            <td data-label="Quantity">
+              <input type="number" value="${quantity}" min="1" required pattern="\\d*" />
+            </td>
+            <td data-label="Total">${priceFormat(Number(cost) * quantity)}</td>
+            <td data-label="Action">
+              <i class="fa-solid fa-trash" aria-label="Remove Item"></i>
+            </td>
+          </tr>
+        `
       )
       .join("");
-    removeCartItemHandler(cartItems);
+
+    updateSummary(cartItems);
   }
 }
 
+// Update cart notification (visibility)
 function updateNotify(count) {
-  const cartContainer = document.getElementById("cart-page-container");
-
   if (cartContainer) {
-    if (count) {
-      cartContainer.classList.add("active");
-    } else {
-      cartContainer.classList.remove("active");
-    }
+    cartContainer.classList.toggle("active", count > 0);
   }
 }
 
+// Subscribe to store updates
 window.cartStore.subscribe(() => {
   const state = window.cartStore.getState();
   renderCartItems(state);
   updateNotify(state?.length ?? 0);
 });
 
-// Dispatch an empty action to trigger the initial render
-window.cartStore.dispatch({});
+// Initialize cart functionality
+function initializeCart() {
+  const state = window.cartStore.getState();
+  renderCartItems(state);
+  handleQuantityChange(state);
+  handleShippingChange(state); // Add shipping method change handler
+  handleRemoveItem(state);
+  updateNotify(state?.length ?? 0);
 
-/*
-  const fullCart = document.getElementById("cart-content");
-*/
+  // Dispatch an empty action to trigger the initial render
+  window.cartStore.dispatch({});
+}
 
-// function renderCartFromData() {
-//   const emptyCart = document.getElementById("empty-cart");
-//   const fullCart = document.getElementById("cart-content");
-//   const tbody = document.querySelector(
-//     ".cart-content__container__list__table tbody"
-//   );
-
-//   tbody.innerHTML = "";
-
-//   if (cartList.length === 0) {
-//     emptyCart.style.display = "block";
-//     fullCart.style.display = "none";
-//     return;
-//   } else {
-//     emptyCart.style.display = "none";
-//     fullCart.style.display = "block";
-
-//     cartList.forEach((item, index) => {
-//       const price = parseInt(item.cost);
-//       const quantity = 1;
-//       const subtotal = price * quantity;
-
-//       const itemHTML = `
-//                 <tr class="cart-form__cart-item cart-item" data-id="${item.id}">
-//                     <td class="product-thumbnail">
-//                         <a href="#">
-//                             <img src="${
-//                               item.imageUrl
-//                             }" width="100" height="100">
-//                         </a>
-//                     </td>
-//                     <td class="product-name"><a href="#">${item.title}</a></td>
-//                     <td class="product-price" data-price="${price}">
-//                         <span class="Price">
-//                             <bdi>${priceFormat(
-//                               price
-//                             )}&nbsp;<span id="currency-icon">₫</span></bdi>
-//                         </span>
-//                     </td>
-//                     <td class="product-quantity">
-//                         <div class="quantity">
-//                             <label for="quantity_${index}" class="render-text">${
-//         item.title
-//       } quantity</label>
-//                             <input type="number" id="quantity_${index}" class="input-text quantity-input" value="${quantity}" min="1" step="1">
-//                         </div>
-//                     </td>
-//                     <td class="product-subtotal">
-//                     <span class="Price subtotal">
-//                         <bdi>${priceFormat(
-//                           subtotal
-//                         )}&nbsp;<span id="currency-icon">₫</span></bdi>
-//                     </span>
-//                     </td>
-//                     <td class="product-remove">
-//                     <a href="#" class="remove" aria-label="Remove ${
-//                       item.title
-//                     } from cart">
-//                         <i class="fas fa-times"></i>
-//                     </a>
-//                     </td>
-//                 </tr>
-
-//             `;
-//       tbody.insertAdjacentHTML("beforeend", itemHTML);
-//     });
-
-//     // Xử lý sự kiện cập nhật subtotal khi thay đổi số lượng
-//     const quantityInputs = tbody.querySelectorAll(".quantity-input");
-//     quantityInputs.forEach((input) => {
-//       input.addEventListener("input", function () {
-//         const row = input.closest("tr");
-//         const price = parseInt(
-//           row.querySelector(".product-price").dataset.price
-//         );
-//         const quantity = parseInt(input.value) || 0;
-//         const subtotal = price * quantity;
-
-//         const subtotalElement = row.querySelector(".subtotal bdi");
-//         subtotalElement.innerHTML = `${priceFormat(
-//           subtotal
-//         )}&nbsp;<span id="currency-icon">₫</span>`;
-//         updateSummary();
-//       });
-//     });
-
-//     // Xử lý sự kiện xóa sản phẩm
-//     const removeButtons = tbody.querySelectorAll(".remove");
-//     removeButtons.forEach((button) => {
-//       button.addEventListener("click", function (e) {
-//         e.preventDefault();
-//         const row = button.closest("tr");
-//         const id = parseInt(row.dataset.id);
-//         const index = cartList.findIndex((item) => item.id === id);
-//         if (index !== -1) {
-//           cartList.splice(index, 1);
-//           renderCartFromData(); // render lại sau khi xóa
-//           updateSummary(); //update giá sau khi xóa
-//         }
-//       });
-//     });
-//   }
-// }
-
-// function updateSummary() {
-//   const rows = document.querySelectorAll(".cart-form__cart-item");
-//   let subtotal = 0;
-
-//   rows.forEach((row) => {
-//     const price = parseInt(row.querySelector(".product-price").dataset.price);
-//     const quantity = parseInt(row.querySelector(".quantity-input").value) || 0;
-//     subtotal += price * quantity;
-//   });
-
-//   const subtotalElement = document.querySelector(
-//     ".subtotals .product-subtotal bdi"
-//   );
-//   if (subtotalElement) {
-//     subtotalElement.innerHTML = `${priceFormat(
-//       subtotal
-//     )}&nbsp;<span id="currency-icon">₫</span>`;
-//   }
-
-//   const shipping = document.getElementById("shipping_pickup1").checked
-//     ? 35000
-//     : 0;
-
-//   const total = subtotal + shipping;
-
-//   const totalElem = document.querySelector(".order-total .Price bdi");
-//   if (totalElem) {
-//     totalElem.innerHTML = `${priceFormat(
-//       total
-//     )}&nbsp;<span id="currency-icon">₫</span>`;
-//   }
-// }
-
-// function App() {
-//   renderCartFromData();
-//   updateSummary();
-//   document
-//     .querySelectorAll('input[name="shipping_method"]')
-//     .forEach((radio) => {
-//       radio.addEventListener("change", updateSummary);
-//     });
-// }
-
-// App();
+initializeCart();
