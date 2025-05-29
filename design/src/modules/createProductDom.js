@@ -28,7 +28,7 @@ function createProduct(
       <img
         src="${imageUrl}"
         class="card-img-top"
-        alt="product-${idx}.jpg" />
+        alt="product-${idx}.jpg" loading="lazy"/>
       <div class="product__image__overlay"></div>
     </div>
     <div class="card-body product__body">
