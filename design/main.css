@@ -99,7 +99,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 /* App */
 #app {
-  min-height: calc(100vh - (var(--header-height)));
   margin-top: var(--header-height);
 }
 
@@ -218,6 +217,7 @@ input[type="number"]::-webkit-outer-spin-button {
   height: var(--header-height);
   padding: 0 50px;
   z-index: 999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .header,
@@ -936,7 +936,6 @@ footer {
   font-style: italic;
   padding-bottom: 20px;
 }
-
 
 @keyframes text_713 {
   0% {
