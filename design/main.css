@@ -42,12 +42,10 @@ input {
 }
 
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   color: var(--text-color);
   background-color: var(--bg-color);
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+  transition: 0.5s ease-in-out;
 }
 
 /* color */
@@ -101,8 +99,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 /* App */
 #app {
-  position: relative;
-  inset: var(--header-height) 0 0 0;
+  min-height: calc(100vh - (var(--header-height)));
+  margin-top: var(--header-height);
 }
 
 /* products */
@@ -495,7 +493,6 @@ input[type="number"]::-webkit-outer-spin-button {
 footer {
   background: var(--gray-white-color);
   border-top: 1px solid var(--border-color);
-  margin-top: auto;
 }
 
 .footer-container {
