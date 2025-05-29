@@ -1,0 +1,184 @@
+#myAccount,
+#myAccount__form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#myAccount {
+  height: calc(100vh - var(--header-height));
+  background-image: url("../../../assets/img/mentor-top-image.jpg");
+  padding: 20px;
+}
+
+#myAccount__form {
+  flex-direction: column;
+  background: radial-gradient(
+    circle at center,
+    rgb(255, 255, 255),
+    rgba(255, 255, 255, 0.5)
+  );
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  width: min(500px, 100vw);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+#myAccount__form:not(.active) .myAccount__form__login {
+  display: none;
+}
+
+#myAccount__form.active .myAccount__form__login {
+  display: block;
+}
+
+#myAccount__form.active .myAccount__form__register {
+  display: none;
+}
+
+[data-label="btn1"] {
+  color: #fff;
+}
+
+#myAccount__form.active .myAccount__form__controls button:last-child {
+  color: #fff;
+}
+
+#myAccount__form.active .myAccount__form__controls [data-label="btn1"] {
+  color: #000;
+}
+
+#myAccount__form.active .myAccount__form__controls__thumb {
+  transform: translateX(120%);
+}
+
+.myAccount__form__login,
+.myAccount__form__register {
+  width: 100%;
+  animation: formFadeIn 0.7s ease-in-out;
+}
+
+.myAccount__form__heading {
+  margin-bottom: 20px;
+}
+
+.myAccount__form__heading h2 {
+  text-align: center;
+  font-size: 3em;
+}
+
+.myAccount__form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.myAccount__form__group > div {
+  display: flex;
+  align-items: center;
+}
+
+.myAccount__form__group > div > i {
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+
+.myAccount__form__group + .myAccount__form__group {
+  margin-top: 20px;
+}
+
+.myAccount__form__label {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.myAccount__form__control {
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #333;
+  background: transparent;
+  flex: 1;
+}
+
+.myAccount__form__control::placeholder {
+  color: #000;
+}
+
+.myAccount__form__controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 60%;
+  background: #ffff;
+  height: 56px;
+  border-radius: 40px;
+  margin-bottom: 20px;
+}
+
+.myAccount__form__controls__thumb {
+  transform: translateX(3.5px);
+  height: 90%;
+  width: 45%;
+  border-radius: 40px;
+  background: var(--mint-green-color);
+  transition: 0.3s ease-in-out;
+}
+
+.myAccount__form__controls button {
+  position: absolute;
+  inset: 0 0 0 calc(var(--nth) * 50%);
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  font-weight: bold;
+  z-index: 10;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.myAccount__form__button {
+  width: 100%;
+  margin-top: 30px;
+  background: var(--mint-green-color);
+  border-radius: 5px;
+  color: #fff;
+  padding: 7px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.myAccount__form__password__controls {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.myAccount__form__password__controls a {
+  text-decoration: underline;
+  color: #000;
+  font-weight: bold;
+}
+
+.myAccount__form__password__controls {
+  cursor: pointer;
+}
+
+.myAccount__form__password__controls label {
+  font-weight: bold;
+}
+
+@keyframes formFadeIn {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
