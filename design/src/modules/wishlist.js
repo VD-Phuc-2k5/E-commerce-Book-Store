@@ -17,7 +17,9 @@ function wishListReducer(state, action) {
 
 // render
 function addRemoveHanlde(data) {
-  const wishListItems = document.querySelectorAll(".sidebar__body__list__item");
+  const wishListItems = document.querySelectorAll(
+    "#wishlist .sidebar__body__list__item"
+  );
   wishListItems.forEach((wishListItem, idx) => {
     wishListItem.addEventListener("click", (e) => {
       if (
@@ -49,10 +51,10 @@ function addRemoveHanlde(data) {
           const action = removeAction(data[idx]);
           window.wishStore.dispatch(action);
           const product = document.querySelector(
-            `.home__product_list #product-item${data[idx]?.id}`
+            `#product-item${data[idx]?.id}`
           );
-          const WishListBtn = product.querySelector(".product__wishlist-btn");
-          WishListBtn.classList.remove("liked");
+          const WishListBtn = product?.querySelector(".product__wishlist-btn");
+          WishListBtn?.classList.remove("liked");
         };
       }
     });
