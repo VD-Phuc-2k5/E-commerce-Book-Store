@@ -230,3 +230,7 @@
 [data-label="Product Title"]:hover > a {
   color: var(--mint-green-color);
 }
+
+#total {
+  font-weight: bold;
+}
