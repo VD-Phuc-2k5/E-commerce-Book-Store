@@ -67,6 +67,8 @@ body {
   --bg-color: #f3f6f7
   --bg-light: #f3f6f7;
   --border-color: #e2e2e2;
+  --text-color: #333;
+  --light-bg: rgba(255, 255, 255, 0.75);
 }
 
 ::selection {

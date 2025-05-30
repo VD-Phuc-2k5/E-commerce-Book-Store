@@ -1,0 +1,41 @@
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .content-section {
+    padding: 20px 0;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0;
+  }
+
+  .timeline-item.left::after,
+  .timeline-item.right::after {
+    left: 50%;
+    margin-left: -10px;
+  }
+
+  .timeline:before,
+  .timeline:after {
+    z-index: -1;
+  }
+}
