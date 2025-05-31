@@ -144,6 +144,10 @@
   text-align: center;
 }
 
+[data-label="Product Title"] {
+  text-align: left;
+}
+
 .cart-content__container__table td[data-label="Thumbnail"] img {
   width: 100px;
 }

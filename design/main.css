@@ -865,7 +865,6 @@ footer {
   width: 130px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1))
 }
 
 .sidebar__body__list__item__body {
@@ -1276,7 +1275,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 576px) {
+@media (max-width: 576px) {
   .wishlist__content__title {
     font-size: 2.6rem;
     margin: 0 15px 30px 15px;
@@ -1295,5 +1294,8 @@ footer {
 
   .elementor--item__overlay__sidebar__footer > div a  {
     width: 150px;
+  }
+  .sidebar__body__list__item__image {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
   }
 }
