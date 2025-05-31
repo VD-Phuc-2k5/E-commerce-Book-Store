@@ -1,5 +1,6 @@
 import priceFormat from "./priceFormat.js";
 import { removeAction } from "./redux.js";
+import { getCartStore } from "./store.js";
 
 // cart reducer
 function cartReducer(state, action) {
@@ -45,7 +46,7 @@ function addRemoveHanlde(data) {
 
         cartItemFadeOut.onfinish = () => {
           const action = removeAction(data[idx]);
-          window.cartStore.dispatch(action);
+          getCartStore().dispatch(action);
         };
       }
     });

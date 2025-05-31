@@ -1,5 +1,6 @@
 import priceFormat from "./priceFormat.js";
 import { removeAction } from "./redux.js";
+import { getWishStore } from "./store.js";
 
 // cart reducer
 function wishListReducer(state, action) {
@@ -49,7 +50,7 @@ function addRemoveHanlde(data) {
 
         wishItemFadeOut.onfinish = () => {
           const action = removeAction(data[idx]);
-          window.wishStore.dispatch(action);
+          getWishStore().dispatch(action);
           const product = document.querySelector(
             `#product-item${data[idx]?.id}`
           );

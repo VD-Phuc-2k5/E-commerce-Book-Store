@@ -1,5 +1,6 @@
 import priceFormat from "../../src/modules/priceFormat.js";
 import { removeAction } from "../../src/modules/redux.js";
+import { getCartStore } from "../../src/modules/store.js";
 
 // Cache DOM elements to avoid redundant queries
 const subTotal = document.querySelector("#subTotal");
@@ -105,7 +106,7 @@ function handleRemoveItem(cartItems) {
 
           // Dispatch the updated cartItems array to the store
           const action = removeAction(removedItem[0]);
-          window.cartStore.dispatch(action);
+          getCartStore().dispatch(action);
 
           // Remove the item from the DOM
           cartListItem.remove();
@@ -158,15 +159,15 @@ function updateNotify(count) {
 }
 
 // Subscribe to store updates
-window.cartStore.subscribe(() => {
-  const state = window.cartStore.getState();
+getCartStore().subscribe(() => {
+  const state = getCartStore().getState();
   renderCartItems(state);
   updateNotify(state?.length ?? 0);
 });
 
 // Initialize cart functionality
 function initializeCart() {
-  const state = window.cartStore.getState();
+  const state = getCartStore().getState();
   renderCartItems(state);
   handleQuantityChange(state);
   handleShippingChange(state); // Add shipping method change handler
@@ -174,7 +175,7 @@ function initializeCart() {
   updateNotify(state?.length ?? 0);
 
   // Dispatch an empty action to trigger the initial render
-  window.cartStore.dispatch({});
+  getCartStore().dispatch({});
 }
 
 initializeCart();

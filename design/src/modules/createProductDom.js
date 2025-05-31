@@ -1,5 +1,6 @@
 import priceFormat from "./priceFormat.js";
 import { addAction, removeAction } from "./redux.js";
+import { getCartStore, getWishStore } from "./store.js";
 
 function createProduct(
   id,
@@ -75,7 +76,7 @@ function createProduct(
       e.target.classList.contains("product__cart-btn")
     ) {
       const action = addAction({ imageUrl, title, author, cost, quantity: 1 });
-      window.cartStore.dispatch(action);
+      getCartStore().dispatch(action);
     }
     // Neu bam vao nut them sach yeu thich
     if (
@@ -101,7 +102,7 @@ function createProduct(
           cost,
         });
       }
-      window.wishStore.dispatch(action);
+      getWishStore().dispatch(action);
     }
   });
 

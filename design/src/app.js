@@ -3,6 +3,7 @@ import ComponentRegister from "./modules/component-register.js";
 import setSidebarToggle from "./modules/setSidebarToggle.js";
 import loaderNavSidebar from "./modules/loader-nav-sidebar.js";
 import { createStore, storeData } from "./modules/redux.js";
+import { getCartStore, getWishStore } from "./modules/store.js";
 import cartReducer, {
   render as cartRender,
   updateNotify as updateCartNotify,
@@ -22,35 +23,24 @@ function App() {
   setSidebarToggle("wishlist");
   const routes = new Routes();
   const routeRegisterQueue = [];
-  const initCartValues = JSON.parse(localStorage.getItem("cartItems") ?? "[]");
-  const initWishValues = JSON.parse(
-    localStorage.getItem("wishListItems") ?? "[]"
-  );
-
-  const cartStore = (window.cartStore = createStore(
-    cartReducer,
-    initCartValues
-  ));
-  cartStore.subscribe(() => {
-    const state = cartStore.getState();
+  //  cartStore redux
+  getCartStore().subscribe(() => {
+    const state = getCartStore().getState();
     cartRender(state);
     updateCartNotify(state?.length ?? 0);
     updateTotalCost(state);
     storeData("cartItems", state);
   });
-  cartStore.dispatch({ type: "" });
+  getCartStore().dispatch({ type: "" });
 
-  const wishStore = (window.wishStore = createStore(
-    wishListReducer,
-    initWishValues
-  ));
-  wishStore.subscribe(() => {
-    const state = wishStore.getState();
+  // wishStore redux
+  getWishStore().subscribe(() => {
+    const state = getWishStore().getState();
     wishRender(state);
     updateWishNotify(state?.length ?? 0);
     storeData("wishListItems", state);
   });
-  wishStore.dispatch({ type: "" });
+  getWishStore().dispatch({ type: "" });
 
   // define component register
   customElements.define("component-register", ComponentRegister);

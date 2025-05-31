@@ -1,4 +1,5 @@
 import priceFormat from "../../src/modules/priceFormat.js";
+import { getWishStore } from "../../src/modules/store.js";
 import { removeAction } from "../../src/modules/redux.js";
 
 function updateNotify(count) {
@@ -97,7 +98,7 @@ function removeWishListItemHanlde(data) {
           });
 
           const action = removeAction(data[currentIndex]);
-          window.wishStore.dispatch(action);
+          getWishStore().dispatch(action);
         };
       }
     });
@@ -139,10 +140,10 @@ function render(state) {
   }
 }
 
-window.wishStore.subscribe(() => {
-  const state = window.wishStore.getState();
+getWishStore().subscribe(() => {
+  const state = getWishStore().getState();
   render(state);
   updateNotify(state?.length ?? 0);
 });
 
-window.wishStore.dispatch({ type: "" });
+getWishStore().dispatch({ type: "" });
