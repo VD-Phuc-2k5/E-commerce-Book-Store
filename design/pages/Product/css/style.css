@@ -199,7 +199,7 @@
 /* Add to Cart Button */
 .add-to-cart-btn {
   width: 100%;
-  background-color: #10b981;
+  background-color: var(--mint-green-color);
   color: white;
   font-weight: 600;
   padding: 16px 24px;
