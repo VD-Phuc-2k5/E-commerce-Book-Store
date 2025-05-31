@@ -83,7 +83,9 @@ class Routes {
       this.currentScript = newScript;
     }
 
-    app.appendChild(elDOM.cloneNode(true));
+    // Thêm elDOM vào app
+    const clonedElDOM = elDOM.cloneNode(true);
+    app.appendChild(clonedElDOM);
     hideLoading();
 
     // prevent default event of tag a
