@@ -2,21 +2,21 @@ import carouselLoader from "./modules/loader-carousel.js";
 import ComponentRegister from "./modules/component-register.js";
 import setSidebarToggle from "./modules/setSidebarToggle.js";
 import loaderNavSidebar from "./modules/loader-nav-sidebar.js";
-import { createStore, storeData } from "./modules/redux.js";
-import { getCartStore, getWishStore } from "./modules/store.js";
-import cartReducer, {
+import { storeData } from "./modules/redux.js";
+import { getCartStore, getWishStore, getBookStore } from "./modules/store.js";
+import {
   render as cartRender,
   updateNotify as updateCartNotify,
   updateTotalCost,
 } from "./modules/cart.js";
-import wishListReducer, {
+import {
   render as wishRender,
   updateNotify as updateWishNotify,
 } from "./modules/wishlist.js";
 import Routes from "./modules/routes.js";
 
-function App() {
-  carouselLoader(10, 7000);
+async function App() {
+  carouselLoader(10, 30000);
   loaderNavSidebar("cart", "Cart");
   loaderNavSidebar("wishlist", "Wishlist");
   setSidebarToggle("cart");

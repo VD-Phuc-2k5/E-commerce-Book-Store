@@ -8,6 +8,7 @@ function createProduct(
   title,
   author,
   cost,
+  desc,
   idx,
   breakPointClasses = []
 ) {
@@ -24,12 +25,13 @@ function createProduct(
   productItem.classList.add("product-item", "card");
   productItem.id = `product-item${id}`;
   // innerHTML
+  productItem.innerHTML = "";
   productItem.innerHTML = `
     <div class="product__image">
       <img
         src="${imageUrl}"
         class="card-img-top"
-        alt="product-${idx}.jpg" loading="eager"/>
+        alt="product-${idx}.jpg" loading="lazy"/>
       <div class="product__image__overlay"></div>
     </div>
     <div class="card-body product__body">
@@ -51,10 +53,7 @@ function createProduct(
         </button>
       </div>
 
-      <p class="card-text product__desc">
-        Some quick example text to build on the card title and make up
-        the bulk of the card’s content.
-      </p>
+      <p class="card-text product__desc">${desc}</p>
 
       <div>
         <div class="product__cost" style="font-weight: 600">

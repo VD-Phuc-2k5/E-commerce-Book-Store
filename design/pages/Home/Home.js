@@ -1,30 +1,34 @@
-import { home_products } from "../../src/data/data.js";
 import createProduct from "../../src/modules/createProductDom.js";
 import setFireworks from "../../src/modules/setFireworks.js";
+import getBooks from "../../src/modules/getBooks.js";
 
-function Home() {
+async function Home() {
   const productList = document.querySelector(".home__product_list");
+  const home_products = await getBooks(50);
 
   // load product in home
-  home_products.forEach(({ title, products }) => {
+  home_products.home.forEach(({ title, books }) => {
     if (title) {
       const h1 = document.createElement("h1");
       h1.classList.add("home__product_list__title");
       h1.innerText = title;
       productList.appendChild(h1);
     }
-    products.forEach(({ id, imageUrl, title, author, cost }, idx) => {
-      const productItem = createProduct(
-        id,
-        imageUrl,
-        title,
-        author,
-        cost,
-        idx,
-        ["col-lg-4", "col-md-6", "col-12"]
-      );
-      productList.appendChild(productItem);
-    });
+    books.forEach(
+      ({ product_id, imgUrl, title, author, cost, description }, idx) => {
+        const productItem = createProduct(
+          product_id,
+          imgUrl,
+          title,
+          author,
+          cost,
+          description,
+          product_id,
+          ["col-lg-4", "col-md-6", "col-12"]
+        );
+        productList.appendChild(productItem);
+      }
+    );
   });
 
   setFireworks("wishlist");

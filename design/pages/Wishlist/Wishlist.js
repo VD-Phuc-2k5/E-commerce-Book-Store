@@ -25,7 +25,7 @@ function removeWishListItemHanlde(data) {
         e.target.classList.contains("sidebar__body__list__item__trash")
       ) {
         const style = getComputedStyle(wishListItem);
-        const isMobile = window.innerWidth < 576;
+        const isMobile = window.innerWidth < 1000;
 
         wishListItem.style = `
             white-space: nowrap;
@@ -111,7 +111,7 @@ function render(state) {
     wishlistContainer.innerHTML = state
       ?.map(
         (item) => `
-                <div class="col-lg-4 col-md-6 col-12">
+                <div class="col-lg-6 col-12">
                     <div class="sidebar__body__list__item">
                         <img src="${item.imageUrl}" alt="${item.imageUrl}"
                             class="sidebar__body__list__item__image" />

@@ -1,5 +1,5 @@
-import { carrouselInDropdown } from "../data/data.js";
 import createProduct from "./createProductDom.js";
+import getBooks from "./getBooks.js";
 
 function setupCarousel(slider, duration, gap) {
   let isSliding = false;
@@ -66,29 +66,21 @@ function setupCarousel(slider, duration, gap) {
   });
 }
 
-function carouselLoader(gap, duration) {
+async function carouselLoader(gap, duration) {
+  const books = await getBooks(50);
   const slider = document.getElementById("slider");
   if (slider) {
     slider.style = `
         gap: ${gap}px;
-        width: calc(${carrouselInDropdown.length} / var(--nav-carousel-item) * 100%  + ${gap}px);
+        width: calc(${books.carousel.length} / var(--nav-carousel-item) * 100%  + ${gap}px);
     `;
 
-    carrouselInDropdown.forEach(
-      ({ id, imageUrl, title, author, cost }, idx) => {
-        // Create individual product item
-        const productItem = createProduct(
-          id,
-          imageUrl,
-          title,
-          author,
-          cost,
-          idx
-        );
-        // Append to current group
-        slider.appendChild(productItem);
-      }
-    );
+    books.carousel.forEach(({ id, imgUrl, title, author, cost }, idx) => {
+      // Create individual product item
+      const productItem = createProduct(id, imgUrl, title, author, cost, idx);
+      // Append to current group
+      slider.appendChild(productItem);
+    });
     setupCarousel(slider, duration, gap);
   }
 }
