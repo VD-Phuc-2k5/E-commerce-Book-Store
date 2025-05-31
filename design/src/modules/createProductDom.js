@@ -105,7 +105,22 @@ function createProduct(
   });
 
   productItem.addEventListener("click", (e) => {
-    window.location.href = `/product?id=${id}`;
+    // Si el clic NO fue en los botones de wishlist o carrito
+    if (
+      !e.target.classList.contains("fa-heart") &&
+      !e.target.classList.contains("product__wishlist-btn") &&
+      !e.target.classList.contains("fa-cart-shopping") &&
+      !e.target.classList.contains("product__cart-btn")
+    ) {
+      const router = window.appRouter;
+
+      const productPath = `/product?id=${id}`;
+
+      router.navigate(productPath);
+
+      e.preventDefault();
+      e.stopPropagation();
+    }
   });
 
   productItemWrap.appendChild(productItem);

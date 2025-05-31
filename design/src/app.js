@@ -21,7 +21,7 @@ async function App() {
   loaderNavSidebar("wishlist", "Wishlist");
   setSidebarToggle("cart");
   setSidebarToggle("wishlist");
-  const routes = new Routes();
+  const routes = (window.appRouter = new Routes());
   const routeRegisterQueue = [];
   //  cartStore redux
   getCartStore().subscribe(() => {
