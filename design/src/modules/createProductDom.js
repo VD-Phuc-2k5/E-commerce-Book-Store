@@ -67,7 +67,6 @@ function createProduct(
     </div>  
   `;
 
-  let callbackFunc;
   productItem.addEventListener("click", (e) => {
     // Neu bam vao nut them san pham vao gio hang
     if (
@@ -103,6 +102,10 @@ function createProduct(
       }
       getWishStore().dispatch(action);
     }
+  });
+
+  productItem.addEventListener("click", (e) => {
+    window.location.href = `/product?id=${id}`;
   });
 
   productItemWrap.appendChild(productItem);

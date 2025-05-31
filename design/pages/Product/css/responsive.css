@@ -1,0 +1,36 @@
+@media (max-width: 1140px) {
+  .product-title {
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 574px) {
+  .breadcrumb {
+    font-size: 3vw;
+  }
+
+  .product-details {
+    padding: 0;
+  }
+  .product-title {
+    font-size: 7vw;
+  }
+  .product-author {
+    font-size: 4vw;
+  }
+  .star-rating {
+    font-size: 0.8em;
+  }
+  .price-container {
+    padding: 10px 0;
+  }
+  .current-price {
+    font-size: 1.2em;
+  }
+  .original-price {
+    font-size: 1em;
+  }
+  .description-title {
+    text-align: center;
+  }
+}

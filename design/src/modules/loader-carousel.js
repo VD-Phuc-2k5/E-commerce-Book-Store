@@ -75,12 +75,21 @@ async function carouselLoader(gap, duration) {
         width: calc(${books.carousel.length} / var(--nav-carousel-item) * 100%  + ${gap}px);
     `;
 
-    books.carousel.forEach(({ id, imgUrl, title, author, cost }, idx) => {
-      // Create individual product item
-      const productItem = createProduct(id, imgUrl, title, author, cost, idx);
-      // Append to current group
-      slider.appendChild(productItem);
-    });
+    books.carousel.forEach(
+      ({ product_id, imgUrl, title, author, cost }, idx) => {
+        // Create individual product item
+        const productItem = createProduct(
+          product_id,
+          imgUrl,
+          title,
+          author,
+          cost,
+          idx
+        );
+        // Append to current group
+        slider.appendChild(productItem);
+      }
+    );
     setupCarousel(slider, duration, gap);
   }
 }
