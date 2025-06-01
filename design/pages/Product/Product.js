@@ -1,7 +1,9 @@
-import { getBookStore } from "../../src/modules/store.js";
+import { getBookStore, getCartStore } from "../../src/modules/store.js";
 import priceFormat from "../../src/modules/priceFormat.js";
 import createProduct from "../../src/modules/createProductDom.js";
+import { addAction } from "../../src/modules/redux.js";
 import setFireworks from "../../src/modules/setFireworks.js";
+
 // Quantity controls
 function increaseQuantity() {
   const quantityInput = document.getElementById("quantity");
@@ -228,11 +230,28 @@ async function productPage() {
       increaseQuantity();
     });
 
-    //
+    // add curr book to wishlist
     const productImgWrap = document.querySelector(".product-image-container");
     productImgWrap.appendChild(
       createProduct(id, imgUrl, title, author, cost, description, id)
     );
+
+    // add curr book to cart
+    const addToCartBtn = document.querySelector(".add-to-cart-btn");
+    if (addToCartBtn) {
+      addToCartBtn.addEventListener("click", () => {
+        const quantityInput = document.getElementById("quantity");
+        const action = addAction({
+          id: product_id,
+          imageUrl: imgUrl,
+          title,
+          author,
+          cost,
+          quantity: Number(quantityInput.value),
+        });
+        getCartStore().dispatch(action);
+      });
+    }
 
     // render relation books
     const relatedProductsContainer = document.getElementById(
@@ -253,6 +272,7 @@ async function productPage() {
       );
       relatedProductsContainer.appendChild(productElement);
     });
+
     setFireworks("wishlist");
   }
 }

@@ -73,7 +73,14 @@ function createProduct(
       e.target.classList.contains("fa-cart-shopping") ||
       e.target.classList.contains("product__cart-btn")
     ) {
-      const action = addAction({ imageUrl, title, author, cost, quantity: 1 });
+      const action = addAction({
+        id,
+        imageUrl,
+        title,
+        author,
+        cost,
+        quantity: 1,
+      });
       getCartStore().dispatch(action);
     }
     // Neu bam vao nut them sach yeu thich

@@ -1,14 +1,21 @@
 import priceFormat from "./priceFormat.js";
 import { removeAction } from "./redux.js";
 import { getCartStore } from "./store.js";
+import { showToast } from "./toast.js";
 
 // cart reducer
 function cartReducer(state, action) {
   switch (action.type) {
     case "ADD":
-      return [...state, action.data];
+      const exists = state.some((item) => item.id === action.data.id);
+      if (!exists) {
+        return [...state, action.data];
+      } else showToast("Sản phẩm đã có trong giỏ hàng!");
+      return state;
+
     case "REMOVE":
-      return state.filter((item) => item !== action.data);
+      return state.filter((item) => item.id !== action.data.id);
+
     default:
       return state;
   }

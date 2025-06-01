@@ -137,8 +137,8 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 100%;
   background: linear-gradient(
     45deg,
-    rgba(203, 203, 203, 0.2),
-    rgba(204, 204, 204, 0.1)
+    rgba(122, 122, 122, 0.3),
+    rgba(162, 162, 162, 0.3)
   );
 }
 
@@ -159,7 +159,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .product__title {
-  min-height: 70px;
+  min-height: 100px;
 }
 
 .product__title span:first-child{
@@ -204,6 +204,7 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-height: 50px;
 }
 
 .product__cost {
@@ -242,6 +243,11 @@ input[type="number"]::-webkit-outer-spin-button {
   animation: particle-float 1s ease-out forwards,
     particle-fade 1s ease-out forwards;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.product__body div:first-child button {
+  align-self: start;
+  margin-top: 10px;
 }
 
 /* header */
@@ -428,6 +434,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .header__nav_list--dropdown__carousel .product-item {
   width: 100%;
   min-height: 200px; 
+}
+
+.header__nav_list--dropdown__carousel .product__title{
+  min-height: 50px;
 }
 
 .header__nav_list--dropdown__carousel .product__image img {
@@ -998,6 +1008,32 @@ footer {
   margin-top: 40px;
 }
 
+/* toast */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  opacity: 0;
+  width: min(500px, 80vw);
+  text-align: center;
+  transform: translateX(100%);
+  z-index: 998;
+  animation: 0.5s toastAnimmation ease-in-out forwards;
+  display: none;
+}
+
+.toast.show {
+  display: block;
+}
+
+.toast.hidden {
+  display: none;
+}
+
 @keyframes text_713 {
   0% {
     letter-spacing: 1px;
@@ -1196,6 +1232,17 @@ footer {
   }
 }
 
+@keyframes toastAnimmation {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 /* responsive */
 @media (min-width: 274px) {
   .header {
@@ -1309,5 +1356,16 @@ footer {
   }
   .sidebar__body__list__item__image {
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
+  }
+}
+
+@media (max-width: 974px) {  
+
+  .product-item {
+    min-height: 500px;
+  }
+
+  .product__image img {
+    height: 350px;
   }
 }
