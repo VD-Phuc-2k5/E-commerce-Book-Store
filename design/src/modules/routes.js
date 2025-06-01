@@ -7,10 +7,16 @@ class Routes {
     this.currentCSSLinks = [];
     this.currentScript = null;
     this.pendingCSSLoads = 0;
+    this.initialRenderComplete = false; // Thêm biến để theo dõi lần render đầu tiên
   }
 
   addRoutes(path, routeObj) {
     this.routes[path] = routeObj;
+
+    // Nếu đây là đường dẫn hiện tại và chưa render lần đầu, render ngay
+    if (window.location.pathname === path && !this.initialRenderComplete) {
+      this.render();
+    }
   }
 
   navigate(path) {
@@ -40,17 +46,40 @@ class Routes {
     showLoading();
     const path = window.location.pathname;
     const app = document.getElementById("app");
-    app.innerHTML = "";
 
+    // Chỉ xóa nội dung nếu đã render lần đầu hoặc không có route phù hợp
     const route = this.routes[path];
+    if (this.initialRenderComplete || !route) {
+      app.innerHTML = "";
+    }
+
     if (!route) {
-      app.innerHTML = `
-        <div class="not-found-page">
-          <img class="not-found-page__img" src="./assets/img/404-error.png" alt="error.png" />
-          <h1 class="not-found-page__title">404 Not Found</h1>
-        </div>
-      `;
-      hideLoading();
+      // Chỉ hiển thị trang 404 nếu đã render lần đầu hoặc sau timeout
+      if (this.initialRenderComplete) {
+        app.innerHTML = `
+          <div class="not-found-page">
+            <img class="not-found-page__img" src="./assets/img/404-error.png" alt="error.png" />
+            <h1 class="not-found-page__title">404 Not Found</h1>
+          </div>
+        `;
+        hideLoading();
+      } else {
+        // Đối với lần render đầu tiên, đợi một khoảng thời gian trước khi hiển thị 404
+        setTimeout(() => {
+          // Kiểm tra lại xem route đã được đăng ký chưa
+          const updatedRoute = this.routes[path];
+          if (!updatedRoute) {
+            app.innerHTML = `
+              <div class="not-found-page">
+                <img class="not-found-page__img" src="./assets/img/404-error.png" alt="error.png" />
+                <h1 class="not-found-page__title">404 Not Found</h1>
+              </div>
+            `;
+            hideLoading();
+            this.initialRenderComplete = true;
+          }
+        }, 1000); // Đợi 1 giây để các component có thời gian đăng ký
+      }
       return;
     }
 
@@ -75,7 +104,7 @@ class Routes {
 
       // Thêm sự kiện để theo dõi khi CSS được tải xong
       newLink.onload = () => this.handleCSSLoaded(app, elDOM, scriptTag);
-      newLink.onerror = () => this.handleCSSLoaded(app, elDOM, scriptTag); // Xử lý cả trường hợp lỗi
+      newLink.onerror = () => this.handleCSSLoaded(app, elDOM, scriptTag);
 
       document.head.appendChild(newLink);
       this.currentCSSLinks.push(newLink);
@@ -114,10 +143,16 @@ class Routes {
       this.currentScript = newScript;
     }
 
+    // Xóa nội dung app trước khi thêm nội dung mới
+    app.innerHTML = "";
+
     // Thêm elDOM vào app
     const clonedElDOM = elDOM.cloneNode(true);
     app.appendChild(clonedElDOM);
     hideLoading();
+
+    // Đánh dấu đã render lần đầu
+    this.initialRenderComplete = true;
 
     // prevent default event of tag a
     const aEl = document.querySelectorAll("a");

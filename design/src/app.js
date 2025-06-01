@@ -3,7 +3,7 @@ import ComponentRegister from "./modules/component-register.js";
 import setSidebarToggle from "./modules/setSidebarToggle.js";
 import loaderNavSidebar from "./modules/loader-nav-sidebar.js";
 import { storeData } from "./modules/redux.js";
-import { getCartStore, getWishStore, getBookStore } from "./modules/store.js";
+import { getCartStore, getWishStore } from "./modules/store.js";
 import {
   render as cartRender,
   updateNotify as updateCartNotify,
