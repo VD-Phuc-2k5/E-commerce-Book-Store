@@ -1,4 +1,3 @@
-import { showLoading, hideLoading } from "./loadingPage.js";
 import { removeSidebar } from "./setSidebarToggle.js";
 
 class Routes {
@@ -43,7 +42,6 @@ class Routes {
   }
 
   render() {
-    showLoading();
     const path = window.location.pathname;
     const app = document.getElementById("app");
 
@@ -62,7 +60,6 @@ class Routes {
             <h1 class="not-found-page__title">404 Not Found</h1>
           </div>
         `;
-        hideLoading();
       } else {
         // Đối với lần render đầu tiên, đợi một khoảng thời gian trước khi hiển thị 404
         setTimeout(() => {
@@ -75,7 +72,6 @@ class Routes {
                 <h1 class="not-found-page__title">404 Not Found</h1>
               </div>
             `;
-            hideLoading();
             this.initialRenderComplete = true;
           }
         }, 1000); // Đợi 1 giây để các component có thời gian đăng ký
@@ -149,7 +145,6 @@ class Routes {
     // Thêm elDOM vào app
     const clonedElDOM = elDOM.cloneNode(true);
     app.appendChild(clonedElDOM);
-    hideLoading();
 
     // Đánh dấu đã render lần đầu
     this.initialRenderComplete = true;
