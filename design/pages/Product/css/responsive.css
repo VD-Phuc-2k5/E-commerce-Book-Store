@@ -30,7 +30,8 @@
   .original-price {
     font-size: 1em;
   }
-  .description-title {
+  .description-title,
+  .related-title {
     text-align: center;
   }
   .product-image-container .product__title span:first-child {

@@ -291,14 +291,16 @@
 }
 
 /* Description Section */
-.description-section {
+.description-section,
+.related-section {
   background-color: #f9fafb;
   border-radius: 8px;
   margin: 20px 0;
   padding: 20px 0;
 }
 
-.description-title {
+.description-title,
+.related-title {
   font-size: 1.2empx;
   font-weight: bold;
   margin-bottom: 16px;
