@@ -14,15 +14,23 @@ import {
   updateNotify as updateWishNotify,
 } from "./modules/wishlist.js";
 import Routes from "./modules/routes.js";
+import { showLoading, hideLoading } from "./modules/loadingPage.js";
 
 async function App() {
+  // Hiển thị loading khi bắt đầu khởi tạo ứng dụng
+  showLoading();
+
   carouselLoader(10, 7000);
   loaderNavSidebar("cart", "Cart");
   loaderNavSidebar("wishlist", "Wishlist");
   setSidebarToggle("cart");
   setSidebarToggle("wishlist");
+
   const routes = (window.appRouter = new Routes());
   const routeRegisterQueue = [];
+  let pendingComponentRegistrations = 0;
+  let domContentLoaded = false;
+
   //  cartStore redux
   getCartStore().subscribe(() => {
     const state = getCartStore().getState();
@@ -49,23 +57,60 @@ async function App() {
     routes.render();
   });
 
+  // Theo dõi số lượng component đang được đăng ký
+  window.addEventListener("component-registering", () => {
+    pendingComponentRegistrations++;
+    console.log(
+      "Component registering, pending:",
+      pendingComponentRegistrations
+    );
+  });
+
   window.addEventListener("component-registed", (e) => {
     const { path, ...routeObj } = e.detail;
     routes.addRoutes(path, routeObj);
     routeRegisterQueue.push(path);
 
-    if (window.location.pathname === path) routes.render();
+    pendingComponentRegistrations--;
+    console.log(
+      "Component registered, pending:",
+      pendingComponentRegistrations
+    );
+
+    // Kiểm tra nếu tất cả component đã đăng ký và DOM đã sẵn sàng
+    checkAndRender();
   });
 
-  // fallback render in case no route matches (404)
-  window.addEventListener("DOMContentLoaded", () => {
-    const matchedRoute = routeRegisterQueue.find(
-      (path) => path === window.location.pathname
-    );
-    if (!matchedRoute) {
+  // Kiểm tra và render khi tất cả component đã đăng ký
+  function checkAndRender() {
+    if (domContentLoaded && pendingComponentRegistrations <= 0) {
+      console.log("All components registered, rendering now");
       routes.render();
+      hideLoading();
     }
+  }
+
+  // Đánh dấu rằng DOM đã sẵn sàng
+  window.addEventListener("DOMContentLoaded", () => {
+    domContentLoaded = true;
+    console.log(
+      "DOM content loaded, pending components:",
+      pendingComponentRegistrations
+    );
+
+    // Nếu không có component nào đang chờ đăng ký, render ngay
+    checkAndRender();
   });
+
+  // Đảm bảo trang sẽ được render sau 5 giây, ngay cả khi có vấn đề
+  setTimeout(() => {
+    if (!domContentLoaded || pendingComponentRegistrations > 0) {
+      console.warn("Forcing render after timeout");
+      pendingComponentRegistrations = 0;
+      routes.render();
+      hideLoading();
+    }
+  }, 5000);
 
   history.scrollRestoration = "manual";
 }
