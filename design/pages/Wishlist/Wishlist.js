@@ -112,7 +112,9 @@ function render(state) {
       ?.map(
         (item) => `
                 <div class="col-lg-6 col-12">
-                    <div class="sidebar__body__list__item">
+                    <div class="sidebar__body__list__item" data-link="/product?id=${
+                      item.id
+                    }">
                         <img src="${item.imageUrl}" alt="${item.imageUrl}"
                             class="sidebar__body__list__item__image" />
     
@@ -136,6 +138,19 @@ function render(state) {
             `
       )
       .join("");
+    const wishListItems = document.querySelectorAll(
+      ".sidebar__body__list__item"
+    );
+    wishListItems.forEach((wishListItem) => {
+      wishListItem.addEventListener("click", (e) => {
+        if (
+          !e.target.classList.contains("sidebar__body__list__item__trash") &&
+          !e.target.classList.contains("fa-trash")
+        ) {
+          window.appRouter.navigate(wishListItem.getAttribute("data-link"));
+        }
+      });
+    });
     removeWishListItemHanlde(state);
   }
 }

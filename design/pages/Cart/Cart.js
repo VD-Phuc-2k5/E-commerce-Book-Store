@@ -148,6 +148,15 @@ function renderCartItems(cartItems) {
       .join("");
 
     updateSummary(cartItems);
+
+    // prevent default event of tag a
+    const aEl = document.querySelectorAll("a");
+    aEl.forEach((aDom) => {
+      aDom.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.appRouter.navigate(e.currentTarget.getAttribute("href"));
+      });
+    });
   }
 }
 

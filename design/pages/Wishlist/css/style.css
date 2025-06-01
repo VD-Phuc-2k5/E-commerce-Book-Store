@@ -27,3 +27,9 @@
   border-radius: 5px;
   font-weight: 500;
 }
+
+#wishlistPage
+  .sidebar__body__list__item:hover
+  .sidebar__body__list__item__body__title {
+  color: var(--mint-green-color);
+}
