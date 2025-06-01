@@ -102,6 +102,7 @@ input[type="number"]::-webkit-outer-spin-button {
 /* App */
 #app {
   margin-top: var(--header-height);
+  min-height: 100vh;
 }
 
 /* products */
@@ -121,6 +122,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .product__image {
   position: relative;
+  animation: productImageAnimation 0.5s ease-in-out;
 }
 
 .product__image img {
@@ -1245,6 +1247,17 @@ footer {
   }
   to {
     transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes productImageAnimation {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
     opacity: 1;
   }
 }

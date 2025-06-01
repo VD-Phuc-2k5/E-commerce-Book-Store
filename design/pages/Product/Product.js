@@ -220,7 +220,6 @@ async function productPage() {
             <div class="row" id="related-products-container"></div>
           </div>
         `;
-
     const quantityBtns = document.querySelectorAll(".quantity-btn");
     quantityBtns[0].addEventListener("click", () => {
       decreaseQuantity();
@@ -271,6 +270,15 @@ async function productPage() {
         ["col-lg-4", "col-md-6", "col-12"]
       );
       relatedProductsContainer.appendChild(productElement);
+    });
+
+    // prevent default event of tag a
+    const aEl = document.querySelectorAll("a");
+    aEl.forEach((aDom) => {
+      aDom.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.appRouter.navigate(e.currentTarget.getAttribute("href"));
+      });
     });
 
     setFireworks("wishlist");
