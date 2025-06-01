@@ -16,7 +16,7 @@ import {
 import Routes from "./modules/routes.js";
 
 async function App() {
-  carouselLoader(10, 30000);
+  carouselLoader(10, 7000);
   loaderNavSidebar("cart", "Cart");
   loaderNavSidebar("wishlist", "Wishlist");
   setSidebarToggle("cart");

@@ -46,22 +46,69 @@
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  overflow: hidden;
-  padding: 20px;
   max-height: 500px;
+  overflow: hidden;
+  background: #fafafa;
+  padding: 0;
+  border-radius: 5px;
 }
 
-.product-image-container:after {
+.product-image-container > div,
+.product-image-container .product__image {
+  height: 100%;
+}
+
+.product-image-container .product-item {
+  position: relative;
+  margin: 0;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.product-image-container .product-item::after {
   content: "";
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle at center,
-    rgba(200, 255, 233, 0.1),
-    rgba(44, 23, 0, 0.3)
-  );
+  z-index: -1;
+}
+
+.product-image-container .product__body > div {
+  position: relative;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.product-image-container .product__body div button {
+  position: absolute;
+  top: 0;
+  left: calc(100% - 50px);
+  width: 45px;
+  aspect-ratio: 1 / 1;
+  background: #ffffff;
+}
+
+.product-image-container .product__body {
+  position: absolute;
+  width: 100%;
+  background-color: rgba(221, 221, 221, 0.132);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.product-image-container .product__body,
+.product-image-container .product__image img {
+  height: 100%;
+  object-fit: cover;
+  filter: drop-shadow(0 0 10px rgb(176, 176, 176));
+}
+
+.product-image-container .product__image__overlay,
+.product-image-container .product__desc,
+.product-image-container .product__title,
+.product-image-container .product__controls {
+  display: none;
 }
 
 .product-image {
@@ -264,39 +311,7 @@
 
 /* Related Products */
 .related-section {
-  margin-top: 48px;
-}
-
-.related-title {
-  font-size: 2em;
-  font-weight: bold;
-}
-
-.related-item {
-  background-color: #f3f4f6;
-  border-radius: 8px;
-  padding: 16px;
-  text-align: center;
   margin-top: 20px;
-}
-
-.related-image-placeholder {
-  background-color: #e5e7eb;
-  height: 160px;
-  border-radius: 4px;
-  margin-bottom: 8px;
-}
-
-.related-title-text {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.related-author {
-  font-size: 12px;
-  color: #6b7280;
-  margin-bottom: 8px;
 }
 
 .related-price {

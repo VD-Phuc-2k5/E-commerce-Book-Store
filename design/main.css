@@ -106,7 +106,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /* products */
 .product-item {
-  min-height: 625px;
+  min-height: 650px;
   margin-top: 10px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -126,6 +126,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .product__image img {
   height: 400px;
   object-fit: cover;
+  object-position: top center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -158,6 +159,10 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .product__title {
+  min-height: 70px;
+}
+
+.product__title span:first-child{
   line-height: 1.5em;
   font-size: 110%;
   display: -webkit-box;
@@ -168,7 +173,7 @@ input[type="number"]::-webkit-outer-spin-button {
   text-overflow: ellipsis;
 }
 
-.product__title span {
+.product__title span:last-child {
   color: var(--green-color);
   font-size: 90%;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -317,7 +322,7 @@ input[type="number"]::-webkit-outer-spin-button {
   position: absolute;
   inset: calc(100% + 12px) 0 0 50%;
   width: min(100vw, 900px);
-  height: 450px;
+  height: 480px;
   background: #ffff;
   border-radius: 5px;
   transform: translateX(-50%);

@@ -1,7 +1,7 @@
 import { getBookStore } from "../../src/modules/store.js";
 import priceFormat from "../../src/modules/priceFormat.js";
 import createProduct from "../../src/modules/createProductDom.js";
-
+import setFireworks from "../../src/modules/setFireworks.js";
 // Quantity controls
 function increaseQuantity() {
   const quantityInput = document.getElementById("quantity");
@@ -123,9 +123,7 @@ async function productPage() {
           <div class="product-section container-fluid">
             <div class="row">
               <!-- Product Image -->
-              <div class="product-image-container col-lg-6 col-12">
-                <img src="${imgUrl}" alt="img_${product_id}.jpg" class="product-image" loading="lazy" />
-              </div>
+              <div class="product-image-container col-lg-6 col-12"></div>
     
               <!-- Product Details -->
               <div class="product-details col-lg-6 col-12">
@@ -230,13 +228,19 @@ async function productPage() {
       increaseQuantity();
     });
 
+    //
+    const productImgWrap = document.querySelector(".product-image-container");
+    productImgWrap.appendChild(
+      createProduct(id, imgUrl, title, author, cost, description, id)
+    );
+
     // render relation books
     const relatedProductsContainer = document.getElementById(
       "related-products-container"
     );
     const relatedProducts = getRandomRelatedProducts(books, product_id, 6);
 
-    relatedProducts.forEach((product, index) => {
+    relatedProducts.forEach((product) => {
       const productElement = createProduct(
         product.product_id,
         product.imgUrl,
@@ -244,11 +248,12 @@ async function productPage() {
         product.author,
         product.cost,
         product.description.substring(0, 100) + "...",
-        index,
+        product.product_id,
         ["col-lg-4", "col-md-6", "col-12"]
       );
       relatedProductsContainer.appendChild(productElement);
     });
+    setFireworks("wishlist");
   }
 }
 

@@ -37,10 +37,10 @@ function createProduct(
     <div class="card-body product__body">
       <div>
         <h5 class="card-title product__title" style="font-weight: 600; text-align: left">
-          ${title} <br />
+          <span>${title}</span>
           <span>By ${author}</span>
         </h5>
-
+          
         <button
           class="product__wishlist-btn wishlist ${
             JSON.parse(localStorage.getItem("wishListItems") ?? "[]")
@@ -55,7 +55,7 @@ function createProduct(
 
       <p class="card-text product__desc">${desc}</p>
 
-      <div>
+      <div class="product__controls">
         <div class="product__cost" style="font-weight: 600">
           ${priceFormat(Number(cost))}
         </div>
