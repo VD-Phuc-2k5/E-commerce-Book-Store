@@ -6,6 +6,7 @@ class Routes {
     this.routes = {};
     this.currentCSSLinks = [];
     this.currentScript = null;
+    this.pendingCSSLoads = 0;
   }
 
   addRoutes(path, routeObj) {
@@ -59,13 +60,38 @@ class Routes {
     this.currentCSSLinks.forEach((link) => link.remove());
     this.currentCSSLinks = [];
 
-    // Thêm các thẻ CSS mới
+    // Đặt lại bộ đếm CSS đang tải
+    this.pendingCSSLoads = cssTags.length;
+
+    // Nếu không có CSS nào cần tải
+    if (this.pendingCSSLoads === 0) {
+      this.completeRender(app, elDOM, scriptTag);
+      return;
+    }
+
+    // Thêm các thẻ CSS mới và theo dõi việc tải
     cssTags.forEach((tag) => {
       const newLink = tag.cloneNode(true);
+
+      // Thêm sự kiện để theo dõi khi CSS được tải xong
+      newLink.onload = () => this.handleCSSLoaded(app, elDOM, scriptTag);
+      newLink.onerror = () => this.handleCSSLoaded(app, elDOM, scriptTag); // Xử lý cả trường hợp lỗi
+
       document.head.appendChild(newLink);
       this.currentCSSLinks.push(newLink);
     });
+  }
 
+  handleCSSLoaded(app, elDOM, scriptTag) {
+    this.pendingCSSLoads--;
+
+    // Nếu tất cả CSS đã được tải xong, tiếp tục render
+    if (this.pendingCSSLoads === 0) {
+      this.completeRender(app, elDOM, scriptTag);
+    }
+  }
+
+  completeRender(app, elDOM, scriptTag) {
     // Xóa script cũ nếu có
     if (this.currentScript) {
       this.currentScript.remove();
