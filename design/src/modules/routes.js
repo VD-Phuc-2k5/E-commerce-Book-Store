@@ -25,7 +25,9 @@ class Routes {
       removeSidebar(wishList);
     }
 
-    if (window.location.pathname === path) return;
+    if (path.includes(window.location.pathname)) {
+      return;
+    }
     history.pushState(null, null, path);
     this.render();
   }

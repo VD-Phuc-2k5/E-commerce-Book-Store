@@ -126,13 +126,13 @@ function renderCartItems(cartItems) {
   if (cartListWrapper) {
     cartListWrapper.innerHTML = cartItems
       .map(
-        ({ imageUrl, title, cost, quantity }, idx) => `
+        ({ id, imageUrl, title, cost, quantity }, idx) => `
           <tr>
             <td data-label="Thumbnail">
               <img src="${imageUrl}" alt="thumbnail${idx}.jpg" />
             </td>
             <td data-label="Product Title">
-              <a href="#">${title}</a>
+              <a href="/product?id=${id}">${title}</a>
             </td>
             <td data-label="Price">${priceFormat(Number(cost))}</td>
             <td data-label="Quantity">
