@@ -1,5 +1,7 @@
 #wishlistPage {
   padding-bottom: 20px;
+  opacity: 0;
+  animation: productImageAnimation 0.5s 0.4s ease-in-out forwards;
 }
 
 /* wishlist */
@@ -9,7 +11,6 @@
   object-fit: cover;
   object-position: top;
   box-shadow: 0 0 10px var(--gray-color);
-  animation: productImageAnimation 0.5s 0.1s ease-in-out;
 }
 
 .wishlist__content__title {
@@ -18,7 +19,6 @@
   padding: 20px;
   margin: 0 30px 30px 30px;
   border-bottom: 2px solid var(--border-color);
-  animation: productImageAnimation 0.5s 0.1s ease-in-out;
 }
 
 .elementor--item__overlay__sidebar__footer a {
@@ -34,8 +34,4 @@
   .sidebar__body__list__item:hover
   .sidebar__body__list__item__body__title {
   color: var(--mint-green-color);
-}
-
-#wishListContainer {
-  animation: productImageAnimation 0.5s 0.1s ease-in-out;
 }

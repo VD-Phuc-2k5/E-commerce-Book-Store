@@ -1,5 +1,7 @@
 #cart-page {
   overflow-x: hidden;
+  opacity: 0;
+  animation: productImageAnimation 0.5s 0.3s ease-in-out forwards;
 }
 
 .cart-page__container.active .container__empty__wrap {
@@ -24,7 +26,7 @@
   min-height: 35vh;
   background: url("../../../assets/img/banner-cart.jpg") no-repeat center center /
     cover;
-  animation: productImageAnimation 0.5s 0.1s ease-in-out;
+  animation: productImageAnimation 0.5s ease-in-out;
 }
 
 /* cart - empty status */
@@ -113,7 +115,7 @@
   flex-direction: column;
   padding: 0 50px 20px 50px;
   margin: 20px 0;
-  animation: productImageAnimation 0.5s 0.1s ease-in-out;
+  animation: productImageAnimation 0.5s ease-in-out;
 }
 
 .cart-content__heading {

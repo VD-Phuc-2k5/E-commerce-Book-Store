@@ -1,5 +1,6 @@
 #myAccount {
-  animation: fadeIn 0.5s ease-in-out;
+  opacity: 0;
+  animation: productImageAnimation 0.5s 0.3s ease-in-out forwards;
 }
 
 #myAccount,
