@@ -215,7 +215,7 @@ async function productPage() {
           </div>
     
           <!-- Related Products Section -->
-          <div class="related-section container-fluid">
+          <div class="related-section">
             <h2 class="related-title">You might also like</h2>
             <div class="row" id="related-products-container"></div>
           </div>

@@ -161,7 +161,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .product__title {
-  min-height: 100px;
+  min-height: 40px;
 }
 
 .product__title span:first-child{
@@ -177,7 +177,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .product__title span:last-child {
   color: var(--green-color);
-  font-size: 90%;
+  font-size: 85%;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: -webkit-box;
   line-clamp: 1;
@@ -185,6 +185,7 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: 5px; 
 }
 
 .product__cart-btn {
