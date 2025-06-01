@@ -25,7 +25,10 @@ class Routes {
       removeSidebar(wishList);
     }
 
-    if (path.includes(window.location.pathname)) {
+    const n = window.location.href.split("/").length - 1;
+    const currPath = `/${window.location.href.split("/")[n ?? 0]}`;
+
+    if (currPath === path) {
       return;
     }
     history.pushState(null, null, path);
