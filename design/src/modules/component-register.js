@@ -22,9 +22,9 @@ class ComponentRegister extends HTMLElement {
             link.href = path;
             return link;
           }
-          return null; // Trả về null cho các CSS đã tồn tại
+          return null;
         })
-        .filter((link) => link !== null); // Lọc bỏ các giá trị null
+        .filter((link) => link !== null);
 
       // Tải nội dung HTML
       const res = await fetch(htmlPath);

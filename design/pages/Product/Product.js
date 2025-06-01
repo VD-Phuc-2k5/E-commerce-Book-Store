@@ -144,7 +144,7 @@ async function productPage() {
                   <span class="original-price">${priceFormat(
                     Number(old_cost)
                   )}</span>
-                  <span class="discount-badge">${(
+                  <span class="discount-badge">-${(
                     ((Number(old_cost) - Number(cost)) / Number(old_cost)) *
                     100
                   ).toFixed(0)}%

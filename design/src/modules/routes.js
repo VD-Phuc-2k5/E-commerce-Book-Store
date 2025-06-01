@@ -6,12 +6,11 @@ class Routes {
     this.currentCSSLinks = [];
     this.currentScript = null;
     this.pendingCSSLoads = 0;
-    this.initialRenderComplete = false; // Thêm biến để theo dõi lần render đầu tiên
+    this.initialRenderComplete = false;
   }
 
   addRoutes(path, routeObj) {
     this.routes[path] = routeObj;
-
     // Nếu đây là đường dẫn hiện tại và chưa render lần đầu, render ngay
     if (window.location.pathname === path && !this.initialRenderComplete) {
       this.render();
@@ -74,7 +73,7 @@ class Routes {
             `;
             this.initialRenderComplete = true;
           }
-        }, 1000); // Đợi 1 giây để các component có thời gian đăng ký
+        }, 1000);
       }
       return;
     }
@@ -97,7 +96,6 @@ class Routes {
     // Thêm các thẻ CSS mới và theo dõi việc tải
     cssTags.forEach((tag) => {
       const newLink = tag.cloneNode(true);
-
       // Thêm sự kiện để theo dõi khi CSS được tải xong
       newLink.onload = () => this.handleCSSLoaded(app, elDOM, scriptTag);
       newLink.onerror = () => this.handleCSSLoaded(app, elDOM, scriptTag);
@@ -109,7 +107,6 @@ class Routes {
 
   handleCSSLoaded(app, elDOM, scriptTag) {
     this.pendingCSSLoads--;
-
     // Nếu tất cả CSS đã được tải xong, tiếp tục render
     if (this.pendingCSSLoads === 0) {
       this.completeRender(app, elDOM, scriptTag);
