@@ -177,6 +177,12 @@ input[type="number"]::-webkit-outer-spin-button {
   color: var(--green-color);
   font-size: 90%;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product__cart-btn {
@@ -433,7 +439,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .header__nav_list--dropdown__carousel .product-item {
   width: 100%;
-  min-height: 200px; 
+  min-height: 250px; 
 }
 
 .header__nav_list--dropdown__carousel .product__title{
