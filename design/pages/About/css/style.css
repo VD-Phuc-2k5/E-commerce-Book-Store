@@ -1,7 +1,5 @@
 #about {
   transition: 0.5s ease-in-out;
-  opacity: 0;
-  animation: productImageAnimation 0.5s 0.3s ease-in-out forwards;
 }
 
 .hero-section {
@@ -283,8 +281,11 @@
 
 @keyframes heroSectionFadeIn {
   0% {
-    opacity: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    opacity: 0.8;
+    background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(215, 215, 215, 0.5)
+    );
   }
   100% {
     opacity: 1;

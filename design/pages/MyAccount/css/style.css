@@ -1,8 +1,3 @@
-#myAccount {
-  opacity: 0;
-  animation: productImageAnimation 0.5s 0.3s ease-in-out forwards;
-}
-
 #myAccount,
 #myAccount__form {
   display: flex;
@@ -15,6 +10,7 @@
   background-image: url("../../../assets/img/mentor-top-image.jpg");
   padding: 20px;
   transition: 0.5s ease-in-out;
+  animation: changeTabAnimation 0.4s ease-in-out;
 }
 
 #myAccount__form {

@@ -5,7 +5,7 @@
 }
 
 *::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -42,7 +42,7 @@ input {
 }
 
 body {
-  overflow: hidden;
+  overflow: hidden auto;
   color: var(--text-color);
   background-color: var(--bg-color);
   transition: 0.5s ease-in-out;
@@ -1252,14 +1252,13 @@ footer {
   }
 }
 
-@keyframes productImageAnimation {
+
+@keyframes changeTabAnimation {
   from {
-    transform: translateY(20px);
-    opacity: 0;
+    transform: translateY(25px);
   }
   to {
     transform: translateY(0);
-    opacity: 1;
   }
 }
 

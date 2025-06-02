@@ -1,7 +1,6 @@
 #cart-page {
   overflow-x: hidden;
-  opacity: 0;
-  animation: productImageAnimation 0.5s 0.3s ease-in-out forwards;
+  animation: changeTabAnimation 0.4s ease-in-out;
 }
 
 .cart-page__container.active .container__empty__wrap {

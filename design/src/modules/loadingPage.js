@@ -1,7 +1,6 @@
 export function showLoading() {
   const loadingBox = document.getElementById("loading-animation");
   loadingBox.classList.add("active");
-  document.body.style = "overflow-y: hidden";
 }
 
 export function hideLoading(delay = 1000) {
@@ -18,7 +17,6 @@ export function hideLoading(delay = 1000) {
 
       loadingFadeOut.onfinish = () => {
         loading.classList.remove("active");
-        document.body.style = "overflow-y: auto";
       };
     }
   }, delay);

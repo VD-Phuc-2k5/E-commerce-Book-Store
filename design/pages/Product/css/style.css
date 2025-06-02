@@ -1,7 +1,6 @@
 #product_page {
+  animation: changeTabAnimation 0.4s ease-in-out;
   padding: 20px;
-  opacity: 0;
-  animation: productImageAnimation 0.5s 0.4s ease-in-out forwards;
 }
 
 /* Breadcrumb */
