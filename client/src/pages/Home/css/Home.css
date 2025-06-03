@@ -1,0 +1,89 @@
+#home {
+  padding-bottom: 20px;
+  animation: changeTabAnimation 0.4s ease-in-out;
+}
+
+#home .product-item {
+  opacity: 0;
+}
+
+.home__banner {
+  position: relative;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.home__banner img {
+  width: 100%;
+  height: 85vh;
+  object-fit: cover;
+  padding: 0;
+  transition: 0.5s ease-in-out;
+}
+
+.home__banner__overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(88, 44, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  opacity: 0;
+  animation: fadeIn 0.5s 0.6s ease-in-out forwards;
+}
+
+.home__banner__overlay__title {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 60px;
+  justify-content: end;
+}
+
+.home__banner__overlay__title h1 {
+  font-size: clamp(3vw, 500%, 6vw);
+  margin-bottom: 25px;
+}
+
+.home__banner__overlay__title h1,
+.home__banner__overlay__title h3 {
+  color: var(--white-color);
+}
+
+.home__banner__overlay__title div {
+  display: flex;
+  gap: 20px;
+}
+
+.home__banner__overlay__title div a {
+  color: var(--white-color);
+  border-bottom: 2.5px solid var(--white-color);
+  padding: 2px 0;
+  font-weight: 600;
+  font-size: clamp(1vw, 100%, 3vw);
+}
+
+.home__product_list__title {
+  font-size: clam(1vw, 2vw, 2.5vw);
+  text-align: center;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.home__product_list .product-item {
+  margin-top: 20px;
+}
+
+@keyframes imageFadeIn {
+  from {
+    height: 75vh;
+    opacity: 0;
+  }
+  to {
+    height: 85vh;
+    opacity: 1;
+  }
+}
