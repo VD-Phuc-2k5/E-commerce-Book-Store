@@ -1044,7 +1044,7 @@ footer {
 }
 
 .no-discount, .no-author {
-  display: none;
+  visibility: hidden;
 }
 
 @keyframes text_713 {

@@ -3,7 +3,7 @@ import { createStore } from "./redux.js";
 import cartReducer from "./cart.js";
 import wishListReducer from "./wishlist.js";
 import bookReducer from "./book.js";
-import csvToJson from "./csvToJson.js";
+import api from "../api/axios.js";
 
 const initCartValues = JSON.parse(localStorage.getItem("cartItems") ?? "[]");
 const initWishValues = JSON.parse(
@@ -18,7 +18,8 @@ const API_URL = "http://localhost:3000";
 // Hàm để khởi tạo bookStore
 async function initializeBookStore() {
   try {
-    const books = await fetch(`${API_URL}/books`).then((res) => res.json());
+    const response = await api.get("/books");
+    const books = response.data;
     return createStore(bookReducer, books);
   } catch (error) {
     return createStore(bookReducer, []);

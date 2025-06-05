@@ -15,6 +15,7 @@ import {
 } from "./modules/wishlist.js";
 import Routes from "./modules/routes.js";
 import { showLoading, hideLoading } from "./modules/loadingPage.js";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 
 async function App() {
   showLoading();

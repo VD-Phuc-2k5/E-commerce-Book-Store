@@ -5,6 +5,7 @@ import { addAction } from "../../src/modules/redux.js";
 import setFireworks from "../../src/modules/setFireworks.js";
 import capitalizeWords from "../../src/modules/capitalizeWords.js";
 import { shuffleArray } from "../../src/modules/getBooks.js";
+import api from "../../src/api/axios.js";
 
 // Quantity controls
 function increaseQuantity() {
@@ -94,6 +95,8 @@ async function productPage() {
   // Get specific parameters
   const product_id = params.get("id");
 
+  const bookResponse = await api.get(`/books/${product_id}`);
+
   const {
     id,
     title,
@@ -107,7 +110,7 @@ async function productPage() {
     manufacturer,
     imgUrl,
     description,
-  } = await fetch(`${API_URL}/books/${product_id}`).then((res) => res.json());
+  } = bookResponse.data;
 
   const old_cost =
     discount === 0 ? cost : Math.floor(cost * (1 - discount / 100));
@@ -137,7 +140,7 @@ async function productPage() {
               <div class="product-details col-lg-6 col-12">
                 <div>
                   <h1 class="product-title">${title}</h1>
-                  <p class="product-author">
+                  <p class="product-author ${author == "" ? "no-author" : ""}">
                     By <span class="author-name">${capitalizeWords(
                       author
                     )}</span>
@@ -256,26 +259,26 @@ async function productPage() {
     }
 
     // render relation books
-    const relatedProductsContainer = document.getElementById(
+    const relatedBooksContainer = document.getElementById(
       "related-products-container"
     );
-    const relatedProducts = await fetch(
-      `${API_URL}/books?category=${category}`
-    ).then((res) => res.json());
 
-    shuffleArray(...[relatedProducts])
+    const relatedBookResponse = await api.get(`books?category=${category}`);
+    const relatedBooks = relatedBookResponse.data;
+
+    shuffleArray(...[relatedBooks])
       .slice(0, 9)
-      .forEach((product) => {
-        const productElement = createProduct(
-          product.id,
-          product.imgUrl,
-          product.title,
-          product.author,
-          product.cost,
-          product.description.substring(0, 100) + "...",
+      .forEach((book) => {
+        const bookElement = createProduct(
+          book.id,
+          book.imgUrl,
+          book.title,
+          book.author,
+          book.cost,
+          book.description.substring(0, 100) + "...",
           ["col-lg-4", "col-md-6", "col-12"]
         );
-        relatedProductsContainer.appendChild(productElement);
+        relatedBooksContainer.appendChild(bookElement);
       });
 
     // prevent default event of tag a
