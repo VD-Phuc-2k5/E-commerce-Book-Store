@@ -1,6 +1,7 @@
 import priceFormat from "./priceFormat.js";
 import { addAction, removeAction } from "./redux.js";
 import { getCartStore, getWishStore } from "./store.js";
+import capitalizeWords from "./capitalizeWords.js";
 
 function createProduct(
   id,
@@ -9,7 +10,6 @@ function createProduct(
   author,
   cost,
   desc,
-  idx,
   breakPointClasses = []
 ) {
   const productItemWrap = document.createElement("div");
@@ -31,14 +31,16 @@ function createProduct(
       <img
         src="${imageUrl}"
         class="card-img-top"
-        alt="product-${idx}.jpg" loading="lazy"/>
+        alt="product-${id}.jpg" loading="lazy"/>
       <div class="product__image__overlay"></div>
     </div>
     <div class="card-body product__body">
       <div>
         <h5 class="card-title product__title" style="font-weight: 600; text-align: left">
           <span>${title}</span>
-          <span>By ${author}</span>
+          <span class=${author == "" ? "no-author" : ""}>By ${capitalizeWords(
+    author
+  )}</span>
         </h5>
           
         <button

@@ -1043,6 +1043,10 @@ footer {
   display: none;
 }
 
+.no-discount, .no-author {
+  display: none;
+}
+
 @keyframes text_713 {
   0% {
     letter-spacing: 1px;

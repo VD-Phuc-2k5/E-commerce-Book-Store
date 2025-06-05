@@ -4,7 +4,6 @@ import cartReducer from "./cart.js";
 import wishListReducer from "./wishlist.js";
 import bookReducer from "./book.js";
 import csvToJson from "./csvToJson.js";
-import { classifyCategories, removeDuplicateBooks } from "./book.js";
 
 const initCartValues = JSON.parse(localStorage.getItem("cartItems") ?? "[]");
 const initWishValues = JSON.parse(
@@ -14,19 +13,13 @@ const initWishValues = JSON.parse(
 let cartStore = createStore(cartReducer, initCartValues);
 let wishStore = createStore(wishListReducer, initWishValues);
 
+const API_URL = "http://localhost:3000";
+
 // Hàm để khởi tạo bookStore
 async function initializeBookStore() {
   try {
-    const response = await fetch("../../data/book_data.csv");
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const csv = await response.text();
-
-    return createStore(
-      bookReducer,
-      removeDuplicateBooks(classifyCategories(csvToJson(csv)))
-    );
+    const books = await fetch(`${API_URL}/books`).then((res) => res.json());
+    return createStore(bookReducer, books);
   } catch (error) {
     return createStore(bookReducer, []);
   }

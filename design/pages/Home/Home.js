@@ -14,21 +14,18 @@ async function Home() {
       h1.innerText = title;
       productList.appendChild(h1);
     }
-    books.forEach(
-      ({ product_id, imgUrl, title, author, cost, description }, idx) => {
-        const productItem = createProduct(
-          product_id,
-          imgUrl,
-          title,
-          author,
-          cost,
-          description,
-          product_id,
-          ["col-lg-4", "col-md-6", "col-12"]
-        );
-        productList.appendChild(productItem);
-      }
-    );
+    books.forEach(({ id, imgUrl, title, author, cost, description }) => {
+      const productItem = createProduct(
+        id,
+        imgUrl,
+        title,
+        author,
+        cost,
+        description,
+        ["col-lg-4", "col-md-6", "col-12"]
+      );
+      productList.appendChild(productItem);
+    });
   });
 
   setFireworks("wishlist");

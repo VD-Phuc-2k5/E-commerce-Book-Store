@@ -3,6 +3,8 @@ import priceFormat from "../../src/modules/priceFormat.js";
 import createProduct from "../../src/modules/createProductDom.js";
 import { addAction } from "../../src/modules/redux.js";
 import setFireworks from "../../src/modules/setFireworks.js";
+import capitalizeWords from "../../src/modules/capitalizeWords.js";
+import { shuffleArray } from "../../src/modules/getBooks.js";
 
 // Quantity controls
 function increaseQuantity() {
@@ -16,7 +18,7 @@ function increaseQuantity() {
 function getRandomRelatedProducts(books, currentProductId, count = 4) {
   // Filtrar para excluir el producto actual
   const availableProducts = books.filter(
-    (book) => book.product_id !== currentProductId
+    (book) => book.id !== currentProductId
   );
 
   // Si hay menos productos disponibles que los solicitados, devolver todos los disponibles
@@ -79,6 +81,8 @@ function generateStarRating(rating) {
   return starsHTML;
 }
 
+const API_URL = "http://localhost:3000";
+
 async function productPage() {
   const productPage = document.querySelector("#product_page");
   // Get the current URL
@@ -88,15 +92,14 @@ async function productPage() {
   // Use URLSearchParams to get the query parameters
   const params = new URLSearchParams(url.search);
   // Get specific parameters
-  const id = params.get("id");
-  // get product data
-  const books = (await getBookStore()).getState();
+  const product_id = params.get("id");
+
   const {
-    product_id,
+    id,
     title,
     author,
-    old_cost,
     cost,
+    discount,
     quantity,
     category,
     n_review,
@@ -104,7 +107,10 @@ async function productPage() {
     manufacturer,
     imgUrl,
     description,
-  } = books.find((book) => book?.product_id === id);
+  } = await fetch(`${API_URL}/books/${product_id}`).then((res) => res.json());
+
+  const old_cost =
+    discount === 0 ? cost : Math.floor(cost * (1 - discount / 100));
 
   if (productPage) {
     productPage.innerHTML = `
@@ -132,22 +138,19 @@ async function productPage() {
                 <div>
                   <h1 class="product-title">${title}</h1>
                   <p class="product-author">
-                    By <span class="author-name">${author}</span>
+                    By <span class="author-name">${capitalizeWords(
+                      author
+                    )}</span>
                   </p>
                 </div>
     
                 <!-- Price -->
                 <div class="price-container">
-                  <span class="current-price">${priceFormat(
-                    Number(cost)
-                  )}</span>
-                  <span class="original-price">${priceFormat(
-                    Number(old_cost)
-                  )}</span>
-                  <span class="discount-badge">-${(
-                    ((Number(old_cost) - Number(cost)) / Number(old_cost)) *
-                    100
-                  ).toFixed(0)}%
+                  <span class="current-price">${priceFormat(cost)}</span>
+                  <span class="original-price ${
+                    discount == 0 ? "no-discount" : ""
+                  }">${priceFormat(old_cost)}</span>
+                  <span class="discount-badge">${discount}%
                   </span>
                 </div>
     
@@ -155,7 +158,7 @@ async function productPage() {
                 <div class="rating-container">
                   ${generateStarRating(avg_rating)}
                   <span class="rating-count">(${priceFormat(
-                    Number(n_review)
+                    n_review
                   )} đánh giá)</span>
                 </div>
     
@@ -179,7 +182,7 @@ async function productPage() {
                 <div class="stock-status">
                   <span class="stock-indicator"></span>
                   <span class="stock-text">Còn hàng: ${priceFormat(
-                    Number(quantity)
+                    quantity
                   )} sản phẩm</span>
                 </div>
     
@@ -195,7 +198,7 @@ async function productPage() {
                   </div>
                   <div class="info-row">
                     <span class="info-label">Mã sản phẩm:</span>
-                    <span class="info-value">#${product_id}</span>
+                    <span class="info-value">#${id}</span>
                   </div>
                 </div>
     
@@ -232,7 +235,7 @@ async function productPage() {
     // add curr book to wishlist
     const productImgWrap = document.querySelector(".product-image-container");
     productImgWrap.appendChild(
-      createProduct(id, imgUrl, title, author, cost, description, id)
+      createProduct(id, imgUrl, title, author, cost, description)
     );
 
     // add curr book to cart
@@ -241,7 +244,7 @@ async function productPage() {
       addToCartBtn.addEventListener("click", () => {
         const quantityInput = document.getElementById("quantity");
         const action = addAction({
-          id: product_id,
+          id,
           imageUrl: imgUrl,
           title,
           author,
@@ -256,21 +259,24 @@ async function productPage() {
     const relatedProductsContainer = document.getElementById(
       "related-products-container"
     );
-    const relatedProducts = getRandomRelatedProducts(books, product_id, 6);
+    const relatedProducts = await fetch(
+      `${API_URL}/books?category=${category}`
+    ).then((res) => res.json());
 
-    relatedProducts.forEach((product) => {
-      const productElement = createProduct(
-        product.product_id,
-        product.imgUrl,
-        product.title,
-        product.author,
-        product.cost,
-        product.description.substring(0, 100) + "...",
-        product.product_id,
-        ["col-lg-4", "col-md-6", "col-12"]
-      );
-      relatedProductsContainer.appendChild(productElement);
-    });
+    shuffleArray(...[relatedProducts])
+      .slice(0, 9)
+      .forEach((product) => {
+        const productElement = createProduct(
+          product.id,
+          product.imgUrl,
+          product.title,
+          product.author,
+          product.cost,
+          product.description.substring(0, 100) + "...",
+          ["col-lg-4", "col-md-6", "col-12"]
+        );
+        relatedProductsContainer.appendChild(productElement);
+      });
 
     // prevent default event of tag a
     const aEl = document.querySelectorAll("a");
