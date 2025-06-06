@@ -2,7 +2,6 @@ import carouselLoader from "./modules/loader-carousel.js";
 import ComponentRegister from "./modules/component-register.js";
 import setSidebarToggle from "./modules/setSidebarToggle.js";
 import loaderNavSidebar from "./modules/loader-nav-sidebar.js";
-import { storeData } from "./modules/redux.js";
 import { getCartStore, getWishStore } from "./modules/store.js";
 import {
   render as cartRender,
@@ -39,7 +38,6 @@ async function App() {
     cartRender(state);
     updateCartNotify(state?.length ?? 0);
     updateTotalCost(state);
-    storeData("cartItems", state);
   });
   getCartStore().dispatch({ type: "" });
 
@@ -48,7 +46,6 @@ async function App() {
     const state = getWishStore().getState();
     wishRender(state);
     updateWishNotify(state?.length ?? 0);
-    storeData("wishListItems", state);
   });
   getWishStore().dispatch({ type: "" });
 

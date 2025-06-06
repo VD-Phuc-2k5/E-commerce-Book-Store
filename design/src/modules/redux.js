@@ -37,16 +37,3 @@ export function removeAction(data) {
     type: "REMOVE",
   };
 }
-
-export async function storeData(key, data) {
-  if (!data) {
-    const response = await api.get(`cart/${data.id}`);
-    if (response.status === 200) {
-      const cartResponse = await api.put(`cart/${data.id}`, data);
-      return cartResponse.data;
-    } else {
-      const deleteResponse = await api.delete(`cart/${data.id}`);
-      return deleteResponse.data;
-    }
-  }
-}

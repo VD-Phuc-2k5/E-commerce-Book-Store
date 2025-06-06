@@ -120,7 +120,9 @@ async function productPage() {
                   <span class="original-price ${
                     discount == 0 ? "no-discount" : ""
                   }">${priceFormat(old_cost)}</span>
-                  <span class="discount-badge">${discount}%
+                  <span class="discount-badge ${
+                    discount == 0 ? "no-discount" : ""
+                  }">${discount}%
                   </span>
                 </div>
     
