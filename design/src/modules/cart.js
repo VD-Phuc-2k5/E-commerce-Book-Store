@@ -2,20 +2,23 @@ import priceFormat from "./priceFormat.js";
 import { removeAction } from "./redux.js";
 import { getCartStore } from "./store.js";
 import { showToast } from "./toast.js";
+import { post, del } from "../api/axios.js";
 
 // cart reducer
-function cartReducer(state, action) {
+async function cartReducer(state, action) {
   switch (action.type) {
     case "ADD":
-      const exists = state.some((item) => item.id === action.data.id);
-      if (!exists) {
-        return [...state, action.data];
-      } else showToast("Sản phẩm đã có trong giỏ hàng!");
-      return state;
-
+      const isValid = state?.filter((item) => item.id === action.data.id);
+      if (isValid.length !== 0) {
+        showToast("Sản phẩm đã có trong giỏ hàng!");
+        return state;
+      }
+      const postedItem = await post("cart", action.data);
+      showToast("Thêm sản phẩm thành công!");
+      return [...state, postedItem];
     case "REMOVE":
-      return state.filter((item) => item.id !== action.data.id);
-
+      const deletedItem = await del(`cart/${action.data.id}`);
+      return state.filter((item) => item.id !== deletedItem?.id);
     default:
       return state;
   }
@@ -23,7 +26,9 @@ function cartReducer(state, action) {
 
 // render
 function addRemoveHanlde(data) {
-  const cartListItems = document.querySelectorAll(".sidebar__body__list__item");
+  const cartListItems = document.querySelectorAll(
+    "#cart .sidebar__body__list__item"
+  );
   cartListItems.forEach((cartListItem, idx) => {
     cartListItem.addEventListener("click", (e) => {
       if (
@@ -52,6 +57,7 @@ function addRemoveHanlde(data) {
         );
 
         cartItemFadeOut.onfinish = () => {
+          cartListItem.remove();
           const action = removeAction(data[idx]);
           getCartStore().dispatch(action);
         };

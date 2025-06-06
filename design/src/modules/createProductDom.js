@@ -2,6 +2,7 @@ import priceFormat from "./priceFormat.js";
 import { addAction, removeAction } from "./redux.js";
 import { getCartStore, getWishStore } from "./store.js";
 import capitalizeWords from "./capitalizeWords.js";
+import createFireworks from "./createFireworks.js";
 
 function createProduct(
   id,
@@ -45,7 +46,8 @@ function createProduct(
           
         <button
           class="product__wishlist-btn wishlist ${
-            JSON.parse(localStorage.getItem("wishListItems") ?? "[]")
+            getWishStore()
+              .getState()
               .map((item) => item.id)
               .includes(id)
               ? "liked"
@@ -86,13 +88,17 @@ function createProduct(
       getCartStore().dispatch(action);
     }
     // Neu bam vao nut them sach yeu thich
-    if (
+    else if (
       e.target.classList.contains("fa-heart") ||
       e.target.classList.contains("product__wishlist-btn")
     ) {
+      const nColor = 2;
+      const colors = ["#28F77D", "#365947"];
+
       const wishlistBtn = productItem.querySelector(".product__wishlist-btn");
       let action;
-      if (wishlistBtn.classList.contains("liked")) {
+
+      if (!wishlistBtn.classList.contains("liked")) {
         action = addAction({
           id,
           imageUrl,
@@ -100,6 +106,7 @@ function createProduct(
           author,
           cost,
         });
+        createFireworks(wishlistBtn, colors, nColor);
       } else {
         action = removeAction({
           id,
@@ -110,26 +117,13 @@ function createProduct(
         });
       }
       getWishStore().dispatch(action);
-    }
-  });
-
-  productItem.addEventListener("click", (e) => {
-    // Si el clic NO fue en los botones de wishlist o carrito
-    if (
-      !e.target.classList.contains("fa-heart") &&
-      !e.target.classList.contains("product__wishlist-btn") &&
-      !e.target.classList.contains("fa-cart-shopping") &&
-      !e.target.classList.contains("product__cart-btn")
-    ) {
-      const router = window.appRouter;
-
-      const productPath = `/product?id=${id}`;
-
-      router.navigate(productPath);
-
-      e.preventDefault();
-      e.stopPropagation();
-    }
+      const wishListBtns = document.querySelectorAll(
+        `#product-item${id} .product__wishlist-btn`
+      );
+      wishListBtns.forEach((wishListBtn) => {
+        wishListBtn.classList.toggle("liked");
+      });
+    } else window.appRouter.navigate(`/product?id=${id}`);
   });
 
   productItemWrap.appendChild(productItem);

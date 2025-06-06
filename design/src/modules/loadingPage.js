@@ -17,6 +17,7 @@ export function hideLoading(delay = 1000) {
 
       loadingFadeOut.onfinish = () => {
         loading.classList.remove("active");
+        document.body.style.overflowY = "auto";
       };
     }
   }, delay);

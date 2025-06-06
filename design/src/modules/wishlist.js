@@ -1,16 +1,20 @@
 import priceFormat from "./priceFormat.js";
 import { removeAction } from "./redux.js";
 import { getWishStore } from "./store.js";
+import { post, del } from "../api/axios.js";
+import { showToast } from "./toast.js";
 
 // cart reducer
-function wishListReducer(state, action) {
+async function wishListReducer(state, action) {
   switch (action.type) {
     case "ADD":
-      return [...state, action.data];
+      const postedItem = await post("wishlist", action.data);
+      showToast("Đã thêm vào danh sách yêu thích");
+      return [...state, postedItem];
     case "REMOVE":
-      return state.filter(
-        (item) => JSON.stringify(item) !== JSON.stringify(action.data)
-      );
+      const deletedItem = await del(`wishlist/${action.data.id}`);
+      showToast("Đã xóa khỏi danh sách yêu thích");
+      return state.filter((item) => item.id !== deletedItem?.id);
     default:
       return state;
   }
@@ -49,13 +53,17 @@ function addRemoveHanlde(data) {
         );
 
         wishItemFadeOut.onfinish = () => {
+          wishListItem.remove();
           const action = removeAction(data[idx]);
           getWishStore().dispatch(action);
-          const product = document.querySelector(
-            `#product-item${data[idx]?.id}`
+          const wishListBtns = document.querySelectorAll(
+            `#product-item${data[idx]?.id} .product__wishlist-btn`
           );
-          const WishListBtn = product?.querySelector(".product__wishlist-btn");
-          WishListBtn?.classList.remove("liked");
+          if (wishListBtns) {
+            wishListBtns.forEach((wishListBtn) => {
+              wishListBtn.classList.remove("liked");
+            });
+          }
         };
       }
     });

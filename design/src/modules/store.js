@@ -3,25 +3,20 @@ import { createStore } from "./redux.js";
 import cartReducer from "./cart.js";
 import wishListReducer from "./wishlist.js";
 import bookReducer from "./book.js";
-import api from "../api/axios.js";
+import { get } from "../api/axios.js";
 
-const initCartValues = JSON.parse(localStorage.getItem("cartItems") ?? "[]");
-const initWishValues = JSON.parse(
-  localStorage.getItem("wishListItems") ?? "[]"
-);
+const initCart = await get("cart");
+const initWishList = await get("wishlist");
 
-let cartStore = createStore(cartReducer, initCartValues);
-let wishStore = createStore(wishListReducer, initWishValues);
-
-const API_URL = "http://localhost:3000";
+let cartStore = createStore(cartReducer, initCart);
+let wishStore = createStore(wishListReducer, initWishList);
 
 // Hàm để khởi tạo bookStore
 async function initializeBookStore() {
   try {
-    const response = await api.get("/books");
-    const books = response.data;
+    const books = await get("books");
     return createStore(bookReducer, books);
-  } catch (error) {
+  } catch {
     return createStore(bookReducer, []);
   }
 }

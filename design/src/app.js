@@ -20,7 +20,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 async function App() {
   showLoading();
 
-  Promise.all([
+  await Promise.all([
     carouselLoader(10, 7000),
     loaderNavSidebar("cart", "Cart"),
     loaderNavSidebar("wishlist", "Wishlist"),
@@ -34,8 +34,8 @@ async function App() {
   let domContentLoaded = false;
 
   //  cartStore redux
-  getCartStore().subscribe(() => {
-    const state = getCartStore().getState();
+  getCartStore().subscribe(async () => {
+    const state = await getCartStore().getState();
     cartRender(state);
     updateCartNotify(state?.length ?? 0);
     updateTotalCost(state);
@@ -96,8 +96,6 @@ async function App() {
       hideLoading();
     }
   }, 5000);
-
-  history.scrollRestoration = "auto";
 }
 
 App();

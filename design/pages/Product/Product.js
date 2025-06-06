@@ -1,8 +1,7 @@
-import { getBookStore, getCartStore } from "../../src/modules/store.js";
+import { getCartStore } from "../../src/modules/store.js";
 import priceFormat from "../../src/modules/priceFormat.js";
 import createProduct from "../../src/modules/createProductDom.js";
 import { addAction } from "../../src/modules/redux.js";
-import setFireworks from "../../src/modules/setFireworks.js";
 import capitalizeWords from "../../src/modules/capitalizeWords.js";
 import { shuffleArray } from "../../src/modules/getBooks.js";
 import api from "../../src/api/axios.js";
@@ -14,36 +13,6 @@ function increaseQuantity() {
   if (currentValue < parseInt(quantityInput.max)) {
     quantityInput.value = currentValue + 1;
   }
-}
-
-function getRandomRelatedProducts(books, currentProductId, count = 4) {
-  // Filtrar para excluir el producto actual
-  const availableProducts = books.filter(
-    (book) => book.id !== currentProductId
-  );
-
-  // Si hay menos productos disponibles que los solicitados, devolver todos los disponibles
-  if (availableProducts.length <= count) {
-    return availableProducts;
-  }
-
-  // Seleccionar productos aleatorios
-  const randomProducts = [];
-  const usedIndices = new Set();
-
-  while (
-    randomProducts.length < count &&
-    usedIndices.size < availableProducts.length
-  ) {
-    const randomIndex = Math.floor(Math.random() * availableProducts.length);
-
-    if (!usedIndices.has(randomIndex)) {
-      randomProducts.push(availableProducts[randomIndex]);
-      usedIndices.add(randomIndex);
-    }
-  }
-
-  return randomProducts;
 }
 
 function decreaseQuantity() {
@@ -81,8 +50,6 @@ function generateStarRating(rating) {
 
   return starsHTML;
 }
-
-const API_URL = "http://localhost:3000";
 
 async function productPage() {
   const productPage = document.querySelector("#product_page");
@@ -289,8 +256,6 @@ async function productPage() {
         window.appRouter.navigate(e.currentTarget.getAttribute("href"));
       });
     });
-
-    setFireworks("wishlist");
   }
 }
 

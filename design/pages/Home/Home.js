@@ -1,10 +1,9 @@
 import createProduct from "../../src/modules/createProductDom.js";
-import setFireworks from "../../src/modules/setFireworks.js";
 import getBooks from "../../src/modules/getBooks.js";
 
 async function Home() {
   const productList = document.querySelector(".home__product_list");
-  const home_products = await getBooks(50);
+  const home_products = await getBooks(9);
 
   // load product in home
   home_products.home.forEach(({ title, books }) => {
@@ -27,8 +26,6 @@ async function Home() {
       productList.appendChild(productItem);
     });
   });
-
-  setFireworks("wishlist");
 }
 
 Home();
