@@ -24,58 +24,24 @@ function removeWishListItemHanlde(data) {
         e.target.classList.contains("fa-trash") ||
         e.target.classList.contains("sidebar__body__list__item__trash")
       ) {
-        const style = getComputedStyle(wishListItem);
-        const isMobile = window.innerWidth < 1000;
-
         wishListItem.style = `
             white-space: nowrap;
         `;
 
         let animationKeyframes;
         let animationOptions = {
-          duration: 400,
-          easing: "ease-out",
+          duration: 500,
+          easing: "ease-in-out",
         };
 
-        if (isMobile) {
-          const height = wishListItem.offsetHeight + "px";
-          const paddingTop = style.paddingTop;
-          const paddingBottom = style.paddingBottom;
-
-          animationKeyframes = [
-            {
-              opacity: 1,
-              height,
-              paddingTop,
-              paddingBottom,
-            },
-            {
-              opacity: 0,
-              height: 0,
-              paddingTop: 0,
-              paddingBottom: 0,
-            },
-          ];
-        } else {
-          const width = wishListItem.offsetWidth + "px";
-          const paddingLeft = style.paddingLeft;
-          const paddingRight = style.paddingRight;
-
-          animationKeyframes = [
-            {
-              opacity: 1,
-              width,
-              paddingLeft,
-              paddingRight,
-            },
-            {
-              opacity: 0,
-              width: 0,
-              paddingLeft: 0,
-              paddingRight: 0,
-            },
-          ];
-        }
+        animationKeyframes = [
+          {
+            opacity: 1,
+          },
+          {
+            opacity: 0,
+          },
+        ];
 
         const wishItemFadeOut = wishListItem.animate(
           animationKeyframes,
@@ -83,21 +49,8 @@ function removeWishListItemHanlde(data) {
         );
 
         wishItemFadeOut.onfinish = () => {
-          const currentIndex = idx;
-
-          const prevItem = wishlistContainer.querySelectorAll(
-            ".sidebar__body__list__item"
-          )[currentIndex - 1];
-
-          const prevOffsetTop = currentIndex ? prevItem.offsetTop : 300;
-          requestAnimationFrame(() => {
-            window.scrollTo({
-              top: prevOffsetTop - 20,
-              behavior: "smooth",
-            });
-          });
-
-          const action = removeAction(data[currentIndex]);
+          const action = removeAction(data[idx]);
+          wishListItem.remove();
           getWishStore().dispatch(action);
         };
       }

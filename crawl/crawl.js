@@ -1,7 +1,6 @@
 import puppeteer from "puppeteer";
 import fs from "fs";
 import path from "path";
-import { info } from "console";
 
 // support func
 async function scrollToBottom(page, delay = 1000, maxScrolls = 10) {
@@ -47,7 +46,7 @@ async function scrollToBottom(page, delay = 1000, maxScrolls = 10) {
   let allBooks = [];
 
   // Số trang cần crawl
-  const pagesToCrawl = 1;
+  const pagesToCrawl = 50;
 
   // === lay du lieu === /
   try {

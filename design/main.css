@@ -114,7 +114,7 @@ input[type="number"]::-webkit-outer-spin-button {
   transition: 0.5s ease-in-out;
   animation: fadeIn forwards;
   animation-timeline: view();
-  animation-range: entry 15% cover 18%;
+  animation-range: entry 5% cover 10%;
   border: 1px solid var(--gray-white-color);
   opacity: 0;
   cursor: pointer;

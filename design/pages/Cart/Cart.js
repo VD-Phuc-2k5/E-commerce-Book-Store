@@ -113,11 +113,6 @@ function handleRemoveItem(cartItems, cartListWrapper) {
 
           // Remove the item from the DOM
           cartListItem.remove();
-
-          // Scroll to the previous item smoothly
-          const prevItem = cartListWrapper.children[idx - 1];
-          const prevOffsetTop = prevItem?.offsetTop || 0;
-          window.scrollTo({ top: prevOffsetTop, behavior: "smooth" });
         };
       }
     }
