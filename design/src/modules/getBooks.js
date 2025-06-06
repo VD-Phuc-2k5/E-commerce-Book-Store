@@ -1,5 +1,5 @@
 import { getBookStore } from "./store.js";
-import api from "../api/axios.js";
+import { get } from "../api/axios.js";
 
 // Hàm để trộn ngẫu nhiên một mảng (thuật toán Fisher-Yates)
 export function shuffleArray(array) {
@@ -11,21 +11,23 @@ export function shuffleArray(array) {
 }
 
 async function getBooks(n) {
-  const restopSellingBooks = await api.get("/books?avg_rating=5");
-  const topSellingBooks = restopSellingBooks.data;
-  const books = (await getBookStore()).getState();
-  const randomBooks = shuffleArray([...books]).slice(0, n);
+  const [topSellingRes, bookStore] = await Promise.all([
+    get("/books?avg_rating=5"),
+    getBookStore(),
+  ]);
+
+  const topSellingBooksRaw = topSellingRes;
+  const shuffledTopSelling = shuffleArray([...topSellingBooksRaw]);
+
+  const carousel = shuffledTopSelling.slice(0, 8);
+  const topSellingBooks = shuffledTopSelling.slice(0, 9);
 
   return {
-    carousel: shuffleArray([...topSellingBooks]).slice(0, 8),
+    carousel,
     home: [
       {
         title: "What's Good",
-        books: shuffleArray([...topSellingBooks]).slice(0, 9),
-      },
-      {
-        title: "New Arrival",
-        books: randomBooks,
+        books: topSellingBooks,
       },
     ],
   };
