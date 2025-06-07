@@ -55,8 +55,6 @@ class ComponentRegister extends HTMLElement {
     } catch (err) {
       console.error(`Error loading component: ${htmlPath}`, err);
 
-      // Quan trọng: Thông báo rằng quá trình đăng ký đã kết thúc, ngay cả khi có lỗi
-      // Điều này giúp đảm bảo rằng hệ thống không bị treo khi một component gặp lỗi
       window.dispatchEvent(
         new CustomEvent("component-register-error", {
           detail: {

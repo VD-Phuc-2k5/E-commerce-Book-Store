@@ -1,0 +1,9 @@
+#all-book {
+  min-height: calc(100vh - var(--header-height));
+}
+
+#all-book .banner {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+}

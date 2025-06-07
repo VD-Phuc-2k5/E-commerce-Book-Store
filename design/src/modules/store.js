@@ -15,7 +15,7 @@ let wishStore = createStore(wishListReducer, initWishList);
 async function initializeBookStore() {
   try {
     const books = await get("books");
-    return createStore(bookReducer, books);
+    return createStore(bookReducer, books ?? []);
   } catch {
     return createStore(bookReducer, []);
   }

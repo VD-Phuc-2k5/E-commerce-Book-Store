@@ -1,6 +1,7 @@
 import createProduct from "../../src/modules/createProductDom.js";
 import getBooks from "../../src/modules/getBooks.js";
 import pagination from "../../src/modules/pagination.js";
+import lazyLoadImg from "../../src/modules/lazyloadImg.js";
 
 // render  books
 function renderBooks(books, selector) {
@@ -21,6 +22,8 @@ function renderBooks(books, selector) {
 }
 
 async function Home() {
+  lazyLoadImg();
+
   const productList = document.querySelector(".home__product_list");
   const home_products = await getBooks(9);
   // load top seliing books

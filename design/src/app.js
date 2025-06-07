@@ -14,7 +14,6 @@ import {
 } from "./modules/wishlist.js";
 import Routes from "./modules/routes.js";
 import { showLoading, hideLoading } from "./modules/loadingPage.js";
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 
 async function App() {
   showLoading();
@@ -31,6 +30,8 @@ async function App() {
   const routeRegisterQueue = [];
   let pendingComponentRegistrations = 0;
   let domContentLoaded = false;
+  let homeComponentRegistered = false;
+  let initialRenderDone = false;
 
   //  cartStore redux
   getCartStore().subscribe(async () => {
@@ -56,7 +57,7 @@ async function App() {
     routes.render();
   });
 
-  // Theo dõi số lượng component đang được đăng ký
+  // Track component registration
   window.addEventListener("component-registering", () => {
     pendingComponentRegistrations++;
   });
@@ -66,29 +67,51 @@ async function App() {
     routes.addRoutes(path, routeObj);
     routeRegisterQueue.push(path);
     pendingComponentRegistrations--;
-    // Kiểm tra nếu tất cả component đã đăng ký và DOM đã sẵn sàng
-    checkAndRender();
-  });
 
-  // Kiểm tra và render khi tất cả component đã đăng ký
-  function checkAndRender() {
-    if (domContentLoaded && pendingComponentRegistrations <= 0) {
+    // Check if this is the home component
+    if (path === "/" || path === "/home") {
+      homeComponentRegistered = true;
+
+      // If DOM is ready and we haven't rendered yet, render now
+      if (domContentLoaded && !initialRenderDone) {
+        initialRenderDone = true;
+        routes.render();
+        hideLoading();
+      }
+    }
+
+    // If all components are registered and DOM is ready, ensure everything is rendered
+    if (
+      pendingComponentRegistrations <= 0 &&
+      domContentLoaded &&
+      !initialRenderDone
+    ) {
+      initialRenderDone = true;
       routes.render();
       hideLoading();
     }
-  }
-
-  // Đánh dấu rằng DOM đã sẵn sàng
-  window.addEventListener("DOMContentLoaded", () => {
-    domContentLoaded = true;
-    // Nếu không có component nào đang chờ đăng ký, render ngay
-    checkAndRender();
   });
 
-  // Đảm bảo trang sẽ được render sau 5 giây, ngay cả khi có vấn đề
+  // DOM ready event
+  window.addEventListener("DOMContentLoaded", () => {
+    domContentLoaded = true;
+
+    // If home is already registered or no components are pending, render now
+    if (
+      (homeComponentRegistered || pendingComponentRegistrations <= 0) &&
+      !initialRenderDone
+    ) {
+      initialRenderDone = true;
+      routes.render();
+      hideLoading();
+    }
+  });
+
+  // Fallback timeout to ensure rendering happens even if there are issues
   setTimeout(() => {
-    if (!domContentLoaded || pendingComponentRegistrations > 0) {
-      pendingComponentRegistrations = 0;
+    if (!initialRenderDone) {
+      console.warn("Rendering timeout reached. Forcing render.");
+      initialRenderDone = true;
       routes.render();
       hideLoading();
     }
