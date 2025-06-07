@@ -139,8 +139,8 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 100%;
   background: linear-gradient(
     45deg,
-    rgba(122, 122, 122, 0.3),
-    rgba(162, 162, 162, 0.3)
+    rgba(220, 220, 220, 0.3),
+    rgba(254, 254, 254, 0.3)
   );
 }
 
