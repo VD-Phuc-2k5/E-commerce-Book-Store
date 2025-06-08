@@ -65,6 +65,8 @@ function addRemoveHanlde(data) {
             });
           }
         };
+      } else {
+        window.appRouter.navigate(`/product?id=${data[idx].id}`);
       }
     });
   });

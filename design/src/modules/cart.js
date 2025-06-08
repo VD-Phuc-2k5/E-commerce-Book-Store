@@ -61,6 +61,8 @@ function addRemoveHanlde(data) {
           const action = removeAction(data[idx]);
           getCartStore().dispatch(action);
         };
+      } else {
+        window.appRouter.navigate(`/product?id=${data[idx].id}`);
       }
     });
   });
@@ -95,6 +97,7 @@ export function render(data) {
     })
     .join("");
   cartList.innerHTML = cartItemsDom;
+
   addRemoveHanlde(data);
 }
 

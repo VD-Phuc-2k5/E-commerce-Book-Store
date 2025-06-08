@@ -6,17 +6,17 @@
 
 @media (max-width: 574px) {
   .breadcrumb {
-    font-size: 3vw;
+    font-size: 3.5vw;
   }
 
   .product-details {
     padding: 0;
   }
   .product-title {
-    font-size: 7vw;
+    font-size: 5vw;
   }
   .product-author {
-    font-size: 4vw;
+    font-size: 3.5vw;
   }
   .star-rating {
     font-size: 0.8em;

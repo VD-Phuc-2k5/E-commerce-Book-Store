@@ -4,7 +4,8 @@ import createProduct from "../../src/modules/createProductDom.js";
 import { addAction } from "../../src/modules/redux.js";
 import capitalizeWords from "../../src/modules/capitalizeWords.js";
 import { shuffleArray } from "../../src/modules/getBooks.js";
-import api from "../../src/api/axios.js";
+import pagination from "../../src/modules/pagination.js";
+import { get } from "../../src/api/axios.js";
 
 // Quantity controls
 function increaseQuantity() {
@@ -51,6 +52,21 @@ function generateStarRating(rating) {
   return starsHTML;
 }
 
+function renderBooks(books, selector) {
+  shuffleArray(...[books]).forEach((book) => {
+    const bookElement = createProduct(
+      book.id,
+      book.imgUrl,
+      book.title,
+      book.author,
+      book.cost,
+      book.description.substring(0, 100) + "...",
+      ["col-lg-4", "col-md-6", "col-12"]
+    );
+    selector.appendChild(bookElement);
+  });
+}
+
 async function productPage() {
   const productPage = document.querySelector("#product_page");
   // Get the current URL
@@ -62,7 +78,7 @@ async function productPage() {
   // Get specific parameters
   const product_id = params.get("id");
 
-  const bookResponse = await api.get(`/books/${product_id}`);
+  const bookResponse = await get(`/books/${product_id}`);
 
   const {
     id,
@@ -77,7 +93,7 @@ async function productPage() {
     manufacturer,
     imgUrl,
     description,
-  } = bookResponse.data;
+  } = bookResponse;
 
   const old_cost =
     discount === 0 ? cost : Math.floor(cost * (1 - discount / 100));
@@ -192,7 +208,21 @@ async function productPage() {
           <!-- Related Products Section -->
           <div class="related-section">
             <h2 class="related-title">You might also like</h2>
-            <div class="row" id="related-products-container"></div>
+            <div class="row" id="related-products-container">
+              <div id="page-container" class="page-container col-12">
+                <div class="page-slide col-12">
+                  <div class="row page col-12"></div>
+                </div>
+              </div>
+
+              <div
+                class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4">
+                <nav aria-label="Page navigation">
+                  <ul id="pagination" class="pagination">
+                  </ul>
+                </nav>
+              </div>
+            </div>
           </div>
         `;
     const quantityBtns = document.querySelectorAll(".quantity-btn");
@@ -227,28 +257,7 @@ async function productPage() {
       });
     }
 
-    // render relation books
-    const relatedBooksContainer = document.getElementById(
-      "related-products-container"
-    );
-
-    const relatedBookResponse = await api.get(`books?category=${category}`);
-    const relatedBooks = relatedBookResponse.data;
-
-    shuffleArray(...[relatedBooks])
-      .slice(0, 9)
-      .forEach((book) => {
-        const bookElement = createProduct(
-          book.id,
-          book.imgUrl,
-          book.title,
-          book.author,
-          book.cost,
-          book.description.substring(0, 100) + "...",
-          ["col-lg-4", "col-md-6", "col-12"]
-        );
-        relatedBooksContainer.appendChild(bookElement);
-      });
+    pagination(6, `books?category=${category}`, renderBooks, 2);
 
     // prevent default event of tag a
     const aEl = document.querySelectorAll("a");

@@ -15,7 +15,7 @@ function renderBooks(books, selector) {
       book.author,
       book.cost,
       book.description,
-      ["col-md-4", "col-sm-6", "col-12"]
+      ["col-lg-4", "col-md-6", "col-12"]
     );
     selector.appendChild(bookDOM);
   });

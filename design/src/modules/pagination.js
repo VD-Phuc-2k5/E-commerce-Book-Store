@@ -1,18 +1,19 @@
 import { get } from "../api/axios.js";
 
-async function pagination(nItem, endPoint, render) {
-  const paginationData = await get(`${endPoint}?_page=1&_per_page=${nItem}`);
+async function pagination(nItem, endPoint, render, mode = 1) {
+  const url =
+    mode === 1
+      ? `${endPoint}?page=1&limit=${nItem}`
+      : `${endPoint}&page=1&limit=${nItem}`;
 
-  // Biến lưu trữ dữ liệu hiện tại
+  let paginationData = await get(url);
   let currentData = paginationData;
   let currentPage = 1;
 
-  // Hàm render phân trang
   function renderPagination() {
     const pagination = document.getElementById("pagination");
     pagination.innerHTML = "";
 
-    // Nút First
     const firstBtn = `
           <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
             <div class="page-link" data-page="1">Start</div>
@@ -20,7 +21,6 @@ async function pagination(nItem, endPoint, render) {
         `;
     pagination.innerHTML += firstBtn;
 
-    // Nút Previous
     const prevBtn = `
           <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
             <div class="page-link" data-page="${currentPage - 1}">&laquo;</div>
@@ -28,9 +28,8 @@ async function pagination(nItem, endPoint, render) {
         `;
     pagination.innerHTML += prevBtn;
 
-    // Các nút số trang
     let startPage = Math.max(1, currentPage - 2);
-    let endPage = Math.min(currentData.pages, currentPage + 2);
+    let endPage = Math.min(currentData.pages, currentPage + 1);
 
     for (let i = startPage; i <= endPage; i++) {
       const pageBtn = `
@@ -41,7 +40,6 @@ async function pagination(nItem, endPoint, render) {
       pagination.innerHTML += pageBtn;
     }
 
-    // Nút Next
     const nextBtn = `
           <li class="page-item ${
             currentPage === currentData.pages ? "disabled" : ""
@@ -51,7 +49,6 @@ async function pagination(nItem, endPoint, render) {
         `;
     pagination.innerHTML += nextBtn;
 
-    // Nút Last
     const lastBtn = `
           <li class="page-item ${
             currentPage === currentData.pages ? "disabled" : ""
@@ -61,7 +58,6 @@ async function pagination(nItem, endPoint, render) {
         `;
     pagination.innerHTML += lastBtn;
 
-    // Thêm sự kiện click cho các nút phân trang
     const pageLinks = document.querySelectorAll(".page-link");
     pageLinks.forEach((link) => {
       link.addEventListener("click", function (e) {
@@ -79,10 +75,13 @@ async function pagination(nItem, endPoint, render) {
     const currPage = document.querySelector(".page:first-child");
     const pageSlide = document.querySelector(".page-slide");
 
+    const url =
+      mode === 1
+        ? `${endPoint}?page=${page}&limit=${nItem}`
+        : `${endPoint}&page=${page}&limit=${nItem}`;
+
     // Gọi API để lấy dữ liệu trang mới
-    const paginationData = await get(
-      `${endPoint}?_page=${page}&_per_page=${nItem}`
-    );
+    let paginationData = await get(url);
 
     let newPage = document.createElement("div");
     newPage.className = "page row col-12";
