@@ -2,15 +2,21 @@ import priceFormat from "./priceFormat.js";
 import { removeAction } from "./redux.js";
 import { getCartStore } from "./store.js";
 import { showToast } from "./toast.js";
-import { post, del } from "../api/axios.js";
+import { post, del, put } from "../api/axios.js";
 
 // cart reducer
 async function cartReducer(state, action) {
   switch (action.type) {
     case "ADD":
-      const isValid = state?.filter((item) => item.id === action.data.id);
-      if (isValid.length !== 0) {
-        showToast("Sản phẩm đã có trong giỏ hàng!");
+      const cartItem = state?.find((item) => item.id === action.data.id);
+      if (cartItem) {
+        if (cartItem.quantity === action.data.quantity) {
+          showToast("Sản phẩm đã có trong giỏ hàng!");
+        } else {
+          const updatedItem = await put(`cart/${action.data.id}`, action.data);
+          cartItem.quantity = updatedItem.quantity;
+          showToast("Đã cập nhật thông tin sản phẩm");
+        }
         return state;
       }
       const postedItem = await post("cart", action.data);

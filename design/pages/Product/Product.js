@@ -193,7 +193,13 @@ async function productPage() {
                 <!-- Add to Cart Button -->
                 <button class="add-to-cart-btn">
                   <i class="fa-solid fa-cart-shopping"></i>
-                  <span>Add to cart</span>
+                  <span>${
+                    getCartStore()
+                      .getState()
+                      .find((item) => item.id === id)
+                      ? "Update To Cart"
+                      : "Add To Cart"
+                  } </span>
                 </button>
               </div>
             </div>
