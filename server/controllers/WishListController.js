@@ -3,7 +3,6 @@ import getCurrentDateTime from "../modules/getCurrentDate.js";
 
 // GET /wishlist
 export async function getWishList(req, res) {
-  console.log("GET WishList");
   const db = await loadDB();
   return res.status(200).json({
     data: db.data.wishlist,
@@ -12,7 +11,6 @@ export async function getWishList(req, res) {
 
 // POST /WishList
 export async function addToWishList(req, res) {
-  console.log("ADD TO WISHLIST");
   const db = await loadDB();
   await db.update(({ wishlist }) =>
     wishlist.push({
@@ -32,8 +30,6 @@ export async function addToWishList(req, res) {
 export async function deleteFromWishList(req, res) {
   const db = await loadDB();
   const { id } = req.params;
-
-  console.log(`DELETE ${id} FROM WISHLIST`);
 
   const deletedItem = db.data.wishlist.find((item) => item.id == id);
   if (!deletedItem) {
