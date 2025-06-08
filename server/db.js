@@ -1,16 +1,14 @@
-import { Low } from "lowdb";
-import { JSONFile } from "lowdb/node";
+import { JSONFilePreset } from "lowdb/node";
+
+const defaultData = {
+  books: [],
+  cart: [],
+  wishlist: [],
+};
+
+const db = await JSONFilePreset("db.json", defaultData);
 
 export async function loadDB() {
-  const adapter = new JSONFile("db.json");
-  const db = new Low(adapter);
   await db.read();
-
-  db.data ||= {
-    books: [],
-    cart: [],
-    wishlist: [],
-  };
-
   return db;
 }

@@ -5,6 +5,7 @@ import { loadDB } from "../db.js";
 
 // GET /books
 export async function getBooks(req, res) {
+  console.log("GET ALL BOOK");
   const {
     title,
     author,
@@ -66,6 +67,7 @@ export async function getBookById(req, res) {
   const db = await loadDB();
   const books = db.data.books || [];
   const book = books.find((b) => String(b.id) === String(id));
+  console.log(`GET BOOK BY ID: ${id}`);
 
   if (!book) {
     return res.status(404).json({ message: "Book not found" });

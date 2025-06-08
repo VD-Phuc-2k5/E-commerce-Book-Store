@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 function asyncHandler(cb) {
   return async (req, res, next) => {
     try {

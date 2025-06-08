@@ -19,6 +19,12 @@ function appRoute(app) {
 
   // === wishlist === //
   router.get("/wishlist", asyncHandler(WishListController.getWishList));
+  router.post("/wishlist", asyncHandler(WishListController.addToWishList));
+  router.put("/wishlist/:id", asyncHandler(WishListController.updateWishList));
+  router.delete(
+    "/wishlist/:id",
+    asyncHandler(WishListController.deleteFromWishList)
+  );
 
   app.use("/api/", router);
 }
