@@ -4,8 +4,26 @@ import getCurrentDateTime from "../modules/getCurrentDate.js";
 // GET /cart
 export async function getCart(req, res) {
   const db = await loadDB();
+  const { page = 1, limit = 10 } = req.query;
+
+  const cartItems = db.data.cart;
+
+  // Phân trang
+  const pageNum = parseInt(page);
+  const limitNum = Math.max(parseInt(limit), 1);
+  const total = cartItems.length;
+  const pages = Math.ceil(total / limitNum);
+  const startIndex = (pageNum - 1) * limitNum;
+  const paginatedResults = cartItems.slice(startIndex, startIndex + limitNum);
+
   return res.status(200).json({
-    data: db.data.cart,
+    data: {
+      total,
+      page: pageNum,
+      pages,
+      limit: limitNum,
+      data: paginatedResults,
+    },
   });
 }
 
