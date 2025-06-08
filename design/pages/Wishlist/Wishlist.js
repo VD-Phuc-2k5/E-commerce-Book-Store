@@ -75,7 +75,9 @@ function render(state) {
                             <div class="sidebar__body__list__item__body__title">
                                 ${item.title}
                             </div>
-                            <div class="sidebar__body__list__item__body__author">
+                            <div class="sidebar__body__list__item__body__author ${
+                              item.author ? "" : "no-author"
+                            }">
                                 By ${item.author}
                             </div>
                             <div class="sidebar__body__list__item__body__cost">

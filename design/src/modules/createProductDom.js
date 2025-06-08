@@ -14,6 +14,7 @@ function createProduct(
   breakPointClasses = []
 ) {
   const productItemWrap = document.createElement("div");
+  productItemWrap.className = "col-12";
   if (breakPointClasses) {
     breakPointClasses.forEach((breakPointClass) => {
       productItemWrap.classList.add(breakPointClass);

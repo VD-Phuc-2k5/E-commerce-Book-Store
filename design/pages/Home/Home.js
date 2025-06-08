@@ -25,7 +25,7 @@ async function Home() {
   lazyLoadImg();
 
   const productList = document.querySelector(".home__product_list");
-  const home_products = await getBooks(9);
+  const home_products = await getBooks(27);
   // load top seliing books
   home_products.home.forEach(({ title, books }) => {
     if (title) {

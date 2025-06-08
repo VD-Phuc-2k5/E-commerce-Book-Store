@@ -140,7 +140,7 @@ function renderCartItems(cartItems, selector) {
         ${cartItems
           .map(
             ({ id, imageUrl, title, cost, quantity }, idx) => `
-              <tr>
+              <tr class="cartItem">
                 <td data-label="Thumbnail">
                   <img src="${imageUrl}" alt="thumbnail${idx}.jpg" />
                 </td>
@@ -195,7 +195,8 @@ function updateNotify(count) {
 // Subscribe to store updates
 getCartStore().subscribe(() => {
   const state = getCartStore().getState();
-  pagination(3, "cart", renderCartItems);
+  if (window.location.pathname === "/cart")
+    pagination(3, "cart", renderCartItems);
   updateNotify(state?.length ?? 0);
 });
 

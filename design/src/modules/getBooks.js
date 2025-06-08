@@ -12,7 +12,7 @@ export function shuffleArray(array) {
 async function getBooks(n) {
   const [topSellingRes, randomBookRes] = await Promise.all([
     get("books?avg_rating=5&page=1&limit=9"),
-    get("books?page=1&limit=200"),
+    get(`books?page=1&limit=${n}`),
   ]);
 
   const shuffledTopSelling = shuffleArray([...randomBookRes.data]);
