@@ -18,12 +18,6 @@ const articlesPerPage = 6;
 async function fetchArticles() {
     try {
         const res = await get('/articles')
-
-        if (res) {
-            console.log(res)
-        }
-
-
         articles = res || [];
 
         renderArticles();
@@ -195,7 +189,7 @@ function openArticleModal(article) {
 
 function closeArticleModal() {
     articleModal.classList.remove('active');
-    document.body.style.overflow = '';
+    document.body.style.overflow = 'auto';
 }
 
 function openBlogEditor() {
@@ -210,13 +204,21 @@ function openBlogEditor() {
 
 function closeBlogEditor() {
     editorModal.classList.remove('active');
-    document.body.style.overflow = '';
+    document.body.style.overflow = ''; // Reset lại trạng thái overflow
 
+    // Kiểm tra xem có modal nào đang mở không (đảm bảo chỉ khôi phục overflow khi không có modal nào)
+    const activeModals = document.querySelectorAll('.modal.active');
+    if (activeModals.length === 0) {
+        document.body.style.overflow = 'auto';  // Khôi phục thanh cuộn nếu không có modal nào mở
+    }
+
+    // Reset form và TinyMCE (nếu có)
     document.getElementById('blog-form').reset();
     if (window.tinymce && window.tinymce.get('blog-content')) {
         window.tinymce.get('blog-content').setContent('');
     }
 }
+
 
 function handleBlogSubmission(e) {
     e.preventDefault();
