@@ -1,6 +1,6 @@
 #product_page {
   animation: changeTabAnimation 0.4s ease-in-out;
-  padding: 20px;
+  padding: 20px 5px;
 }
 
 /* Breadcrumb */
@@ -327,4 +327,84 @@
 
 #quantity:not(:in-range) {
   border: 2px solid #dc2626;
+}
+
+/* Description Section */
+#descriptionText {
+  transition: 0.5s ease-in-out;
+}
+
+.description-section {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.5s ease;
+}
+
+.description-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--mint-green-color);
+  display: inline-block;
+  transition: 0.5s ease;
+}
+
+.description-text {
+  color: #495057;
+  line-height: 1.8;
+  text-align: justify;
+  margin-bottom: 15px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.5s ease-in-out;
+}
+
+.description-text.collapsed {
+  max-height: 150px;
+}
+
+.description-text.expanded {
+  max-height: 490px;
+}
+
+.description-text::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
+  display: none;
+}
+
+.description-text.collapsed::after {
+  display: block;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: var(--mint-green-color);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 0;
+  transition: color 0.2s;
+}
+
+.read-more-btn:hover {
+  color: var(--dark-green-color);
 }

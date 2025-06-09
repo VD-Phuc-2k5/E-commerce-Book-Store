@@ -203,17 +203,23 @@ async function productPage() {
                 </button>
               </div>
             </div>
-    
-            <!-- Description Section -->
-            <div class="description-section">
-              <h2 class="description-title">Description</h2>
-              <p class="description-text">${description}</p>
-            </div>
+            
+          <!-- Description Section -->
+          <section class="description-section">
+            <h2 class="description-title">Mô tả sản phẩm</h2>
+              <div class="description-text collapsed" id="descriptionText">
+                ${description}
+              </div>
+              <button class="read-more-btn" id="readMoreBtn">
+                <i class="fas fa-chevron-down"></i>
+                <span>Xem thêm</span>
+              </button>
+            </section>
           </div>
     
           <!-- Related Products Section -->
           <div class="related-section">
-            <h2 class="related-title">You might also like</h2>
+            <h2 class="related-title">Sản phẩm liên quan</h2>
             <div class="row" id="related-products-container">
               <div id="page-container" class="page-container col-12">
                 <div class="page-slide col-12">
@@ -264,6 +270,24 @@ async function productPage() {
     }
 
     pagination(6, encodeURI(`books?category=${category}`), renderBooks, 2);
+
+    // Read more functionality
+    const descriptionText = document.getElementById("descriptionText");
+    const readMoreBtn = document.getElementById("readMoreBtn");
+
+    readMoreBtn.addEventListener("click", () => {
+      if (descriptionText.classList.contains("collapsed")) {
+        descriptionText.classList.remove("collapsed");
+        descriptionText.classList.add("expanded");
+        readMoreBtn.innerHTML =
+          '<i class="fas fa-chevron-up"></i><span>Thu gọn</span>';
+      } else {
+        descriptionText.classList.remove("expanded");
+        descriptionText.classList.add("collapsed");
+        readMoreBtn.innerHTML =
+          '<i class="fas fa-chevron-down"></i><span>Xem thêm</span>';
+      }
+    });
 
     // prevent default event of tag a
     const aEl = document.querySelectorAll("a");
