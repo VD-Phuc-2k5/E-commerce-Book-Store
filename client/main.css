@@ -44,7 +44,7 @@ input {
 }
 
 body {
-  overflow: hidden;
+  overflow: auto hidden;
   color: var(--text-color);
   background-color: var(--bg-color);
   transition: 0.5s ease-in-out;
