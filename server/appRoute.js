@@ -4,13 +4,18 @@ import * as BookController from "./controllers/BookController.js";
 import * as CartController from "./controllers/CartController.js";
 import * as WishListController from "./controllers/WishListController.js";
 import * as CategoryController from "./controllers/CategoryController.js";
-
+import * as ArticleController from "./controllers/ArticleController.js";
 const router = express.Router();
 
 function appRoute(app) {
+
+  // Get articles aka blogs
+  router.get("/articles", asyncHandler(ArticleController.getArticle))
+
   // === books === /
   router.get("/books", asyncHandler(BookController.getBooks));
   router.get("/books/:id", asyncHandler(BookController.getBookById));
+
 
   // === cart ===/
   router.get("/cart", asyncHandler(CartController.getCart));

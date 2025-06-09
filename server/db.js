@@ -5,6 +5,7 @@ const defaultData = {
   cart: [],
   wishlist: [],
   category_tree: [],
+  articles: []
 };
 
 const db = await JSONFilePreset("db.json", defaultData);
