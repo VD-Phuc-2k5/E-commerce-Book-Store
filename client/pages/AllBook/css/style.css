@@ -28,6 +28,10 @@
 }
 
 #all-book .banner-overlay h2 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: min(500px, 90vw);
   color: #ffffff;
   font-size: 4em;
   margin-bottom: 15px;
