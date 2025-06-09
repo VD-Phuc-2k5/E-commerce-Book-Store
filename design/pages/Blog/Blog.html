@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.tiny.cloud/1/qzn536lpbg6lip6ne14qpblosfu6jtdftuaeajv9bu3k7d5o/tinymce/7/tinymce.min.js"
-        referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 </head>
 
 <body>
     <div id="blog">
         <!-- Create Blog Button -->
-        <div class="blogging__banner">
+        <section class="blogging__banner">
             <div class="banner-content">
                 <h1 class="gradient-text blogging__banner-heading">Góc nhìn đa chiều của thế hệ trẻ Việt Nam
                 </h1>
@@ -21,93 +20,123 @@
                 <div class="blogging__banner_subtitle">Tất cả tại <span class="gradient-text" style="
                                 font-weight: 800;">paperbacks</span></div>
                 <div class="blogging__banner_button">
-                    <button class="create-blog-btn">
+                    <button class="create-blog-btn" id="create-blog-btn">
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
                         <span>Viết bài</span>
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-1">
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-md-8"
-                                style="display: flex; flex-direction: column; justify-content: space-between;">
-                                <div class="card-body">
-                                    <h3 class="card-title">Hoàng Bảo Trung - Học viên tiêu biểu của F8 tỏa sáng với dự
-                                        án
-                                        "AI Powered Learning"</h3>
-                                    <p class="card-text">Trong thời đại công nghệ số 4.0, việc học không còn bó buộc
-                                        trong
-                                        những cuốn sách truyền thống. Giờ đây, trí tuệ nhân tạo (AI) đang...</p>
-                                </div>
-                                <div class="card-footer"><span>ReacJS</span> <span>7 tháng trước</span> <span>6 phút
-                                        đọc</span></div>
-                            </div>
-                            <div class="col-md-4">
-                                <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/6/61/Ng%E1%BB%93i_kh%C3%B3c_tr%C3%AAn_c%C3%A2y_cover.jpg/330px-Ng%E1%BB%93i_kh%C3%B3c_tr%C3%AAn_c%C3%A2y_cover.jpg"
-                                    class="card-img-top"
-                                    style="width: 100%; height: 100%; object-fit: cover; object-position: top center;" />
+        <main class="main-content">
+            <div class="container">
+                <div class="container-grid">
+                    <!-- Articles section -->
+                    <section class="articles-section">
+                        <div class="section-header">
+                            <h2>Bài viết mới nhất</h2>
+                            <div class="filter-tabs">
+                                <button class="filter-btn active" data-filter="all">Tất cả</button>
+                                <button class="filter-btn" data-filter="Review Sách">Review Sách</button>
+                                <button class="filter-btn" data-filter="Top 10">Top 10</button>
+                                <button class="filter-btn" data-filter="Cảm Nghĩ">Cảm Nghĩ</button>
+                                <button class="filter-btn" data-filter="Chia Sẻ Kinh Nghiệm">Kinh Nghiệm</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-md-8"
-                                style="display: flex; flex-direction: column; justify-content: space-between;">
-                                <div class="card-body">
-                                    <h3 class="card-title">Hoàng Bảo Trung - Học viên tiêu biểu của F8 tỏa sáng với dự
-                                        án
-                                        "AI Powered Learning"</h3>
-                                    <p class="card-text">Trong thời đại công nghệ số 4.0, việc học không còn bó buộc
-                                        trong
-                                        những cuốn sách truyền thống. Giờ đây, trí tuệ nhân tạo (AI) đang...</p>
-                                </div>
-                                <div class="card-footer"><span>ReacJS</span> <span>7 tháng trước</span> <span>6 phút
-                                        đọc</span></div>
-                            </div>
-                            <div class="col-md-4">
-                                <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/6/61/Ng%E1%BB%93i_kh%C3%B3c_tr%C3%AAn_c%C3%A2y_cover.jpg/330px-Ng%E1%BB%93i_kh%C3%B3c_tr%C3%AAn_c%C3%A2y_cover.jpg"
-                                    class="card-img-top"
-                                    style="width: 100%; height: 100%; object-fit: cover; object-position: top center;" />
+
+                        <div class="articles-grid" id="articles-grid">
+                            <!-- Articles will be dynamically loaded here -->
+                        </div>
+
+                        <div class="load-more">
+                            <button class="btn btn--secondary" id="load-more-btn">Xem thêm bài viết</button>
+                        </div>
+                    </section>
+
+                    <!-- Sidebar -->
+                    <aside class="sidebar">
+                        <div class="sidebar-section">
+                            <h3>Trending</h3>
+                            <div class="trending-articles" id="trending-articles">
+                                <!-- Trending articles will be loaded here -->
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-md-8"
-                                style="display: flex; flex-direction: column; justify-content: space-between;">
-                                <div class="card-body">
-                                    <h3 class="card-title">Hoàng Bảo Trung - Học viên tiêu biểu của F8 tỏa sáng với dự
-                                        án
-                                        "AI Powered Learning"</h3>
-                                    <p class="card-text">Trong thời đại công nghệ số 4.0, việc học không còn bó buộc
-                                        trong
-                                        những cuốn sách truyền thống. Giờ đây, trí tuệ nhân tạo (AI) đang...</p>
-                                </div>
-                                <div class="card-footer"><span>ReacJS</span> <span>7 tháng trước</span> <span>6 phút
-                                        đọc</span></div>
-                            </div>
-                            <div class="col-md-4">
-                                <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/6/61/Ng%E1%BB%93i_kh%C3%B3c_tr%C3%AAn_c%C3%A2y_cover.jpg/330px-Ng%E1%BB%93i_kh%C3%B3c_tr%C3%AAn_c%C3%A2y_cover.jpg"
-                                    class="card-img-top"
-                                    style="width: 100%; height: 100%; object-fit: cover; object-position: top center;" />
+
+                        <div class="sidebar-section">
+                            <h3>Tags phổ biến</h3>
+                            <div class="popular-tags">
+                                <span class="tag">Tự Phát Triển</span>
+                                <span class="tag">Văn Học</span>
+                                <span class="tag">Tâm Lý Học</span>
+                                <span class="tag">Kinh Doanh</span>
+                                <span class="tag">Triết Học</span>
+                                <span class="tag">Kỹ Năng Sống</span>
                             </div>
                         </div>
-                    </div>
+                    </aside>
+                </div>
+            </div>
+        </main>
+
+        <!-- Article Detail Modal -->
+        <div class="modal" id="article-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="modal-close" id="modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body" id="article-detail">
+                    <!-- Article detail content will be loaded here -->
                 </div>
             </div>
         </div>
-        <!-- Editor Container (Hidden by default) -->
-        <div id="editor-container">
-            <textarea id="blog-editor">
-        </textarea>
+
+        <!-- Blog Editor Modal -->
+        <div class="modal" id="editor-modal">
+            <div class="modal-content editor-modal-content">
+                <div class="modal-header">
+                    <h3>Viết bài mới</h3>
+                    <button class="modal-close" id="editor-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="blog-form">
+                        <div class="form-group">
+                            <label class="form-label">Tiêu đề</label>
+                            <input type="text" id="blog-title" class="form-control" placeholder="Nhập tiêu đề bài viết">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Danh mục</label>
+                            <select id="blog-category" class="form-control">
+                                <option value="Review Sách">Review Sách</option>
+                                <option value="Top 10">Top 10</option>
+                                <option value="Cảm Nghĩ">Cảm Nghĩ</option>
+                                <option value="Chia Sẻ Kinh Nghiệm">Chia Sẻ Kinh Nghiệm</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Nội dung</label>
+                            <textarea id="blog-content" rows="10"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn--secondary" id="editor-cancel">Hủy</button>
+                            <button type="submit" class="btn btn--primary">Xuất bản</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+
     </div>
 
+    <script src="https://cdn.tiny.cloud/1/qzn536lpbg6lip6ne14qpblosfu6jtdftuaeajv9bu3k7d5o/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script type="module" src="./modules/draft.js"></script>
 </body>
 
 </html>
