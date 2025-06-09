@@ -12,26 +12,20 @@ async function loadCart() {
   const errorElement = document.getElementById("errorMessage");
   const contentElement = document.getElementById("checkoutContent");
 
+  contentElement.style.display = "block";
   loadingElement.style.display = "block";
   errorElement.style.display = "none";
-  contentElement.style.display = "none";
+  const response = getCartStore().getState();
 
-  try {
-    const response = getCartStore().getState();
-    if (!response.length) throw new Error("Không có sản phẩm");
-
-    cartData = Array.isArray(response) ? response : [response];
-
-    displayCartItems();
+  if (response.length) {
     updateTotal();
-
     loadingElement.style.display = "none";
-    contentElement.style.display = "block";
-  } catch (error) {
+  } else {
     loadingElement.style.display = "none";
     errorElement.style.display = "block";
     errorElement.textContent = "Không có sản phẩm trong giỏ hàng.";
   }
+  cartData = response;
 }
 
 function displayCartItems() {
@@ -60,6 +54,10 @@ function displayCartItems() {
         </div>
       </div>
     `;
+
+    itemElement.addEventListener("click", () => {
+      window.appRouter.navigate(`/product?id=${item.id}`);
+    });
     cartItemsContainer.appendChild(itemElement);
   });
 }
@@ -271,8 +269,15 @@ function generatePaymentQR() {
 }
 
 // Init
-loadCart();
-setupShippingOptions();
-setupPaymentMethods();
-setupFormValidation();
-setupPlaceOrderButton();
+getCartStore().subscribe(() => {
+  if (window.location.pathname === "/checkout") {
+    loadCart();
+    displayCartItems();
+    setupShippingOptions();
+    setupPaymentMethods();
+    setupFormValidation();
+    setupPlaceOrderButton();
+  }
+});
+
+getCartStore().dispatch({ type: "" });
