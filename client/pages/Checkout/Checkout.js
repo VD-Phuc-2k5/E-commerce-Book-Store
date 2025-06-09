@@ -1,6 +1,7 @@
 import { getCartStore } from "../../src/modules/store.js";
 import capitalizeWords from "../../src/modules/capitalizeWords.js";
 import priceFormat from "../../src/modules/priceFormat.js";
+import { showToast } from "../../src/modules/toast.js";
 
 let cartData = [];
 let selectedShipping = { method: "standard", cost: 35000 };
@@ -131,7 +132,7 @@ function setupFormValidation() {
 function setupPlaceOrderButton() {
   document.getElementById("placeOrderBtn").addEventListener("click", () => {
     if (!selectedPayment) {
-      alert("Vui lòng chọn phương thức thanh toán");
+      showToast("Vui lòng chọn phương thức thanh toán");
       return;
     }
 
@@ -268,11 +269,18 @@ function generatePaymentQR() {
   modal.show();
 }
 
+document.querySelector(".btn-close")?.addEventListener("click", () => {
+  document
+    .querySelectorAll(".modal-backdrop")
+    ?.forEach((item) => item.remove());
+});
+
 // Init
 getCartStore().subscribe(() => {
   if (window.location.pathname === "/checkout") {
     loadCart();
     displayCartItems();
+    updateTotal();
     setupShippingOptions();
     setupPaymentMethods();
     setupFormValidation();
