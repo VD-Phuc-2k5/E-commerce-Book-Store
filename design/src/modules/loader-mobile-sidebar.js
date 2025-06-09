@@ -1,6 +1,5 @@
 function loaderMobileSidebar(id, title) {
   const wrapper = document.getElementById(`${id}`);
-  console.log(wrapper);
   const wrapperOverlay = document.createElement("div");
   wrapperOverlay.classList.add("header__nav__elementor--item__overlay");
   wrapperOverlay.innerHTML = `
