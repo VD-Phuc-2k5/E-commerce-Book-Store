@@ -3,6 +3,7 @@ import asyncHandler from "./middlewares/asyncHandler.js";
 import * as BookController from "./controllers/BookController.js";
 import * as CartController from "./controllers/CartController.js";
 import * as WishListController from "./controllers/WishListController.js";
+import * as CategoryController from "./controllers/CategoryController.js";
 
 const router = express.Router();
 
@@ -25,6 +26,9 @@ function appRoute(app) {
     "/wishlist/:id",
     asyncHandler(WishListController.deleteFromWishList)
   );
+
+  // === category === //
+  router.get("/category", asyncHandler(CategoryController.getCategory));
 
   app.use("/api/", router);
 }

@@ -3,17 +3,17 @@ const applyExactFilters = (data, { title, author, category, avg_rating }) => {
 
   if (title) {
     result = result.filter((book) =>
-      book.title.toLowerCase().includes(title.toLowerCase())
+      book.title.toLowerCase().includes(title.trim().toLowerCase())
     );
   }
   if (author) {
     result = result.filter((book) =>
-      book.author.toLowerCase().includes(author.toLowerCase())
+      book.author.toLowerCase().includes(author.trim().toLowerCase())
     );
   }
   if (category) {
     result = result.filter((book) =>
-      book.category.toLowerCase().includes(category.toLowerCase())
+      book.category.toLowerCase().includes(category.trim().toLowerCase())
     );
   }
   if (avg_rating) {

@@ -13,6 +13,7 @@ export async function getBooks(req, res) {
     minCost,
     maxCost,
     search,
+    categories,
     page = 1,
     limit = 10,
   } = req.query;
@@ -21,13 +22,18 @@ export async function getBooks(req, res) {
   let results = db.data.books || [];
 
   if (search) {
-    const fuse = createFuse(results, [
-      "title",
-      "author",
-      "category",
-      "avg_rating",
-    ]);
+    const fuse = createFuse(results, ["title", "author", "category"]);
     results = fuse.search(search).map((r) => r.item);
+  } else if (categories) {
+    const categoryArr = categories.split(",");
+    const res = [];
+    categoryArr.forEach((categoryStr) => {
+      const books = results.filter((book) =>
+        book.category.toLowerCase().includes(categoryStr.trim().toLowerCase())
+      );
+      res.push(...books);
+    });
+    results = res;
   } else {
     results = applyExactFilters(results, {
       title,
