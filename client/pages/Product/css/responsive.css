@@ -32,6 +32,7 @@
   }
   .description-title,
   .related-title {
+    font-size: 1.4em;
     text-align: center;
   }
   .product-image-container .product__title span:first-child {
