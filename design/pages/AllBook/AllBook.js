@@ -2,7 +2,6 @@ import lazyLoadImg from "../../src/modules/lazyloadImg.js";
 import createProduct from "../../src/modules/createProductDom.js";
 import pagination from "../../src/modules/pagination.js";
 import { get } from "../../src/api/axios.js";
-import { render } from "../../src/modules/cart.js";
 
 lazyLoadImg();
 
@@ -15,6 +14,7 @@ const params = new URLSearchParams(allBookUrl.search);
 const category = params.get("category");
 document.querySelector("#all-book .banner-overlay h2").innerText =
   category ?? "Shop";
+const search = params.get("search");
 
 function renderBooks(books, selector) {
   selector.innerHTML = "";
@@ -52,6 +52,10 @@ if (booksContainer) {
 
 if (searchBox) {
   let debounceTimer;
+  if (search) {
+    pagination(9, encodeURI(`books?search=${search}`), renderBooks, 2);
+    searchBox.value = search;
+  }
 
   searchBox.addEventListener("input", (e) => {
     clearTimeout(debounceTimer);
