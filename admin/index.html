@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="./assets/icon/icon-big.png" />
+    <title>Paperbacks</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
+      rel="stylesheet"
+      type="text/css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/admin.css" />
+    <link rel="stylesheet" href="./css/responsive.css" />
+  </head>
+
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-overlay hidden" id="sidebarOverlay">
+        <div class="sidebar__brand">
+          <h4 class="sidebar__brand-title">
+            <i class="fas fa-book"></i>
+            <span class="sidebar__brand-text">Paperbacks</span>
+          </h4>
+        </div>
+        <nav class="sidebar__nav nav flex-column mt-3">
+          <a
+            class="sidebar__nav-link sidebar__nav-link--active"
+            href="#"
+            data-section="dashboard">
+            <i class="fas fa-tachometer-alt"></i>
+            <span class="sidebar__nav-text">Dashboard</span>
+          </a>
+          <a class="sidebar__nav-link" href="#" data-section="categories">
+            <i class="fas fa-tags"></i>
+            <span class="sidebar__nav-text">Book Categories</span>
+          </a>
+          <a class="sidebar__nav-link" href="#" data-section="books">
+            <i class="fas fa-book"></i>
+            <span class="sidebar__nav-text">Books</span>
+          </a>
+          <a class="sidebar__nav-link" href="#" data-section="users">
+            <i class="fas fa-users"></i>
+            <span class="sidebar__nav-text">Users</span>
+          </a>
+          <a class="sidebar__nav-link" href="#" data-section="blogs">
+            <i class="fas fa-blog"></i>
+            <span class="sidebar__nav-text">Blogs</span>
+          </a>
+          <a class="sidebar__nav-link" href="#" data-section="transactions">
+            <i class="fas fa-credit-card"></i>
+            <span class="sidebar__nav-text">Transactions</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+      <!-- Top Bar -->
+      <div class="topbar d-flex justify-content-between align-items-center">
+        <div class="topbar__left">
+          <button
+            class="topbar__toggle btn btn-outline-secondary"
+            id="toggleSidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          <span class="topbar__title ms-3 h5 mb-0" id="pageTitle"
+            >Dashboard</span
+          >
+        </div>
+        <div class="topbar__right">
+          <button
+            class="topbar__notif btn btn-outline me-2"
+            style="color: var(--primary-color)">
+            <i class="fas fa-bell" style="color: var(--primary-color)"></i>
+          </button>
+          <button class="topbar__profile btn btn-primary">
+            <i class="fas fa-user-circle"></i> Admin
+          </button>
+        </div>
+      </div>
+
+      <!-- Dashboard Section -->
+      <div
+        class="main-content__section content-section content-section--active"
+        id="dashboard">
+        <div class="dashboard container-fluid p-4">
+          <div class="dashboard__stats row g-4 mb-4">
+            <!-- fetch Stats cards  -->
+          </div>
+
+          <div class="dashboard__row row g-4">
+            <div class="dashboard__transactions col-lg-8">
+              <div class="dashboard__table table-container">
+                <h5 class="dashboard__table-title mb-3">Recent Transactions</h5>
+                <div class="dashboard__table-responsive table-responsive">
+                  <table
+                    class="dashboard__table-table table table-hover"
+                    id="recentTransactionsTable">
+                    <thead class="dashboard__table-thead">
+                      <tr class="dashboard__table-row">
+                        <th class="dashboard__table-th">Transaction ID</th>
+                        <th class="dashboard__table-th">Customer</th>
+                        <th class="dashboard__table-th">Book</th>
+                        <th class="dashboard__table-th">Amount</th>
+                        <th class="dashboard__table-th">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody class="dashboard__table-tbody">
+                      <!-- fetch Recent transactions-->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="dashboard__topbooks col-lg-4">
+              <div class="dashboard__table table-container">
+                <h5 class="dashboard__table-title mb-3">Top Selling Books</h5>
+                <div class="dashboard__list-group list-group list-group-flush">
+                  <!-- fetch Top selling books -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Book Categories Section -->
+      <div class="main-content__section content-section" id="categories">
+        <div class="categories container-fluid p-4">
+          <div
+            class="categories__header d-flex justify-content-between align-items-center mb-4">
+            <h4 class="categories__title">Book Categories</h4>
+            <button
+              class="categories__add-btn btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#addCategoryModal">
+              <i class="fas fa-plus"></i> Add Category
+            </button>
+          </div>
+
+          <div class="categories__table table-container">
+            <div class="categories__table-responsive table-responsive">
+              <table
+                class="categories__table-table table table-hover"
+                id="categoriesTable">
+                <thead class="categories__table-thead">
+                  <tr class="categories__table-row">
+                    <th class="categories__table-th">ID</th>
+                    <th class="categories__table-th">Category Name</th>
+                    <th class="categories__table-th">Books Count</th>
+                    <th class="categories__table-th">Status</th>
+                    <th class="categories__table-th">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="categories__table-tbody">
+                  <!-- fetch Categories  -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Books Section -->
+      <div class="main-content__section content-section" id="books">
+        <div class="books container-fluid p-4">
+          <div
+            class="books__header d-flex justify-content-between align-items-center mb-4">
+            <h4 class="books__title">Books Management</h4>
+            <button
+              class="books__add-btn btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#addBookModal">
+              <i class="fas fa-plus"></i> Add Book
+            </button>
+          </div>
+
+          <div class="books__table table-container">
+            <div class="books__controls row mb-3">
+              <div class="books__search col-md-6">
+                <input
+                  type="text"
+                  class="books__search-input form-control"
+                  placeholder="Search books..." />
+              </div>
+              <div class="books__filter-category col-md-3">
+                <select class="books__filter-select form-select">
+                  <option>All Categories</option>
+                  <option>Fiction</option>
+                  <option>Non-Fiction</option>
+                  <option>Science Fiction</option>
+                </select>
+              </div>
+              <div class="books__filter-status col-md-3">
+                <select class="books__filter-select form-select">
+                  <option>All Status</option>
+                  <option>Available</option>
+                  <option>Out of Stock</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="books__table-responsive table-responsive">
+              <table
+                class="books__table-table table table-hover"
+                id="booksTable">
+                <thead class="books__table-thead">
+                  <tr class="books__table-row">
+                    <th class="books__table-th">Cover</th>
+                    <th class="books__table-th">Title</th>
+                    <th class="books__table-th">Author</th>
+                    <th class="books__table-th">Category</th>
+                    <th class="books__table-th">Price</th>
+                    <th class="books__table-th">Stock</th>
+                    <th class="books__table-th">Status</th>
+                    <th class="books__table-th">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="books__table-tbody">
+                  <!-- fetch Books  -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users Section -->
+      <div class="main-content__section content-section" id="users">
+        <div class="users container-fluid p-4">
+          <div
+            class="users__header d-flex justify-content-between align-items-center mb-4">
+            <h4 class="users__title">Users Management</h4>
+            <button
+              class="users__add-btn btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#addUserModal">
+              <i class="fas fa-plus"></i> Add User
+            </button>
+          </div>
+
+          <div class="users__table table-container">
+            <div class="users__controls row mb-3">
+              <div class="users__search col-md-6">
+                <input
+                  type="text"
+                  class="users__search-input form-control"
+                  placeholder="Search users..." />
+              </div>
+              <div class="users__filter-role col-md-3">
+                <select class="users__filter-select form-select">
+                  <option>All Roles</option>
+                  <option>Customer</option>
+                  <option>Admin</option>
+                </select>
+              </div>
+              <div class="users__filter-status col-md-3">
+                <select class="users__filter-select form-select">
+                  <option>All Status</option>
+                  <option>Active</option>
+                  <option>Inactive</option>
+                  <option>Suspended</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="users__table-responsive table-responsive">
+              <table
+                class="users__table-table table table-hover"
+                id="usersTable">
+                <thead class="users__table-thead">
+                  <tr class="users__table-row">
+                    <th class="users__table-th">ID</th>
+                    <th class="users__table-th">Name</th>
+                    <th class="users__table-th">Email</th>
+                    <th class="users__table-th">Phone</th>
+                    <th class="users__table-th">Role</th>
+                    <th class="users__table-th">Joined Date</th>
+                    <th class="users__table-th">Status</th>
+                    <th class="users__table-th">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="users__table-tbody">
+                  <!-- fetch Users  -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blogs Section -->
+      <div class="main-content__section content-section" id="blogs">
+        <div class="blogs container-fluid p-4">
+          <div
+            class="blogs__header d-flex justify-content-between align-items-center mb-4">
+            <h4 class="blogs__title">Blogs Management</h4>
+            <button
+              class="blogs__add-btn btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#addBlogModal">
+              <i class="fas fa-plus"></i> Add Blog
+            </button>
+          </div>
+
+          <div class="blogs__table table-container">
+            <div class="blogs__controls row mb-3">
+              <div class="blogs__search col-md-6">
+                <input
+                  type="text"
+                  class="blogs__search-input form-control"
+                  placeholder="Search blogs..." />
+              </div>
+              <div class="blogs__filter-category col-md-3">
+                <select class="blogs__filter-select form-select">
+                  <option>All Categories</option>
+                  <option>News</option>
+                  <option>Reviews</option>
+                  <option>Guides</option>
+                </select>
+              </div>
+              <div class="blogs__filter-status col-md-3">
+                <select class="blogs__filter-select form-select">
+                  <option>All Status</option>
+                  <option>Published</option>
+                  <option>Draft</option>
+                  <option>Archived</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="blogs__table-responsive table-responsive">
+              <table
+                class="blogs__table-table table table-hover"
+                id="blogsTable">
+                <thead class="blogs__table-thead">
+                  <tr class="blogs__table-row">
+                    <th class="blogs__table-th">ID</th>
+                    <th class="blogs__table-th">Title</th>
+                    <th class="blogs__table-th">Author</th>
+                    <th class="blogs__table-th">Category</th>
+                    <th class="blogs__table-th">Views</th>
+                    <th class="blogs__table-th">Comments</th>
+                    <th class="blogs__table-th">Status</th>
+                    <th class="blogs__table-th">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="blogs__table-tbody">
+                  <!-- fetch Blogs  -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transactions Section -->
+      <div class="main-content__section content-section" id="transactions">
+        <div class="transactions container-fluid p-4">
+          <div
+            class="transactions__header d-flex justify-content-between align-items-center mb-4">
+            <h4 class="transactions__title">Transactions Management</h4>
+            <div class="transactions__actions">
+              <button
+                class="transactions__export-btn btn btn-outline-secondary me-2">
+                <i class="fas fa-download"></i> Export
+              </button>
+              <button class="transactions__filter-btn btn btn-primary">
+                <i class="fas fa-filter"></i> Filter
+              </button>
+            </div>
+          </div>
+
+          <div class="transactions__table table-container">
+            <div class="transactions__controls row mb-3">
+              <div class="transactions__filter-date col-md-3">
+                <input
+                  type="date"
+                  class="transactions__filter-date-input form-control"
+                  placeholder="From Date" />
+              </div>
+              <div class="transactions__filter-date col-md-3">
+                <input
+                  type="date"
+                  class="transactions__filter-date-input form-control"
+                  placeholder="To Date" />
+              </div>
+              <div class="transactions__filter-status col-md-3">
+                <select class="transactions__filter-select form-select">
+                  <option>All Status</option>
+                  <option>Completed</option>
+                  <option>Pending</option>
+                  <option>Failed</option>
+                  <option>Refunded</option>
+                </select>
+              </div>
+              <div class="transactions__search col-md-3">
+                <input
+                  type="text"
+                  class="transactions__search-input form-control"
+                  placeholder="Search transactions..." />
+              </div>
+            </div>
+
+            <div class="transactions__table-responsive table-responsive">
+              <table
+                class="transactions__table-table table table-hover"
+                id="transactionsTable">
+                <thead class="transactions__table-thead">
+                  <tr class="transactions__table-row">
+                    <th class="transactions__table-th">Transaction ID</th>
+                    <th class="transactions__table-th">Customer</th>
+                    <th class="transactions__table-th">Seller</th>
+                    <th class="transactions__table-th">Book</th>
+                    <th class="transactions__table-th">Amount</th>
+                    <th class="transactions__table-th">Payment Method</th>
+                    <th class="transactions__table-th">Date</th>
+                    <th class="transactions__table-th">Status</th>
+                    <th class="transactions__table-th">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="transactions__table-tbody">
+                  <!-- fetch Transactions  -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Category Modal -->
+    <div
+      class="modal fade categories__modal"
+      id="addCategoryModal"
+      tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content categories__modal-content">
+          <div class="modal-header categories__modal-header">
+            <h5 class="modal-title categories__modal-title">
+              Add New Category
+            </h5>
+            <button
+              type="button"
+              class="btn-close categories__modal-close"
+              data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body categories__modal-body">
+            <form class="categories__modal-form">
+              <div class="mb-3 categories__modal-form-group">
+                <label class="form-label categories__modal-label"
+                  >Category Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control categories__modal-input"
+                  required />
+              </div>
+              <div class="mb-3 categories__modal-form-group">
+                <label class="form-label categories__modal-label"
+                  >Description</label
+                >
+                <textarea
+                  class="form-control categories__modal-textarea"
+                  rows="3"></textarea>
+              </div>
+              <div class="mb-3 categories__modal-form-group">
+                <label class="form-label categories__modal-label">Status</label>
+                <select class="form-select categories__modal-select">
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer categories__modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary categories__modal-cancel"
+              data-bs-dismiss="modal">
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary categories__modal-save">
+              Save Category
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Book Modal -->
+    <div class="modal fade books__modal" id="addBookModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content books__modal-content">
+          <div class="modal-header books__modal-header">
+            <h5 class="modal-title books__modal-title">Add New Book</h5>
+            <button
+              type="button"
+              class="btn-close books__modal-close"
+              data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body books__modal-body">
+            <form id="addBookForm" class="books__modal-form">
+              <div class="row books__modal-row">
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label"
+                    >Book Title</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control books__modal-input"
+                    name="title"
+                    required />
+                </div>
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label">Author</label>
+                  <input
+                    type="text"
+                    class="form-control books__modal-input"
+                    name="author"
+                    required />
+                </div>
+              </div>
+              <div class="row books__modal-row">
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label">Category</label>
+                  <select
+                    class="form-select books__modal-select"
+                    name="category"
+                    required>
+                    <option value="">Select Category</option>
+                    <option value="Fiction">Fiction</option>
+                    <option value="Non-Fiction">Non-Fiction</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label">Price</label>
+                  <input
+                    type="number"
+                    class="form-control books__modal-input"
+                    name="cost"
+                    min="0"
+                    step="0.01"
+                    required />
+                </div>
+              </div>
+              <div class="row books__modal-row">
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label">Stock</label>
+                  <input
+                    type="number"
+                    class="form-control books__modal-input"
+                    name="quantity"
+                    min="0"
+                    required />
+                </div>
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label"
+                    >Book Cover</label
+                  >
+                  <input
+                    type="file"
+                    class="form-control books__modal-input"
+                    name="image"
+                    accept="image/*" />
+                </div>
+              </div>
+              <div class="mb-3 books__modal-form-group">
+                <label class="form-label books__modal-label">Description</label>
+                <textarea
+                  class="form-control books__modal-textarea"
+                  name="description"
+                  rows="3"></textarea>
+              </div>
+              <div class="modal-footer books__modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary books__modal-cancel"
+                  data-bs-dismiss="modal">
+                  Cancel
+                </button>
+                <button type="submit" class="btn btn-primary books__modal-save">
+                  Save Book
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit/View Book Modal -->
+    <div class="modal fade books__modal" id="editBookModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content books__modal-content">
+          <div class="modal-header books__modal-header">
+            <h5 class="modal-title books__modal-title" id="editBookModalTitle">
+              Edit Book
+            </h5>
+            <button
+              type="button"
+              class="btn-close books__modal-close"
+              data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body books__modal-body">
+            <form id="editBookForm" class="books__modal-form">
+              <div class="row books__modal-row">
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label"
+                    >Book Title</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control books__modal-input"
+                    name="title"
+                    id="editBookTitle"
+                    required />
+                </div>
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label">Author</label>
+                  <input
+                    type="text"
+                    class="form-control books__modal-input"
+                    name="author"
+                    id="editBookAuthor"
+                    required />
+                </div>
+              </div>
+              <div class="row books__modal-row">
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label">Category</label>
+                  <select
+                    class="form-select books__modal-select"
+                    name="category"
+                    id="editBookCategory"
+                    required>
+                    <option value="">Select Category</option>
+                    <option value="Fiction">Fiction</option>
+                    <option value="Non-Fiction">Non-Fiction</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label">Price ($)</label>
+                  <input
+                    type="number"
+                    class="form-control books__modal-input"
+                    name="cost"
+                    id="editBookPrice"
+                    min="0"
+                    step="0.01"
+                    required />
+                </div>
+              </div>
+              <div class="row books__modal-row">
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label">Stock</label>
+                  <input
+                    type="number"
+                    class="form-control books__modal-input"
+                    name="quantity"
+                    id="editBookStock"
+                    min="0"
+                    required />
+                </div>
+                <div class="col-md-6 mb-3 books__modal-col">
+                  <label class="form-label books__modal-label"
+                    >Book Cover</label
+                  >
+                  <input
+                    type="file"
+                    class="form-control books__modal-input"
+                    name="image"
+                    id="editBookImage"
+                    accept="image/*" />
+                </div>
+              </div>
+              <div class="mb-3 books__modal-form-group">
+                <label class="form-label books__modal-label">Description</label>
+                <textarea
+                  class="form-control books__modal-textarea"
+                  name="description"
+                  id="editBookDescription"
+                  rows="3"></textarea>
+              </div>
+              <div class="modal-footer books__modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary books__modal-cancel"
+                  data-bs-dismiss="modal">
+                  Cancel
+                </button>
+                <button type="submit" class="btn btn-primary books__modal-save">
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+      <div class="toast__content toast-content">
+        <i class="toast__icon fas fa-check-circle toast-icon"></i>
+        <div class="toast__message toast-message"></div>
+      </div>
+      <div class="toast__progress toast-progress"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+      type="text/javascript"></script>
+    <script type="module" src="./js/admin.js"></script>
+    <script type="module" src="./js/toast.js"></script>
+  </body>
+</html>

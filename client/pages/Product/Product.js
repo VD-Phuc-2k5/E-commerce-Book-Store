@@ -105,9 +105,9 @@ async function productPage() {
             <div class="breadcrumb-list">
               <a href="/" class="breadcrumb-link">Trang chủ</a>
               <span>/</span>
-              <a href="#" class="breadcrumb-link">Sách</a>
+              <a href="/all-books" class="breadcrumb-link">Sách</a>
               <span>/</span>
-              <a href="#" class="breadcrumb-link">${category}</a>
+              <a href="/all-books?category=${category}" class="breadcrumb-link">${category}</a>
               <span>/</span>
               <span class="breadcrumb-current">${title}</span>
             </div>

@@ -1,4 +1,7 @@
 @media (max-width: 574px) {
+  #all-book .banner-overlay h2 {
+    font-size: 2em;
+  }
   .tree-container {
     max-height: 400px;
   }

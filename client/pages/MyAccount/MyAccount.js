@@ -1,4 +1,5 @@
 import { post } from "../../src/api/axios.js";
+import { showToast } from "../../src/modules/toast.js";
 
 // Function to show error message for specific input
 function showError(inputId, message) {
@@ -27,8 +28,9 @@ function validatePassword(password) {
 const signUpButton = document.querySelector(
   ".myAccount__form__register .myAccount__form__button"
 );
+
 if (signUpButton) {
-  signUpButton.addEventListener("click", () => {
+  signUpButton.addEventListener("click", async () => {
     clearError("registerEmailError");
     clearError("registerPasswordError");
     const email = document.querySelector(
@@ -49,30 +51,12 @@ if (signUpButton) {
       return;
     }
 
-    // Call API to create account
-    fetch("/api/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          alert("Account created successfully!");
-          sendVerificationCode(email);
-        } else {
-          showError(
-            "registerEmailError",
-            data.message || "Error creating account."
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        showError("registerEmailError", "An error occurred. Please try again.");
-      });
+    try {
+      const res = await post("signup", { email, password });
+      showToast(res.message);
+    } catch (err) {
+      showToast("Tài khoản đã tồn tại.");
+    }
   });
 }
 
@@ -81,7 +65,7 @@ const loginButton = document.querySelector(
   ".myAccount__form__login .myAccount__form__button"
 );
 if (loginButton) {
-  loginButton.addEventListener("click", () => {
+  loginButton.addEventListener("click", async () => {
     clearError("loginEmailError");
     clearError("loginPasswordError");
     const email = document.querySelector(
@@ -103,123 +87,15 @@ if (loginButton) {
     }
 
     // Call API to log in
-    fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          alert("Login successful!");
-        } else {
-          showError("loginEmailError", data.message || "Error logging in.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        showError("loginEmailError", "An error occurred. Please try again.");
-      });
-  });
-}
+    try {
+      const res = await post("login", { email, password });
+      sessionStorage.setItem("role", res.role);
 
-// Function to send verification code
-function sendVerificationCode(email) {
-  fetch("/api/send-verification-code", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.success) {
-        alert("Verification code sent to your email!");
-        document.querySelector(".myAccount__form__register").style.display =
-          "none";
-        document.querySelector(".myAccount__form__verification").style.display =
-          "block";
-      } else {
-        showError(
-          "registerEmailError",
-          data.message || "Error sending verification code."
-        );
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      showError(
-        "registerEmailError",
-        "An error occurred while sending verification code."
-      );
-    });
-}
-
-// Handle verification code input
-const verificationInputs = document.querySelectorAll(".verification-code");
-
-verificationInputs.forEach((input, index) => {
-  input.addEventListener("input", (e) => {
-    // Chuyển đến ô tiếp theo khi nhập
-    if (e.target.value.length === 1 && index < verificationInputs.length - 1) {
-      verificationInputs[index + 1].focus();
+      if (res.role === "admin") window.location.href = "http://localhost:5174";
+      showToast(res.message);
+    } catch {
+      showToast("Đăng nhập thất bại");
     }
-    // Quay lại ô trước nếu ô hiện tại bị xóa
-    if (e.target.value.length === 0 && index > 0) {
-      verificationInputs[index - 1].focus();
-    }
-  });
-});
-
-// Handle verification code submission
-const verifyCodeButton = document.getElementById("verifyCodeButton");
-if (verifyCodeButton) {
-  verifyCodeButton.addEventListener("click", () => {
-    clearError("verificationCodeError");
-
-    // Lấy mã xác minh từ các ô input
-    const verificationCode = Array.from(verificationInputs)
-      .map((input) => input.value)
-      .join("");
-
-    // Validate verification code
-    if (verificationCode.length < 6) {
-      showError(
-        "verificationCodeError",
-        "Please enter the complete verification code."
-      );
-      return;
-    }
-
-    // Call API to verify code
-    fetch("/api/verify-code", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ code: verificationCode }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          alert("Email verified successfully!");
-        } else {
-          showError(
-            "verificationCodeError",
-            data.message || "Error verifying code."
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        showError(
-          "verificationCodeError",
-          "An error occurred. Please try again."
-        );
-      });
   });
 }
 

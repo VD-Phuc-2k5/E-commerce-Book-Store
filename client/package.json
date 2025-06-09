@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "webpack-dev-server --mode development --open --hot",
+    "dev": "webpack serve --config webpack.config.js",
     "build": "webpack --mode production"
   },
   "type": "module",
