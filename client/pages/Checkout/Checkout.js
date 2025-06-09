@@ -267,6 +267,7 @@ function generatePaymentQR() {
 
   const modal = new bootstrap.Modal(document.getElementById("paymentModal"));
   modal.show();
+  document.body.style.overflowY = "auto";
 }
 
 document.querySelector(".btn-close")?.addEventListener("click", () => {
