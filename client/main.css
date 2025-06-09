@@ -378,13 +378,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .header__nav_list--dropdown__sidebar__list {
   padding: 0;
 }
-
-<<<<<<< HEAD:design/main.css
-.header__nav_list--dropdown__sidebar__list>li {
-  padding: 5px;
-=======
 .header__nav_list--dropdown__sidebar__list > li {
->>>>>>> 3ad59f46d6b217858aaead4618c41d94c494c9e8:client/main.css
   font-weight: 400;
   margin: 2px 0;
   font-weight: 300;
@@ -784,29 +778,18 @@ footer {
   cursor: pointer;
 }
 
-<<<<<<< HEAD:design/main.css
-#cart:not(.empty) .elementor--item__overlay__sidebar__total_cost,
-#cart:not(.empty) .elementor--item__overlay__sidebar__footer,
-#wishlist:not(.empty) .elementor--item__overlay__sidebar__footer {
-=======
+
 #cart:not(.empty) .elementor--item__overlay__sidebar__total_cost, 
 #cart:not(.empty) .elementor--item__overlay__sidebar__footer, 
 #wishlist:not(.empty) .elementor--item__overlay__sidebar__footer,
 #bars:not(.empty) .elementor--item__overlay__sidebar__footer  {
->>>>>>> 3ad59f46d6b217858aaead4618c41d94c494c9e8:client/main.css
   display: flex;
 }
 
 #cart:not(.empty) .sidebar__body__empty,
-<<<<<<< HEAD:design/main.css
 #wishlist:not(.empty) .sidebar__body__empty {
-=======
-#wishlist:not(.empty) .sidebar__body__empty,
-#bars:not(.empty) .sidebar__body__empty {
->>>>>>> 3ad59f46d6b217858aaead4618c41d94c494c9e8:client/main.css
   display: none;
 }
-
 
 .header__nav__elementor--item__overlay {
   display: none;

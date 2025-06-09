@@ -170,8 +170,20 @@
   cursor: pointer;
 }
 
-.myAccount__form__password__controls label {
-  font-weight: bold;
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+.verification-code-inputs {
+  display: flex;
+  gap: 10px;
+}
+.verification-code {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 24px;
 }
 
 @keyframes formFadeIn {

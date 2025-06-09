@@ -6,6 +6,7 @@ import * as WishListController from "./controllers/WishListController.js";
 import * as CategoryController from "./controllers/CategoryController.js";
 import * as ArticleController from "./controllers/ArticleController.js";
 import * as CheckoutController from "./controllers/CheckoutController.js";
+import * as AuthController from "./controllers/AuthController.js";
 
 const router = express.Router();
 
@@ -39,6 +40,10 @@ function appRoute(app) {
 
   // === checkout === //
   router.get("/checkout", asyncHandler(CheckoutController.getCheckoutItems));
+
+  // === Auth === //
+  router.get("/auth", asyncHandler(AuthController.getAccounts));
+  router.post("/signup", asyncHandler(AuthController.signUp));
 
   app.use("/api/", router);
 }

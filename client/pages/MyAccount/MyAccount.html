@@ -24,6 +24,7 @@
                 type="email"
                 placeholder="input your email"
                 class="myAccount__form__control" />
+              <span class="error-message" id="registerEmailError"></span>
             </div>
 
             <div class="myAccount__form__group">
@@ -38,6 +39,7 @@
                   class="fa-solid fa-eye-slash"
                   id="togglePasswordRegisterBtn"></i>
               </div>
+              <span class="error-message" id="registerPasswordError"></span>
             </div>
           </div>
 
@@ -54,6 +56,7 @@
                 type="email"
                 placeholder="input your email"
                 class="myAccount__form__control" />
+              <span class="error-message" id="loginEmailError"></span>
             </div>
 
             <div class="myAccount__form__group">
@@ -68,6 +71,7 @@
                   class="fa-solid fa-eye-slash"
                   id="togglePasswordLoginBtn"></i>
               </div>
+              <span class="error-message" id="loginPasswordError"></span>
             </div>
 
             <div class="myAccount__form__password__controls">
@@ -83,6 +87,30 @@
           </div>
 
           <button class="myAccount__form__button">Log In</button>
+        </div>
+
+        <!-- Verification Code Form -->
+        <div class="myAccount__form__verification" style="display: none">
+          <div class="myAccount__form__heading"><h2>Verify Your Email</h2></div>
+          <div class="myAccount__form__content">
+            <div class="myAccount__form__group">
+              <label for="" class="myAccount__form__label"
+                >Verification Code</label
+              >
+              <div class="verification-code-inputs">
+                <input type="text" maxlength="1" class="verification-code" />
+                <input type="text" maxlength="1" class="verification-code" />
+                <input type="text" maxlength="1" class="verification-code" />
+                <input type="text" maxlength="1" class="verification-code" />
+                <input type="text" maxlength="1" class="verification-code" />
+                <input type="text" maxlength="1" class="verification-code" />
+              </div>
+              <span class="error-message" id="verificationCodeError"></span>
+            </div>
+          </div>
+          <button class="myAccount__form__button" id="verifyCodeButton">
+            Verify
+          </button>
         </div>
       </div>
     </div>
