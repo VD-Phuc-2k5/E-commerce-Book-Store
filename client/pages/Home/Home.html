@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home page</title>
+  </head>
+  <body>
+    <div id="home">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 home__banner">
+            <div class="home__banner__overlay">
+              <div class="home__banner__overlay__title" style="color: #fff">
+                <h3>READ MORE, OFTEN</h3>
+                <h1>Paperbacks in Saigon</h1>
+                <div>
+                  <a style="color: #fff" href="/all-books">VISIT STORE</a>
+                  <a style="color: #fff" href="/blog">BLOG</a>
+                  <a style="color: #fff" href="/about">ABOUT US</a>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="blurred-img"
+              style="--url-img: url('../../assets/img/home-banner-img.jpg')">
+              <img src="../../assets/img/banner.jpg" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="home__product_list row"></div>
+        <div id="page-container" class="page-container col-12">
+          <div class="page-slide col-12">
+            <div class="row page col-12"></div>
+          </div>
+        </div>
+
+        <div
+          class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4">
+          <nav aria-label="Page navigation">
+            <ul id="pagination" class="pagination">
+              <!-- Phân trang sẽ được render ở đây -->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

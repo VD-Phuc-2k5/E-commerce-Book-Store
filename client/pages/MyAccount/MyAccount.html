@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account</title>
+  </head>
+  <body>
+    <div id="myAccount">
+      <div id="myAccount__form">
+        <div class="myAccount__form__controls">
+          <div class="myAccount__form__controls__thumb"></div>
+          <button style="--nth: 0" data-label="btn1">Sign up</button>
+          <button style="--nth: 1">Login</button>
+        </div>
+
+        <!-- register form -->
+        <div class="myAccount__form__register">
+          <div class="myAccount__form__heading"><h2>Sign up</h2></div>
+          <div class="myAccount__form__content">
+            <div class="myAccount__form__group">
+              <label for="" class="myAccount__form__label">Email</label>
+              <input
+                type="email"
+                placeholder="input your email"
+                class="myAccount__form__control" />
+            </div>
+
+            <div class="myAccount__form__group">
+              <label for="" class="myAccount__form__label">Password</label>
+              <div>
+                <input
+                  id="passwordInputRegister"
+                  type="password"
+                  placeholder="input your password"
+                  class="myAccount__form__control" />
+                <i
+                  class="fa-solid fa-eye-slash"
+                  id="togglePasswordRegisterBtn"></i>
+              </div>
+            </div>
+          </div>
+
+          <button class="myAccount__form__button">Sign up</button>
+        </div>
+
+        <!-- login form -->
+        <div class="myAccount__form__login">
+          <div class="myAccount__form__heading"><h2>Login</h2></div>
+          <div class="myAccount__form__content">
+            <div class="myAccount__form__group">
+              <label for="" class="myAccount__form__label">Email</label>
+              <input
+                type="email"
+                placeholder="input your email"
+                class="myAccount__form__control" />
+            </div>
+
+            <div class="myAccount__form__group">
+              <label for="" class="myAccount__form__label">Password</label>
+              <div>
+                <input
+                  id="passwordInputLogin"
+                  type="password"
+                  placeholder="input your password"
+                  class="myAccount__form__control" />
+                <i
+                  class="fa-solid fa-eye-slash"
+                  id="togglePasswordLoginBtn"></i>
+              </div>
+            </div>
+
+            <div class="myAccount__form__password__controls">
+              <div>
+                <input id="rememberAccount" type="checkbox" />
+                <label for="rememberAccount">Remember me</label>
+              </div>
+
+              <div>
+                <a href="#">forgot password?</a>
+              </div>
+            </div>
+          </div>
+
+          <button class="myAccount__form__button">Log In</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
