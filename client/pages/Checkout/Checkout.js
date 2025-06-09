@@ -265,9 +265,13 @@ function generatePaymentQR() {
   document.getElementById("paymentAmount").textContent = priceFormat(total);
   document.getElementById("paymentContent").textContent = orderInfo;
 
-  const modal = new bootstrap.Modal(document.getElementById("paymentModal"));
-  modal.show();
-  document.body.style.overflowY = "auto";
+  if (cartData.length !== 0) {
+    const modal = new bootstrap.Modal(document.getElementById("paymentModal"));
+    modal.show();
+    document.body.style.overflowY = "auto";
+  } else {
+    showToast("Không có sản phẩm trong giỏ hàng");
+  }
 }
 
 document.querySelector(".btn-close")?.addEventListener("click", () => {
