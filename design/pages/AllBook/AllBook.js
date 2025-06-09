@@ -6,13 +6,19 @@ import { render } from "../../src/modules/cart.js";
 
 lazyLoadImg();
 
-const booksContainer = document.querySelector("#booksContainer");
+const booksContainer = document.getElementById("booksContainer");
 const searchBox = document.getElementById("searchBook");
+
+const currentUrl = decodeURI(window.location.href);
+const allBookUrl = new URL(currentUrl);
+const params = new URLSearchParams(allBookUrl.search);
+const category = params.get("category");
+document.querySelector("#all-book .banner-overlay h2").innerText =
+  category ?? "Shop";
 
 function renderBooks(books, selector) {
   selector.innerHTML = "";
 
-  console.log(books);
   if (!books.length) {
     selector.innerHTML = `
       <div class="text-center my-5">
@@ -66,8 +72,10 @@ class TreeManager {
   constructor() {
     this.selectedItems = new Map();
     this.totalCount = 0;
-
     this.genresData = [];
+    if (category) {
+      this.initialCategory = category;
+    }
 
     this.loadGenresData();
     this.initEventListeners();
@@ -85,8 +93,36 @@ class TreeManager {
       this.genresData = await this.getGenresData();
       this.renderTree();
       this.updateStats();
+
+      if (this.initialCategory) {
+        this.selectCategoryByName(this.initialCategory);
+      }
     } catch (error) {
       console.error("Lỗi khi load dữ liệu genres:", error);
+    }
+  }
+
+  selectCategoryByName(categoryName) {
+    const findCategory = (nodes) => {
+      for (const node of nodes) {
+        if (node.name === categoryName) {
+          return node;
+        }
+        if (node.children && node.children.length > 0) {
+          const found = findCategory(node.children);
+          if (found) return found;
+        }
+      }
+      return null;
+    };
+
+    const categoryNode = findCategory(this.genresData);
+    if (categoryNode) {
+      const checkbox = document.getElementById(`node-${categoryNode.id}`);
+      if (checkbox) {
+        checkbox.checked = true;
+        this.handleCheckboxChange(checkbox);
+      }
     }
   }
 

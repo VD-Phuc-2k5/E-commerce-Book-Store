@@ -104,7 +104,7 @@ class Routes {
     document.querySelectorAll("a").forEach((aDom) => {
       aDom.addEventListener("click", (e) => {
         e.preventDefault();
-        this.navigate(e.currentTarget.getAttribute("href"));
+        this.navigate(encodeURI(e.currentTarget.getAttribute("href")));
       });
     });
   }
