@@ -162,6 +162,7 @@
   max-height: 90vh;
   overflow-y: auto;
   padding: 32px;
+  position: relative;
 }
 
 #article-modal {
