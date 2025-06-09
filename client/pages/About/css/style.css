@@ -1,0 +1,338 @@
+#about {
+  transition: 0.5s ease-in-out;
+}
+
+.hero-section {
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  position: relative;
+  animation: heroSectionFadeIn 0.5s ease-in-out forwards;
+}
+
+.hero-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(37, 15, 0, 0.5),
+    rgba(41, 36, 0, 0.5)
+  );
+}
+
+.hero-content {
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.btn-custom {
+  background-color: var(--mint-green-color);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #fff;
+  color: var(--mint-green-color);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* content */
+.content-section {
+  padding: 80px 0;
+  background-color: white;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--text-color);
+  margin-bottom: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.about-card {
+  background-color: var(--light-bg);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  opacity: 0;
+  animation: contentFadeIn 1s calc(var(--delay) * 1s) ease-in-out forwards;
+  animation-timeline: view();
+  animation-range: entry 10% cover 15%;
+}
+
+.about-card h3 {
+  color: var(--mint-green-color);
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.about-card-icon {
+  font-size: 40px;
+  color: var(--mint-green-color);
+  margin-bottom: 20px;
+}
+
+/* team */
+.team-card {
+  background-color: var(--light-bg);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: contentFadeIn 1s calc(var(--delay) * 0.5s) ease-in-out forwards;
+  animation-timeline: view();
+  animation-range: entry 10% cover 15%;
+}
+
+.team-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.team-info {
+  padding: 20px;
+}
+
+.team-info p,
+.timeline-content p,
+.about-card p {
+  text-align: justify;
+}
+
+.team-name {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.team-position {
+  color: var(--mint-green-color);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icons a {
+  color: #666;
+  margin-right: 15px;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--mint-green-color);
+}
+
+.timeline {
+  position: relative;
+  padding: 40px 0;
+}
+
+.timeline::before,
+.timeline:after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 50%;
+  width: 4px;
+  margin-left: -2px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.timeline:after {
+  height: 0;
+  background: var(--mint-green-color);
+  animation: timelineAnimation 1s ease-in-out forwards;
+  animation-timeline: view();
+  animation-range: 0% cover 100%;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 10px 40px;
+  width: 50%;
+  box-sizing: border-box;
+  opacity: 0;
+  animation: timelineItemAnimation 0.5s ease-in-out forwards;
+  animation-timeline: view();
+  animation-range: entry cover 40%;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 4px solid var(--mint-green-color);
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+  animation: timelinePointAnimation 0.2s ease-in-out forwards;
+  animation-timeline: view();
+  animation-range: 0% cover 50%;
+}
+
+.timeline-item.left {
+  left: 0;
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+.timeline-item.left::after {
+  right: -10px;
+}
+
+.timeline-item.right::after {
+  left: -10px;
+}
+
+.timeline-content {
+  padding: 20px 30px;
+  background-color: var(--light-bg);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-date {
+  font-weight: bold;
+  color: var(--mint-green-color);
+  margin-bottom: 10px;
+}
+
+/* contact */
+.contact-section {
+  background-color: #f9f9f9;
+  padding: 80px 0;
+}
+
+.contact-form {
+  background-color: var(--light-bg);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  background-color: var(--light-bg);
+  padding: 30px;
+  border-radius: 15px;
+  height: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.contact-icon {
+  min-width: 40px;
+  height: 40px;
+  background-color: var(--mint-green-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+@keyframes heroSectionFadeIn {
+  0% {
+    opacity: 0.8;
+    background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(215, 215, 215, 0.5)
+    );
+  }
+  100% {
+    opacity: 1;
+    background: url("../../../assets/img/aboutUs_mentor_top.jpeg") no-repeat
+      center center/cover;
+    filter: grayscale(50%);
+  }
+}
+
+@keyframes contentFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes timelineAnimation {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes timelinePointAnimation {
+  from {
+    background: white;
+    border-color: var(--mint-green-color);
+  }
+  to {
+    background: var(--mint-green-color);
+    border-color: var(--slate-gray-color);
+  }
+}
+
+@keyframes timelineItemAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

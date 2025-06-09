@@ -1,0 +1,22 @@
+@media (max-width: 574px) {
+  .myAccount__form__controls {
+    width: 90%;
+  }
+
+  .myAccount__form__heading h2 {
+    font-size: 2em;
+  }
+
+  #myAccount {
+    padding: 20px 5px;
+  }
+
+  .myAccount__form__password__controls a,
+  .myAccount__form__password__controls label {
+    font-size: 0.8em;
+  }
+
+  .myAccount__form__label {
+    font-size: 1em;
+  }
+}

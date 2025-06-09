@@ -1,0 +1,29 @@
+@media (min-width: 300px) {
+  .home__banner__overlay__title {
+    padding: 30px;
+    align-items: center;
+  }
+
+  .home__banner__overlay__title h1 {
+    margin-bottom: 10px;
+    font-size: 8vw;
+  }
+  .home__banner__overlay__title h3 {
+    font-size: 4vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .home__banner__overlay__title {
+    padding: 40px;
+    align-items: start;
+  }
+
+  .home__banner__overlay__title h1 {
+    font-size: clamp(3vw, 500%, 6vw);
+  }
+
+  .home__banner__overlay__title h3 {
+    font-size: clamp(1vw, 300%, 2.8vw);
+  }
+}

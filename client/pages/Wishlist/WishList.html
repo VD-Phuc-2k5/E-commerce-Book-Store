@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wishlist page</title>
+  </head>
+  <body>
+    <div id="wishlistPage">
+      <div class="wishlist__content">
+        <img
+          class="wishlist__content__image"
+          src="../../assets/img/mentor-top-image.jpg"
+          alt="mentor-top-image.jpg" />
+        <h3 class="wishlist__content__title">Wishlist</h3>
+      </div>
+
+      <div class="container">
+        <div class="row empty" id="wishlist">
+          <div class="elementor--item__overlay__sidebar__body">
+            <div class="sidebar__body__empty">
+              <i class="fa-solid fa-book"></i>
+              <h4>Your wishlist is empty</h4>
+              <p>
+                Looks like you haven't added any books to your wishlist yet.
+              </p>
+              <a href="/" class="continue-shopping-btn">Continue Shopping</a>
+            </div>
+
+            <div class="sidebar__body__list row" id="wishListContainer">
+              <div id="page-container" class="page-container col-12">
+                <div class="page-slide col-12">
+                  <div class="row page col-12"></div>
+                </div>
+              </div>
+
+              <div
+                class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4">
+                <nav aria-label="Page navigation">
+                  <ul id="pagination" class="pagination">
+                    <!-- Phân trang sẽ được render ở đây -->
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+
+          <div class="elementor--item__overlay__sidebar__footer">
+            <a href="/">
+              <span>or</span>
+              <span class="continue-shopping-btn">Continue Shopping</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+/* tablet */
+@media(max-width: 1024px) {
+    .blogging__banner {
+        background-image: url("../../../assets/img/banner-blog-page-ipad.png");
+    }
+
+    .banner-content {
+        --banner-width: 500px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .blogging__banner {
+        background-image: url("../../../assets/img/banner-blog-page-mobile.png");
+    }
+
+    .banner-content {
+        --banner-width: calc(100vw - 100px);
+        inset: 50% 0 0 50px;
+    }
+
+    .blogging__banner-heading {
+        font-size: 6vw;
+    }
+
+    .blogging__banner_detail,
+    .blogging__banner_subtitle {
+        font-size: 3vw;
+        line-height: 1.5em;
+    }
+}
