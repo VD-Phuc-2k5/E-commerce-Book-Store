@@ -40,7 +40,7 @@ function createProduct(
       <div>
         <h5 class="card-title product__title" style="font-weight: 600; text-align: left">
           <span>${title}</span>
-          <span class=${author == "" ? "no-author" : ""}>By ${capitalizeWords(
+          <span class=${!author ? "no-author" : ""}>By ${capitalizeWords(
     author
   )}</span>
         </h5>
@@ -124,7 +124,7 @@ function createProduct(
       wishListBtns.forEach((wishListBtn) => {
         wishListBtn.classList.toggle("liked");
       });
-    } else window.appRouter.navigate(`/product?id=${id}`);
+    } else window.appRouter.navigate(encodeURI(`/product?id=${id}`));
   });
 
   productItemWrap.appendChild(productItem);

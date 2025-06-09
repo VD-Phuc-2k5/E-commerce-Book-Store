@@ -55,7 +55,7 @@ async function Home() {
   productList.appendChild(h1);
 
   // load books after pagination
-  pagination(27, "/books", renderBooks);
+  pagination(27, encodeURI("/books"), renderBooks);
 }
 
 Home();

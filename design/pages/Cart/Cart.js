@@ -177,7 +177,9 @@ function renderCartItems(cartItems, selector) {
   aEl.forEach((aDom) => {
     aDom.addEventListener("click", (e) => {
       e.preventDefault();
-      window.appRouter.navigate(e.currentTarget.getAttribute("href"));
+      window.appRouter.navigate(
+        encodeURI(e.currentTarget.getAttribute("href"))
+      );
     });
   });
 
@@ -196,7 +198,7 @@ function updateNotify(count) {
 getCartStore().subscribe(() => {
   const state = getCartStore().getState();
   if (window.location.pathname === "/cart")
-    pagination(3, "cart", renderCartItems);
+    pagination(3, encodeURI("cart"), renderCartItems);
   updateNotify(state?.length ?? 0);
 });
 

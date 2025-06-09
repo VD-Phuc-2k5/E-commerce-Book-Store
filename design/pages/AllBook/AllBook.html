@@ -7,9 +7,11 @@
   </head>
   <body>
     <div id="all-book">
-      <div
-        class="blurred-img"
-        style="--bg-img: url('../../assets/img/all-book-banner-small.jpg')">
+      <div class="blurred-img">
+        <div class="banner-overlay">
+          <h2>Shop</h2>
+          <input type="text" placeholder="search..." id="searchBook" />
+        </div>
         <img
           class="banner"
           src="../../assets/img/all-book-banner.jpg"
@@ -19,210 +21,71 @@
       <div class="container-fluid">
         <div class="row">
           <!-- Sidebar -->
-          <div class="col-lg-3 col-md-4 p-0">
-            <div class="sidebar">
-              <!-- Genres Filter -->
-              <div class="filter-section">
-                <h6 class="mb-3">Genres</h6>
-                <input
-                  type="text"
-                  class="form-control search-input mb-3"
-                  id="genreSearch"
-                  placeholder="Search for genres" />
-                <div class="checkbox-group" id="genreFilters">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="fiction"
-                      id="fiction" />
-                    <label class="form-check-label" for="fiction"
-                      >Fiction</label
-                    >
+          <div class="col-lg-3 col-md-4">
+            <div class="tree-container">
+              <!-- Stats -->
+              <div class="tree-stats">
+                <div class="row text-center">
+                  <div class="col-4">
+                    <div class="h4 mb-1" id="totalCategories">0</div>
+                    <small>Tổng danh mục</small>
                   </div>
-                  <div class="form-check ms-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="action"
-                      id="action" />
-                    <label class="form-check-label" for="action"
-                      >Action / Adventure</label
-                    >
+                  <div class="col-4">
+                    <div class="h4 mb-1" id="selectedCount">0</div>
+                    <small>Đã chọn</small>
                   </div>
-                  <div class="form-check ms-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="historical"
-                      id="historical" />
-                    <label class="form-check-label" for="historical"
-                      >Historical</label
-                    >
-                  </div>
-                  <div class="form-check ms-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="horror"
-                      id="horror" />
-                    <label class="form-check-label" for="horror">Horror</label>
-                  </div>
-                  <div class="form-check ms-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="mystery"
-                      id="mystery" />
-                    <label class="form-check-label" for="mystery"
-                      >Mystery / Crime</label
-                    >
-                  </div>
-                  <div class="form-check ms-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="scifi"
-                      id="scifi" />
-                    <label class="form-check-label" for="scifi">Sci-fi</label>
-                  </div>
-                  <div class="form-check ms-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="vintage"
-                      id="vintage" />
-                    <label class="form-check-label" for="vintage"
-                      >Vintage</label
-                    >
-                  </div>
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="superheroes"
-                      id="superheroes" />
-                    <label class="form-check-label" for="superheroes"
-                      >Superheroes</label
-                    >
-                  </div>
-                  <div class="form-check ms-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="dc"
-                      id="dc" />
-                    <label class="form-check-label" for="dc">DC</label>
-                  </div>
-                  <div class="form-check ms-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="indie"
-                      id="indie" />
-                    <label class="form-check-label" for="indie">Indie</label>
-                  </div>
-                  <div class="form-check ms-3">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="marvel"
-                      id="marvel" />
-                    <label class="form-check-label" for="marvel">Marvel</label>
+                  <div class="col-4">
+                    <div class="h4 mb-1" id="visibleCount">0</div>
+                    <small>Hiển thị</small>
                   </div>
                 </div>
               </div>
 
-              <!-- Price Filter -->
-              <div class="filter-section">
-                <h6 class="mb-3">Price Range</h6>
-                <div class="d-flex align-items-center gap-2">
+              <!-- Search -->
+              <div class="tree-search">
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fas fa-search"></i>
+                  </span>
                   <input
-                    type="number"
-                    class="form-control price-input"
-                    id="minPrice"
-                    placeholder="Min"
-                    min="0" />
-                  <span>-</span>
-                  <input
-                    type="number"
-                    class="form-control price-input"
-                    id="maxPrice"
-                    placeholder="Max"
-                    min="0" />
-                  <span>đ</span>
+                    type="text"
+                    class="form-control"
+                    id="treeSearch"
+                    placeholder="Tìm kiếm danh mục..." />
                 </div>
               </div>
 
-              <!-- Author Search -->
-              <div class="filter-section">
-                <h6 class="mb-3">Author</h6>
-                <input
-                  type="text"
-                  class="form-control search-input"
-                  id="authorSearch"
-                  placeholder="Search by author name" />
+              <!-- Tree -->
+              <div id="treeContainer">
+                <!-- Tree will be rendered here -->
               </div>
 
-              <!-- Rating Filter -->
-              <div class="filter-section">
-                <h6 class="mb-3">Rating</h6>
-                <select class="form-select" id="ratingFilter">
-                  <option value="">Any rating</option>
-                  <option value="5">5 stars</option>
-                  <option value="4">4+ stars</option>
-                  <option value="3">3+ stars</option>
-                  <option value="2">2+ stars</option>
-                  <option value="1">1+ stars</option>
-                </select>
+              <!-- No Results -->
+              <div id="noResults" class="no-results" style="display: none">
+                <i class="fas fa-search fa-3x mb-3"></i>
+                <div class="h5">Không tìm thấy danh mục nào phù hợp</div>
+                <div>Thử tìm kiếm với từ khóa khác</div>
               </div>
             </div>
           </div>
 
           <!-- Main Content -->
           <div class="col-lg-9 col-md-8">
-            <div class="p-4">
-              <!-- Header -->
+            <!-- Books Grid -->
+            <div class="row" id="booksContainer">
+              <div id="page-container" class="page-container col-12">
+                <div class="page-slide col-12">
+                  <div class="row page col-12"></div>
+                </div>
+              </div>
+
               <div
-                class="d-flex justify-content-between align-items-center mb-4">
-                <div class="d-flex align-items-center">
-                  <select
-                    class="form-select me-3"
-                    id="sortSelect"
-                    style="width: auto">
-                    <option value="title-asc">Sorted by A-Z</option>
-                    <option value="title-desc">Sorted by Z-A</option>
-                    <option value="price-asc">Price: Low to High</option>
-                    <option value="price-desc">Price: High to Low</option>
-                    <option value="rating-desc">Rating: High to Low</option>
-                    <option value="newest">Newest First</option>
-                  </select>
-                </div>
-              </div>
-
-              <!-- Search Results Info -->
-              <div class="mb-3">
-                <span id="resultsCount" class="text-muted fw-bold"
-                  >Showing all books</span
-                >
-              </div>
-
-              <!-- Books Grid -->
-              <div class="row" id="booksContainer">
-                <div id="page-container" class="page-container col-12">
-                  <div class="page-slide col-12">
-                    <div class="row page col-12"></div>
-                  </div>
-                </div>
-
-                <div
-                  class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4">
-                  <nav aria-label="Page navigation">
-                    <ul id="pagination" class="pagination">
-                      <!-- Phân trang sẽ được render ở đây -->
-                    </ul>
-                  </nav>
-                </div>
+                class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4">
+                <nav aria-label="Page navigation">
+                  <ul id="pagination" class="pagination">
+                    <!-- Phân trang sẽ được render ở đây -->
+                  </ul>
+                </nav>
               </div>
             </div>
           </div>

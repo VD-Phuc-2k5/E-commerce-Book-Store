@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 * {
   padding: 0;
   margin: 0;
@@ -46,6 +48,10 @@ body {
   color: var(--text-color);
   background-color: var(--bg-color);
   transition: 0.5s ease-in-out;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* color */
@@ -69,6 +75,10 @@ body {
   --border-color: #e2e2e2;
   --text-color: #333;
   --light-bg: rgba(255, 255, 255, 0.75);
+  /* category tree */
+  --border-color: #e9ecef;
+  --text-color: #495057;
+  --hover-color: #f8f9fa;
 }
 
 ::selection {
@@ -195,10 +205,6 @@ input[type="number"]::-webkit-outer-spin-button {
   transition: scale 0.3s ease-in-out;
 }
 
-.product__cart-btn:hover {
-  scale: 1.1;
-}
-
 .product__desc {
   text-align: justify;
   margin-top: 5px;
@@ -248,11 +254,6 @@ input[type="number"]::-webkit-outer-spin-button {
   animation: particle-float 1s ease-out forwards,
     particle-fade 1s ease-out forwards;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.product__body div:first-child button {
-  align-self: start;
-  margin-top: 10px;
 }
 
 /* header */
@@ -1045,13 +1046,19 @@ footer {
   display: none;
 }
 
-.no-discount, .no-author {
+.no-discount {
+  display: none;
+}
+
+.no-author {
   visibility: hidden;
 }
 
 #page-container {
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
 }
 
 .page-slide {
@@ -1123,6 +1130,7 @@ footer {
 }
 
 .blurred-img {
+  position: relative;
   background-image: var(--bg-img);
   background-size: cover;
   background-repeat: no-repeat;

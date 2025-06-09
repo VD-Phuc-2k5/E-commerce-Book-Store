@@ -1,0 +1,5 @@
+@media (max-width: 574px) {
+  .tree-container {
+    max-height: 400px;
+  }
+}

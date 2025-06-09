@@ -117,10 +117,10 @@ async function productPage() {
           <div class="product-section container-fluid">
             <div class="row">
               <!-- Product Image -->
-              <div class="product-image-container col-lg-6 col-12"></div>
+              <div class="product-image-container col-lg-5 col-12"></div>
     
               <!-- Product Details -->
-              <div class="product-details col-lg-6 col-12">
+              <div class="product-details col-lg-7 col-12">
                 <div>
                   <h1 class="product-title">${title}</h1>
                   <p class="product-author ${author == "" ? "no-author" : ""}">
@@ -263,14 +263,16 @@ async function productPage() {
       });
     }
 
-    pagination(6, `books?category=${category}`, renderBooks, 2);
+    pagination(6, encodeURI(`books?category=${category}`), renderBooks, 2);
 
     // prevent default event of tag a
     const aEl = document.querySelectorAll("a");
     aEl.forEach((aDom) => {
       aDom.addEventListener("click", (e) => {
         e.preventDefault();
-        window.appRouter.navigate(e.currentTarget.getAttribute("href"));
+        window.appRouter.navigate(
+          encodeURI(e.currentTarget.getAttribute("href"))
+        );
       });
     });
   }

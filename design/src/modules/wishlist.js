@@ -66,7 +66,7 @@ function addRemoveHanlde(data) {
           }
         };
       } else {
-        window.appRouter.navigate(`/product?id=${data[idx].id}`);
+        window.appRouter.navigate(encodeURI(`/product?id=${data[idx].id}`));
       }
     });
   });

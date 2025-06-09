@@ -102,7 +102,9 @@ function render(state) {
           !e.target.classList.contains("sidebar__body__list__item__trash") &&
           !e.target.classList.contains("fa-trash")
         ) {
-          window.appRouter.navigate(wishListItem.getAttribute("data-link"));
+          window.appRouter.navigate(
+            encodeURI(wishListItem.getAttribute("data-link"))
+          );
         }
       });
     });

@@ -13,7 +13,7 @@
 .breadcrumb-list {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 10px;
   color: #111;
 }
 
@@ -45,7 +45,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  max-height: 500px;
+  max-height: 550px;
   overflow: hidden;
   background: #fafafa;
   padding: 0;
