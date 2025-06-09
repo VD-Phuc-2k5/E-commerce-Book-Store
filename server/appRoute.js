@@ -4,6 +4,7 @@ import * as BookController from "./controllers/BookController.js";
 import * as CartController from "./controllers/CartController.js";
 import * as WishListController from "./controllers/WishListController.js";
 import * as CategoryController from "./controllers/CategoryController.js";
+import * as CheckoutController from "./controllers/CheckoutController.js";
 
 const router = express.Router();
 
@@ -29,6 +30,9 @@ function appRoute(app) {
 
   // === category === //
   router.get("/category", asyncHandler(CategoryController.getCategory));
+
+  // === checkout === //
+  router.get("/checkout", asyncHandler(CheckoutController.getCheckoutItems));
 
   app.use("/api/", router);
 }
