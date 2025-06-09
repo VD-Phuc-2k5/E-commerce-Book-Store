@@ -1167,7 +1167,7 @@ footer {
   opacity: 1;
 }
 
-.sidebar__body__list div {
+#bars .sidebar__body__list div {
   display: flex;
   align-items: center;
   width: 100%;
@@ -1176,17 +1176,17 @@ footer {
   transition: 0.3s ease-in-out;
 }
 
-.sidebar__body__list div:hover,
-.sidebar__body__list div:hover a {
+#bars .sidebar__body__list div:hover,
+#bars .sidebar__body__list div:hover a {
   color: var(--mint-green-color)
 }
 
-.sidebar__body__list div i {
+#bars .sidebar__body__list div i {
   padding: 0 15px;
   font-size: 1.2em;
 }
 
-.sidebar__body__list div a {
+#bars .sidebar__body__list div a {
   display: block;
   padding: 10px 0;
 }
