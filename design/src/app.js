@@ -2,6 +2,7 @@ import carouselLoader from "./modules/loader-carousel.js";
 import ComponentRegister from "./modules/component-register.js";
 import setSidebarToggle from "./modules/setSidebarToggle.js";
 import loaderNavSidebar from "./modules/loader-nav-sidebar.js";
+import loaderMobileSidebar from "./modules/loader-mobile-sidebar.js";
 import { getCartStore, getWishStore } from "./modules/store.js";
 import {
   render as cartRender,
@@ -22,6 +23,8 @@ async function App() {
     carouselLoader(10, 7000),
     loaderNavSidebar("cart", "Cart"),
     loaderNavSidebar("wishlist", "Wishlist"),
+    loaderMobileSidebar("bars", "Bars"),
+    setSidebarToggle("bars"),
     setSidebarToggle("cart"),
     setSidebarToggle("wishlist"),
   ]);

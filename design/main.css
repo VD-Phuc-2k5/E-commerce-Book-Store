@@ -775,20 +775,22 @@ footer {
 
 /* sidebar for cart, wishlist and navbar on tablet */
 #cart.active .header__nav__elementor--item__overlay,
-#wishlist.active .header__nav__elementor--item__overlay {
+#wishlist.active .header__nav__elementor--item__overlay,
+#bars.active .header__nav__elementor--item__overlay {
   display: block;
   cursor: pointer;
 }
 
 #cart:not(.empty) .elementor--item__overlay__sidebar__total_cost, 
 #cart:not(.empty) .elementor--item__overlay__sidebar__footer, 
-#wishlist:not(.empty) .elementor--item__overlay__sidebar__footer  {
+#wishlist:not(.empty) .elementor--item__overlay__sidebar__footer,
+#bars:not(.empty) .elementor--item__overlay__sidebar__footer  {
   display: flex;
 }
 
 #cart:not(.empty) .sidebar__body__empty,
-#wishlist:not(.empty) .sidebar__body__empty
- {
+#wishlist:not(.empty) .sidebar__body__empty,
+#bars:not(.empty) .sidebar__body__empty {
   display: none;
 }
 
@@ -1163,6 +1165,30 @@ footer {
 
 .blurred-img.loaded img {
   opacity: 1;
+}
+
+.sidebar__body__list div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+  border-bottom: 1px solid #cacaca;
+  transition: 0.3s ease-in-out;
+}
+
+.sidebar__body__list div:hover,
+.sidebar__body__list div:hover a {
+  color: var(--mint-green-color)
+}
+
+.sidebar__body__list div i {
+  padding: 0 15px;
+  font-size: 1.2em;
+}
+
+.sidebar__body__list div a {
+  display: block;
+  padding: 10px 0;
 }
 
 @keyframes pulse {

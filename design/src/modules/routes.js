@@ -20,7 +20,7 @@ class Routes {
   navigate(path) {
     // Điều chỉnh cuộn trang và đóng sidebar nếu cần
     window.scrollTo(0, 0);
-    ["cart", "wishlist"].forEach((id) => {
+    ["cart", "wishlist", "bars"].forEach((id) => {
       const element = document.getElementById(id);
       if (element?.classList.contains("active")) {
         removeSidebar(element);
