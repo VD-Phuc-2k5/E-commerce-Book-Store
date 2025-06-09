@@ -11,14 +11,12 @@ import * as AuthController from "./controllers/AuthController.js";
 const router = express.Router();
 
 function appRoute(app) {
-
   // Get articles aka blogs
-  router.get("/articles", asyncHandler(ArticleController.getArticle))
+  router.get("/articles", asyncHandler(ArticleController.getArticle));
 
   // === books === /
   router.get("/books", asyncHandler(BookController.getBooks));
   router.get("/books/:id", asyncHandler(BookController.getBookById));
-
 
   // === cart ===/
   router.get("/cart", asyncHandler(CartController.getCart));
@@ -44,6 +42,7 @@ function appRoute(app) {
   // === Auth === //
   router.get("/auth", asyncHandler(AuthController.getAccounts));
   router.post("/signup", asyncHandler(AuthController.signUp));
+  router.post("/login", asyncHandler(AuthController.logIn));
 
   app.use("/api/", router);
 }
