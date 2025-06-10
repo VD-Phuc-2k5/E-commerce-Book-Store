@@ -85,17 +85,17 @@ _Hình ảnh: Trang thông tin sản phẩm trên PC_
 
 ### Mobile
 
-<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-    <img src="./pages/mobile/AboutUs.png" width="40%" />
-    <img src="./pages/mobile/Auth.png" width="40%" />
-    <img src="./pages/mobile/Blog-Body.png" width="40%" />
-    <img src="./pages/mobile/Cart-Empty.png" width="40%" />
-    <img src="./pages/mobile/Cart.png" width="40%" />
-    <img src="./pages/mobile/Checkout-Empty.png" width="40%" />
-    <img src="./pages/mobile/Checkout.png" width="40%" />
-    <img src="./pages/mobile/Home-Bars.png" width="40%" />
-    <img src="./pages/mobile/Home.png" width="40%" />
-    <img src="./pages/mobile/Wishlist-Empty.png" width="40%" />
+<div style="display: flex; align-item: center; gap: 10px; justify-content: space-between;">
+    <img style="flex: 1" src="./pages/mobile/AboutUs.png" width="20%" />
+    <img style="flex: 1" src="./pages/mobile/Auth.png" width="20%" />
+    <img style="flex: 1" src="./pages/mobile/Blog-Body.png" width="20%" />
+    <img style="flex: 1" src="./pages/mobile/Cart-Empty.png" width="20%" />
+    <img style="flex: 1" src="./pages/mobile/Cart.png" width="20%" />
+    <img style="flex: 1" src="./pages/mobile/Checkout-Empty.png" width="20%" />
+    <img style="flex: 1" src="./pages/mobile/Checkout.png" width="20%" />
+    <img style="flex: 1" src="./pages/mobile/Home-Bars.png" width="20%" />
+    <img style="flex: 1" src="./pages/mobile/Home.png" width="20%" />
+    <img style="flex: 1" src="./pages/mobile/Wishlist-Empty.png" width="20%" />
 </div>
 
 _Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
