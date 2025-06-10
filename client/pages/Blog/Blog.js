@@ -14,6 +14,7 @@ const modalClose = document.getElementById('modal-close');
 const trendingArticles = document.getElementById('trending-articles');
 let currentPage = 1;
 const articlesPerPage = 6;
+let currentCategory = 'all';
 
 async function fetchArticles() {
     try {
@@ -28,7 +29,8 @@ async function fetchArticles() {
 }
 
 function getFilteredArticles() {
-    return articles;
+    if (currentCategory === 'all') return articles;
+    return articles.filter(article => article.category === currentCategory);
 }
 
 // Khởi tạo app
@@ -48,6 +50,17 @@ function setupEventListeners() {
     editorClose.addEventListener('click', closeBlogEditor);
     editorCancel.addEventListener('click', closeBlogEditor);
     modalClose.addEventListener('click', closeArticleModal);
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+            currentCategory = this.dataset.filter;
+            currentPage = 1;
+            renderArticles();
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
 
     editorModal.addEventListener('click', function (e) {
         if (e.target === this) closeBlogEditor();
