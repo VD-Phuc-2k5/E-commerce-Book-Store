@@ -74,14 +74,29 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
     <img style="flex: 1" src="./pages/pc/Blog-Body.png" width="20%" />
     <img style="flex: 1" src="./pages/pc/Cart.png" width="20%" />
     <img style="flex: 1" src="./pages/pc/Cart-Empty.png" width="20%" />
-    <img style="flex: 1" src="./pages/pc/Product.png" width="20%" />
     <img style="flex: 1" src="./pages/pc/Auth.png" width="20%" />
     <img style="flex: 1" src="./pages/pc/Checkout-Empty.png" width="20%" />
-    <img style="flex: 1" src="./pages/pc/Home-Empty-Cart.png" width="20%" />
     <img style="flex: 1" src="./pages/pc/Checkout.png" width="20%" />
 </div>
 
 _Hình ảnh: Trang thông tin sản phẩm trên PC_
+
+### Tablet
+
+<div style="display: flex; align-item: center; gap: 10px; justify-content: space-between;">
+    <img style="flex: 1" src="./pages/tablet/Home.png" width="20%" />
+    <img style="flex: 1" src="./pages/tablet/AboutUs.png" width="20%" />
+    <img style="flex: 1" src="./pages/tablet/Blog-Body.png" width="20%" />
+    <img style="flex: 1" src="./pages/tablet/Cart.png" width="20%" />
+    <img style="flex: 1" src="./pages/tablet/Cart-Empty.png" width="20%" />
+    <img style="flex: 1" src="./pages/tablet/Auth.png" width="20%" />
+    <img style="flex: 1" src="./pages/tablet/Checkout-Empty.png" width="20%" />
+    <img style="flex: 1" src="./pages/tablet/Checkout.png" width="20%" />
+    <img style="flex: 1" src="./pages/tablet/Product.png" width="20%" />
+    <img style="flex: 1" src="./pages/tablet/Product-Info.png" width="20%" />
+</div>
+
+_Hình ảnh: Trang thông tin sản phẩm trên Tablet_
 
 ### Mobile
 
