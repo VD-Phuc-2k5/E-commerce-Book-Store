@@ -32,6 +32,7 @@ class Routes {
 
     history.pushState(null, null, path);
     this.render();
+    document.body.style.overflowY = "auto";
   }
 
   render() {
