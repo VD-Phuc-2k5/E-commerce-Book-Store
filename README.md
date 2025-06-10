@@ -67,26 +67,26 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 ### Mobile
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-    <img src="client/pages/mobile/AboutUs.png" width="30%" /> 
-    <img src="client/pages/mobile/Auth.png" width="30%" /> 
-    <img src="client/pages/mobile/Blog-Banner.png" width="30%" /> 
-    <img src="client/pages/mobile/Blog-Body.png" width="30%" />
-    <img src="client/pages/mobile/Cart-Empty.png" width="30%" /> 
-    <img src="client/pages/mobile/Cart.png" width="30%" /> 
-    <img src="client/pages/mobile/Checkout-Empty.png" width="30%" />
-    <img src="client/pages/mobile/Checkout.png" width="30%" /> 
-    <img src="client/pages/mobile/Home-Bars.png" width="30%" /> 
-    <img src="client/pages/mobile/Home-Cart-Empty.png" width="30%" />
-    <img src="client/pages/mobile/Home-Cart.png" width="30%" /> 
-    <img src="client/pages/mobile/Home-Wishlist-Empty.png" width="30%" /> 
-    <img src="client/pages/mobile/Home-Wishlist.png" width="30%" />
-    <img src="client/pages/mobile/Home.png" width="30%" /> 
-    <img src="client/pages/mobile/Product-Info.png" width="30%" /> 
-    <img src="client/pages/mobile/Product.png" width="30%" />
-    <img src="client/pages/mobile/Shop-Banner.png" width="30%" /> 
-    <img src="client/pages/mobile/Shop-Body.png" width="30%" /> 
-    <img src="client/pages/mobile/Wishlist-Empty.png" width="30%" />
-    <img src="client/pages/mobile/Wishlist.png" width="30%" />
+    <img src="./pages/mobile/AboutUs.png" width="30%" /> 
+    <img src="./pages/mobile/Auth.png" width="30%" /> 
+    <img src="./pages/mobile/Blog-Banner.png" width="30%" /> 
+    <img src="./pages/mobile/Blog-Body.png" width="30%" />
+    <img src="./pages/mobile/Cart-Empty.png" width="30%" /> 
+    <img src="./pages/mobile/Cart.png" width="30%" /> 
+    <img src="./pages/mobile/Checkout-Empty.png" width="30%" />
+    <img src="./pages/mobile/Checkout.png" width="30%" /> 
+    <img src="./pages/mobile/Home-Bars.png" width="30%" /> 
+    <img src="./pages/mobile/Home-Cart-Empty.png" width="30%" />
+    <img src="./pages/mobile/Home-Cart.png" width="30%" /> 
+    <img src="./pages/mobile/Home-Wishlist-Empty.png" width="30%" /> 
+    <img src="./pages/mobile/Home-Wishlist.png" width="30%" />
+    <img src="./pages/mobile/Home.png" width="30%" /> 
+    <img src="./pages/mobile/Product-Info.png" width="30%" /> 
+    <img src="./pages/mobile/Product.png" width="30%" />
+    <img src="./pages/mobile/Shop-Banner.png" width="30%" /> 
+    <img src="./pages/mobile/Shop-Body.png" width="30%" /> 
+    <img src="./pages/mobile/Wishlist-Empty.png" width="30%" />
+    <img src="./pages/mobile/Wishlist.png" width="30%" />
 </div>
 
 _Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
