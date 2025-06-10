@@ -140,6 +140,12 @@ function createArticleCard(article) {
     card.onclick = () => openArticleModal(article);
 
     const formattedDate = new Date(article.date).toLocaleDateString('vi-VN');
+    let tagsHTML = '';
+    if (Array.isArray(article.tags) && article.tags.length > 0) {
+        tagsHTML = `<div class="article-tags" style="margin-top: 8px;">` +
+            article.tags.map(tag => `<span class="tag">${tag}</span>`).join(' ') +
+            `</div>`;
+    }
 
     card.innerHTML = `
         <img src="${article.image}" alt="${article.title}" class="article-image" loading="lazy">
@@ -147,6 +153,7 @@ function createArticleCard(article) {
             <span class="article-category">${article.category}</span>
             <h3 class="article-title">${article.title}</h3>
             <p class="article-excerpt">${article.excerpt}</p>
+            ${tagsHTML}
             <div class="article-meta">
                 <div class="article-author">
                     <img src="${article.avatar}" alt="${article.author}" class="author-avatar">
@@ -200,11 +207,19 @@ function loadMoreArticles() {
 function openArticleModal(article) {
     const articleDetail = document.getElementById('article-detail');
     const formattedDate = new Date(article.date).toLocaleDateString('vi-VN');
+    let tagsHTML = '';
+
+    if (Array.isArray(article.tags) && article.tags.length > 0) {
+        tagsHTML = `<div class="article-tags" style="margin: 16px 0 8px 0;">
+        ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join(' ')}
+    </div>`;
+    }
 
     articleDetail.innerHTML = `
         <img src="${article.image}" alt="${article.title}" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
         <span class="article-category">${article.category}</span>
         <h1 style="margin: 16px 0; font-size: 28px; line-height: 1.3;">${article.title}</h1>
+        ${tagsHTML}
         <div class="article-meta" style="margin-bottom: 24px; padding-bottom: 16px;">
             <div class="article-author">
                 <img src="${article.avatar}" alt="${article.author}" class="author-avatar">
