@@ -129,24 +129,34 @@ git clone <your-repo-url>
 cd <tên-thư-mục-dự-án>
 ```
 
+### 2. Tạo .env cho server
+
+```bash
+PORT =
+```
+
 ### 2. Build Container
 
 ```bash
 docker compose build --no-cache
 ```
 
-# 3. Chạy ứng dụng
+### 3. Chạy ứng dụng
 
 ```bash
 docker compose up
 ```
 
-# 4. Truy cập các dịch vụ
+### 4. Truy cập các dịch vụ
 
 - Client: http://localhost:5173
 - Admin: http://localhost:5174
-- Server API: http://localhost:3000/api
+- Server API: http://localhost:<PORT>/api
 
-# 5. Để dừng chương trình
+### 5. Để dừng chương trình
 
 - Nhấn Ctrl+C
+
+# [LICENSE](./LICENSE)
+
+This project is UNLICENSED. Usage or redistribution is strictly prohibited unless authorized by the team.
