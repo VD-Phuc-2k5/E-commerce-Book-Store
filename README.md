@@ -8,25 +8,25 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 
 ### Frontend
 
-[x] JavaScript
-[x] Bootstrap
-[x] CSS
-[x] Webpack (Webpack-cli, webpack-dev-server)
+- [x] JavaScript
+- [x] Bootstrap
+- [x] CSS
+- [x] Webpack (Webpack-cli, webpack-dev-server)
 
 ### Backend
 
-- Express.js (Node.js framework)
-- lowdb (JSON database)
-- fuse.js (Lightweight fuzzy-search library)
+- [x] Express.js (Node.js framework)
+- [x] lowdb (JSON database)
+- [x] fuse.js (Lightweight fuzzy-search library)
 
 ### DevOps
 
-- Docker
-- Docker Compose
+- [x] Docker
+- [x] Docker Compose
 
 ### Testing
 
-- Postman (API testing)
+- [x] Postman (API testing)
 
 ## Cấu trúc dự án
 
@@ -49,7 +49,7 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 │ ├── index.html
 │ ├── main.css
 │ └── webpack.config.js
-|
+│
 ├── server/ # Backend API
 │ ├── controllers/
 │ ├── middlewares/
@@ -65,6 +65,23 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 ```
 
 ## Giao diện
+
+### PC
+
+_Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+    <img src="./pages/pc/AboutUs.png" width="20%" />
+    <img src="./pages/pc/Auth.png" width="20%" />
+    <img src="./pages/pc/Blog-Body.png" width="20%" />
+    <img src="./pages/pc/Cart-Empty.png" width="20%" />
+    <img src="./pages/pc/Cart.png" width="20%" />
+    <img src="./pages/pc/Checkout-Empty.png" width="20%" />
+    <img src="./pages/pc/Checkout.png" width="20%" />
+    <img src="./pages/pc/Home-Bars.png" width="20%" />
+    <img src="./pages/pc/Home.png" width="20%" />
+    <img src="./pages/pc/Wishlist-Empty.png" width="20%" />
+</div>
 
 ### Mobile
 
@@ -103,10 +120,13 @@ cd <tên-thư-mục-dự-án>
 # 2. Build Container
 ``` bash
 docker compose build --no-cache
+````
 
 # 3. Chạy ứng dụng
-``` bash
+
+```bash
 docker compose up
+```
 
 # 4. Truy cập các dịch vụ
 
@@ -117,4 +137,3 @@ docker compose up
 ### Để dừng các dịch vụ
 
 - Nhấn Ctrl+C trong terminal
-````
