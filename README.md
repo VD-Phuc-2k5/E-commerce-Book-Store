@@ -68,17 +68,17 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 
 ### PC
 
-<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-    <img src="./pages/pc/AboutUs.png" width="20%" />
-    <img src="./pages/pc/Auth.png" width="20%" />
-    <img src="./pages/pc/Blog-Body.png" width="20%" />
-    <img src="./pages/pc/Cart-Empty.png" width="20%" />
-    <img src="./pages/pc/Cart.png" width="20%" />
-    <img src="./pages/pc/Checkout-Empty.png" width="20%" />
-    <img src="./pages/pc/Checkout.png" width="20%" />
-    <img src="./pages/pc/Home-Bars.png" width="20%" />
-    <img src="./pages/pc/Home.png" width="20%" />
-    <img src="./pages/pc/Wishlist-Empty.png" width="20%" />
+<div style="display: flex; align-item: center; gap: 10px; justify-content: space-between;">
+    <img style="flex: 1" src="./pages/pc/AboutUs.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Auth.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Blog-Body.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Cart-Empty.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Cart.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Checkout-Empty.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Checkout.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Home-Bars.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Home.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Wishlist-Empty.png" width="20%" />
 </div>
 
 _Hình ảnh: Trang thông tin sản phẩm trên PC_
@@ -94,8 +94,6 @@ _Hình ảnh: Trang thông tin sản phẩm trên PC_
     <img style="flex: 1" src="./pages/mobile/Checkout-Empty.png" width="20%" />
     <img style="flex: 1" src="./pages/mobile/Checkout.png" width="20%" />
     <img style="flex: 1" src="./pages/mobile/Home-Bars.png" width="20%" />
-    <img style="flex: 1" src="./pages/mobile/Home.png" width="20%" />
-    <img style="flex: 1" src="./pages/mobile/Wishlist-Empty.png" width="20%" />
 </div>
 
 _Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
