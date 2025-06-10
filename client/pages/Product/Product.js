@@ -117,10 +117,10 @@ async function productPage() {
           <div class="product-section container-fluid">
             <div class="row">
               <!-- Product Image -->
-              <div class="product-image-container col-lg-5 col-12"></div>
+              <div class="product-image-container col-lg-5 col-md-5 col-sm-12"></div>
     
               <!-- Product Details -->
-              <div class="product-details col-lg-7 col-12">
+              <div class="product-details col-lg-7 col-md-7 col-sm-12">
                 <div>
                   <h1 class="product-title">${title}</h1>
                   <p class="product-author ${author == "" ? "no-author" : ""}">
