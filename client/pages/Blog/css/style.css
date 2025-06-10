@@ -196,8 +196,25 @@
   opacity: 1;
 }
 
-#blog .load-more {
+#load-more-btn {
+  display: block;
+  margin: 32px auto 0 auto;
+  padding: 16px 40px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--primary-color, #5cd799);
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 8px rgba(92, 215, 153, 0.08);
+  width: fit-content;
   text-align: center;
+}
+
+#load-more-btn:hover {
+  background-color: #4dbd8a;
 }
 
 
