@@ -11,6 +11,7 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 - [x] JavaScript
 - [x] Bootstrap
 - [x] CSS
+- [x] Redux
 - [x] Webpack (Webpack-cli, webpack-dev-server)
 
 ### Backend
