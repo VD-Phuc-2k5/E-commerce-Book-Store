@@ -151,7 +151,7 @@ docker compose up
 
 - Client: http://localhost:5173
 - Admin: http://localhost:5174
-- Server API: http://localhost:<PORT>/api
+- Server API: http://localhost:PORT/api
 
 ### 5. Để dừng chương trình
 
