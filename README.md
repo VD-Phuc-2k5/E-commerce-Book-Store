@@ -125,7 +125,7 @@ _Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
 ### 1. Clone dự án
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/VD-Phuc-2k5/E-commerce-Book-Store
 cd <tên-thư-mục-dự-án>
 ```
 
