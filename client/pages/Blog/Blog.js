@@ -15,6 +15,7 @@ const trendingArticles = document.getElementById('trending-articles');
 let currentPage = 1;
 const articlesPerPage = 6;
 let currentCategory = 'all';
+let currentTag = ''
 
 async function fetchArticles() {
     try {
@@ -29,9 +30,23 @@ async function fetchArticles() {
 }
 
 function getFilteredArticles() {
-    if (currentCategory === 'all') return articles;
-    return articles.filter(article => article.category === currentCategory);
+    let filtered = articles;
+
+    // Lọc theo category
+    if (currentCategory && currentCategory !== 'all') {
+        filtered = filtered.filter(article => article.category === currentCategory);
+    }
+
+    // Lọc theo tag
+    if (currentTag) {
+        filtered = filtered.filter(article =>
+            Array.isArray(article.tags) && article.tags.includes(currentTag)
+        );
+    }
+
+    return filtered;
 }
+
 
 // Khởi tạo app
 document.addEventListener('DOMContentLoaded', function () {
@@ -54,12 +69,30 @@ function setupEventListeners() {
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             currentCategory = this.dataset.filter;
-            currentPage = 1;
+            currentTag = ''; // Reset tag khi chọn category
             renderArticles();
+
+            // Cập nhật trạng thái active
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
+            document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
         });
     });
+
+
+    document.querySelectorAll('.tag').forEach(tagEl => {
+        tagEl.addEventListener('click', function () {
+            currentTag = this.textContent;
+            currentCategory = 'all'; // Reset category khi chọn tag
+            renderArticles();
+
+            // Cập nhật trạng thái active cho tag
+            document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        });
+    });
+
 
 
     editorModal.addEventListener('click', function (e) {
