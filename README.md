@@ -69,16 +69,16 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 ### PC
 
 <div style="display: flex; align-item: center; gap: 10px; justify-content: space-between;">
-    <img style="flex: 1" src="./pages/pc/AboutUs.png" width="20%" />
-    <img style="flex: 1" src="./pages/pc/Auth.png" width="20%" />
-    <img style="flex: 1" src="./pages/pc/Blog-Body.png" width="20%" />
-    <img style="flex: 1" src="./pages/pc/Cart-Empty.png" width="20%" />
-    <img style="flex: 1" src="./pages/pc/Cart.png" width="20%" />
-    <img style="flex: 1" src="./pages/pc/Checkout-Empty.png" width="20%" />
-    <img style="flex: 1" src="./pages/pc/Checkout.png" width="20%" />
-    <img style="flex: 1" src="./pages/pc/Home-Bars.png" width="20%" />
     <img style="flex: 1" src="./pages/pc/Home.png" width="20%" />
-    <img style="flex: 1" src="./pages/pc/Wishlist-Empty.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/AboutUs.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Blog-Body.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Cart.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Cart-Empty.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Product.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Auth.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Checkout-Empty.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Home-Empty-Cart.png" width="20%" />
+    <img style="flex: 1" src="./pages/pc/Checkout.png" width="20%" />
 </div>
 
 _Hình ảnh: Trang thông tin sản phẩm trên PC_
@@ -109,16 +109,18 @@ _Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
 
 ## Hướng dẫn cài đặt
 
-# 1. Clone dự án
+### 1. Clone dự án
 
-````bash
+```bash
 git clone <your-repo-url>
 cd <tên-thư-mục-dự-án>
+```
 
-# 2. Build Container
-``` bash
+### 2. Build Container
+
+```bash
 docker compose build --no-cache
-````
+```
 
 # 3. Chạy ứng dụng
 
@@ -132,6 +134,6 @@ docker compose up
 - Admin: http://localhost:5174
 - Server API: http://localhost:3000/api
 
-### Để dừng các dịch vụ
+# 5. Để dừng chương trình
 
-- Nhấn Ctrl+C trong terminal
+- Nhấn Ctrl+C
