@@ -30,7 +30,7 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 
 ## Cấu trúc dự án
 
-````bash
+```bash
 ├── admin/ # Frontend (Admin) - JS + Bootstrap + Webpack
 │ ├── assets/
 │ ├── css/
@@ -62,6 +62,7 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 │
 ├── docker-compose.yml # Cấu hình toàn bộ hệ thống
 └── README.md
+```
 
 ## Giao diện
 
@@ -94,7 +95,8 @@ _Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
 ## Hướng dẫn cài đặt
 
 # 1. Clone dự án
-```bash
+
+````bash
 git clone <your-repo-url>
 cd <tên-thư-mục-dự-án>
 
