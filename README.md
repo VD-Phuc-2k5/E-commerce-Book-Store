@@ -69,16 +69,16 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 ### Mobile
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-    <img src="./pages/mobile/AboutUs.png" width="50%" />
-    <img src="./pages/mobile/Auth.png" width="50%" />
-    <img src="./pages/mobile/Blog-Body.png" width="50%" />
-    <img src="./pages/mobile/Cart-Empty.png" width="50%" />
-    <img src="./pages/mobile/Cart.png" width="50%" />
-    <img src="./pages/mobile/Checkout-Empty.png" width="50%" />
-    <img src="./pages/mobile/Checkout.png" width="50%" />
-    <img src="./pages/mobile/Home-Bars.png" width="50%" />
-    <img src="./pages/mobile/Home.png" width="50%" />
-    <img src="./pages/mobile/Wishlist-Empty.png" width="50%" />
+    <img src="./pages/mobile/AboutUs.png" width="40%" />
+    <img src="./pages/mobile/Auth.png" width="40%" />
+    <img src="./pages/mobile/Blog-Body.png" width="40%" />
+    <img src="./pages/mobile/Cart-Empty.png" width="40%" />
+    <img src="./pages/mobile/Cart.png" width="40%" />
+    <img src="./pages/mobile/Checkout-Empty.png" width="40%" />
+    <img src="./pages/mobile/Checkout.png" width="40%" />
+    <img src="./pages/mobile/Home-Bars.png" width="40%" />
+    <img src="./pages/mobile/Home.png" width="40%" />
+    <img src="./pages/mobile/Wishlist-Empty.png" width="40%" />
 </div>
 
 _Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
