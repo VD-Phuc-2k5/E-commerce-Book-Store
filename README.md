@@ -68,8 +68,6 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 
 ### PC
 
-_Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
-
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
     <img src="./pages/pc/AboutUs.png" width="20%" />
     <img src="./pages/pc/Auth.png" width="20%" />
@@ -82,6 +80,8 @@ _Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
     <img src="./pages/pc/Home.png" width="20%" />
     <img src="./pages/pc/Wishlist-Empty.png" width="20%" />
 </div>
+
+_Hình ảnh: Trang thông tin sản phẩm trên PC_
 
 ### Mobile
 
