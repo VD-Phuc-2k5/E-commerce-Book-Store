@@ -30,6 +30,7 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 
 ## Cấu trúc dự án
 
+````bash
 ├── admin/ # Frontend (Admin) - JS + Bootstrap + Webpack
 │ ├── assets/
 │ ├── css/
@@ -67,26 +68,16 @@ Book Store là một trang web mua bán sách trực tuyến với giao diện t
 ### Mobile
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-    <img src="./pages/mobile/AboutUs.png" width="30%" /> 
-    <img src="./pages/mobile/Auth.png" width="30%" /> 
-    <img src="./pages/mobile/Blog-Banner.png" width="30%" /> 
-    <img src="./pages/mobile/Blog-Body.png" width="30%" />
-    <img src="./pages/mobile/Cart-Empty.png" width="30%" /> 
-    <img src="./pages/mobile/Cart.png" width="30%" /> 
-    <img src="./pages/mobile/Checkout-Empty.png" width="30%" />
-    <img src="./pages/mobile/Checkout.png" width="30%" /> 
-    <img src="./pages/mobile/Home-Bars.png" width="30%" /> 
-    <img src="./pages/mobile/Home-Cart-Empty.png" width="30%" />
-    <img src="./pages/mobile/Home-Cart.png" width="30%" /> 
-    <img src="./pages/mobile/Home-Wishlist-Empty.png" width="30%" /> 
-    <img src="./pages/mobile/Home-Wishlist.png" width="30%" />
-    <img src="./pages/mobile/Home.png" width="30%" /> 
-    <img src="./pages/mobile/Product-Info.png" width="30%" /> 
-    <img src="./pages/mobile/Product.png" width="30%" />
-    <img src="./pages/mobile/Shop-Banner.png" width="30%" /> 
-    <img src="./pages/mobile/Shop-Body.png" width="30%" /> 
-    <img src="./pages/mobile/Wishlist-Empty.png" width="30%" />
-    <img src="./pages/mobile/Wishlist.png" width="30%" />
+    <img src="./pages/mobile/AboutUs.png" width="50%" />
+    <img src="./pages/mobile/Auth.png" width="50%" />
+    <img src="./pages/mobile/Blog-Body.png" width="50%" />
+    <img src="./pages/mobile/Cart-Empty.png" width="50%" />
+    <img src="./pages/mobile/Cart.png" width="50%" />
+    <img src="./pages/mobile/Checkout-Empty.png" width="50%" />
+    <img src="./pages/mobile/Checkout.png" width="50%" />
+    <img src="./pages/mobile/Home-Bars.png" width="50%" />
+    <img src="./pages/mobile/Home.png" width="50%" />
+    <img src="./pages/mobile/Wishlist-Empty.png" width="50%" />
 </div>
 
 _Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
@@ -102,15 +93,17 @@ _Hình ảnh: Trang thông tin sản phẩm trên thiết bị di động_
 
 ## Hướng dẫn cài đặt
 
-```bash
 # 1. Clone dự án
+```bash
 git clone <your-repo-url>
 cd <tên-thư-mục-dự-án>
 
 # 2. Build Container
+``` bash
 docker compose build --no-cache
 
 # 3. Chạy ứng dụng
+``` bash
 docker compose up
 
 # 4. Truy cập các dịch vụ
@@ -122,4 +115,4 @@ docker compose up
 ### Để dừng các dịch vụ
 
 - Nhấn Ctrl+C trong terminal
-```
+````
